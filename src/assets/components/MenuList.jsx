@@ -1,5 +1,5 @@
 import React from "react";
-import Tooltip from "@mui/material/Tooltip";
+import Tooltip from "@mui/material/Tooltip"; // Nos funciona para que la hacer hover sobre un elemento se muestre un texto
 import {
   List,
   ListItem,
@@ -8,7 +8,6 @@ import {
   ListItemText,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
 
 const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
   minHeight: 48,
@@ -32,38 +31,27 @@ const MenuList = ({ menuItems, open }) => {
     <List>
       {menuItems.map((item) => (
         <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
-          <ListItemButton
-            sx={[
-              {
-                minHeight: 48,
-                px: 2.5,
-              },
-              open
-                ? { justifyContent: "initial" }
-                : { justifyContent: "center" },
-            ]}
-          >
-            <Tooltip
-              title={item.text}
-              placement="right"
-              arrow
-              disableHoverListener={open}
-              componentsProps={{
-                tooltip: {
-                  sx: {
-                    fontSize: "1rem", 
-                    fontWeight: 500, 
-                  },
+          <Tooltip
+            title={item.text}
+            placement="right"
+            arrow
+            disableHoverListener={open}
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  fontSize: "1rem", // Tamaño más grande (16px)
+                  fontWeight: 500, // Grosor medio
                 },
-              }}
+              },
+            }}
+          >
+            <AnimatedListItemButton
+              sx={[
+                open
+                  ? { justifyContent: "initial" }
+                  : { justifyContent: "center" },
+              ]}
             >
-              <AnimatedListItemButton 
-                sx={[
-                  open
-                    ? { justifyContent: "initial" }
-                    : { justifyContent: "center" },
-                ]}
-              >
               <ListItemIcon
                 sx={[
                   {
@@ -75,13 +63,12 @@ const MenuList = ({ menuItems, open }) => {
               >
                 {item.icon}
               </ListItemIcon>
-            <ListItemText
-              primary={item.text}
-              sx={[open ? { opacity: 1 } : { opacity: 0 }]}
+              <ListItemText
+                primary={item.text}
+                sx={[open ? { opacity: 1 } : { opacity: 0 }]}
               />
-              </AnimatedListItemButton>
-            </Tooltip>
-          </ListItemButton>
+            </AnimatedListItemButton>
+          </Tooltip>
         </ListItem>
       ))}
     </List>
