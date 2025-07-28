@@ -32,6 +32,10 @@ import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import SettingsIcon from '@mui/icons-material/Settings';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import HelpIcon from '@mui/icons-material/Help';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuList from "./MenuList";
 
 const drawerWidth = 260;
@@ -221,9 +225,38 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography 
+            variant="h6" 
+            noWrap 
+            component="div"
+            sx={{ flexGrow: 1}}>
             Brain ERP
           </Typography>
+          <IconButton
+            size="large"
+            color = "inherit"
+          >
+            <HelpIcon/>
+          </IconButton>
+          <IconButton
+            size="large"
+            color = "inherit"
+          >
+            <NotificationsIcon/>
+          </IconButton>
+          <IconButton
+            size="large"
+            color = "inherit"
+          >
+            <MoreVertIcon/>
+          </IconButton>
+          <IconButton
+                size="large"
+                aria-label="Cuenta actual del usuario"
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -236,6 +269,25 @@ export default function MiniDrawer() {
             )}
           </IconButton>
         </DrawerHeader>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "12px",
+            margin: "8px", 
+          }}
+        >
+          <img
+            src="../../../public/img/circuito.ico" 
+            alt="Logo de la empresa"
+            style={{
+              width:  "30px", 
+              transition: "width 0.3s ease", 
+            }}
+          />
+        </Box>
+        <Divider />
         <SectionTitle open={open}>IMPLEMENTACIÓN</SectionTitle>
         {/* Render Menú de implementación */}
         <MenuList menuItems={menuImplementacion} open={open} />
@@ -246,25 +298,23 @@ export default function MiniDrawer() {
 
         <Divider />
         <SectionTitle open={open}>IMSS</SectionTitle>
-        <MenuList menuItems={menuImss} open={open}/>
+        <MenuList menuItems={menuImss} open={open} />
 
         <Divider />
         <SectionTitle open={open}>FACTURACIÓN</SectionTitle>
-        <MenuList menuItems={menuFacturacion} open={open}/>
+        <MenuList menuItems={menuFacturacion} open={open} />
 
         <Divider />
         <SectionTitle open={open}>GASTOS</SectionTitle>
-        <MenuList menuItems={menuGastos} open={open}/>
+        <MenuList menuItems={menuGastos} open={open} />
 
         <Divider />
         <SectionTitle open={open}>UTILERIAS</SectionTitle>
-        <MenuList menuItems={menuUtilerias} open={open}/>
+        <MenuList menuItems={menuUtilerias} open={open} />
 
         <Divider />
         <SectionTitle open={open}>SOPORTE</SectionTitle>
-        <MenuList menuItems={menuSoporte} open={open}/>
-        
-        
+        <MenuList menuItems={menuSoporte} open={open} />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
