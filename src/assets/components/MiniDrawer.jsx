@@ -20,22 +20,23 @@ import HandshakeIcon from "@mui/icons-material/Handshake";
 import PaymentsIcon from "@mui/icons-material/Payments";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
-import PriceChangeIcon from '@mui/icons-material/PriceChange';
-import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
-import ArticleIcon from '@mui/icons-material/Article';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import PaymentIcon from '@mui/icons-material/Payment';
-import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
-import FactoryIcon from '@mui/icons-material/Factory';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
-import SettingsIcon from '@mui/icons-material/Settings';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import HelpIcon from '@mui/icons-material/Help';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import PriceChangeIcon from "@mui/icons-material/PriceChange";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import ArticleIcon from "@mui/icons-material/Article";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import PaymentIcon from "@mui/icons-material/Payment";
+import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
+import FactoryIcon from "@mui/icons-material/Factory";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
+import SettingsIcon from "@mui/icons-material/Settings";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import HelpIcon from "@mui/icons-material/Help";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { borders } from '@mui/system';
 import MenuList from "./MenuList";
 
 const drawerWidth = 260;
@@ -100,8 +101,8 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
-  '& .MuiDrawer-paper': {
-    backgroundColor: theme.palette.background.paper, 
+  "& .MuiDrawer-paper": {
+    backgroundColor: theme.palette.background.paper,
   },
   variants: [
     {
@@ -137,35 +138,31 @@ const menuNominas = [
 ];
 
 const menuImss = [
-    {text: 'Generales IMSS', icon: <PaymentsIcon/> },
-    {text: 'Cargos x anticipo', icon: <PriceChangeIcon/> },
-    {text: 'Obras', icon: <HistoryEduIcon/> },
-
-
+  { text: "Generales IMSS", icon: <PaymentsIcon /> },
+  { text: "Cargos x anticipo", icon: <PriceChangeIcon /> },
+  { text: "Obras", icon: <HistoryEduIcon /> },
 ];
 
 const menuFacturacion = [
-    {text: 'Facturas', icon: <ArticleIcon/> },
-    {text: 'Complemento de pago', icon: <MonetizationOnIcon/> },
-    {text: 'Notas de Credito', icon: <PaymentIcon/> },
-    {text: 'Depositos', icon: <AssuredWorkloadIcon/> }
+  { text: "Facturas", icon: <ArticleIcon /> },
+  { text: "Complemento de pago", icon: <MonetizationOnIcon /> },
+  { text: "Notas de Credito", icon: <PaymentIcon /> },
+  { text: "Depositos", icon: <AssuredWorkloadIcon /> },
 ];
 
 const menuGastos = [
-    {text: 'Solicitud de Gastos', icon: <MonetizationOnIcon/>},
-    {text: 'Proveedores', icon: <FactoryIcon/>}
+  { text: "Solicitud de Gastos", icon: <MonetizationOnIcon /> },
+  { text: "Proveedores", icon: <FactoryIcon /> },
 ];
 
 const menuUtilerias = [
-    {text: 'Lector XML', icon: <UploadFileIcon/>},
-    {text: 'Bancos', icon: <LocalAtmIcon/>},
-    {text: 'Asignacion de cuentas', icon: <DashboardIcon/>},
-    {text: 'Fondeos', icon: <RequestQuoteIcon/>}
+  { text: "Lector XML", icon: <UploadFileIcon /> },
+  { text: "Bancos", icon: <LocalAtmIcon /> },
+  { text: "Asignacion de cuentas", icon: <DashboardIcon /> },
+  { text: "Fondeos", icon: <RequestQuoteIcon /> },
 ];
 
-const menuSoporte = [
-    {text: 'Usuarios', icon: <SettingsIcon/>}
-];
+const menuSoporte = [{ text: "Usuarios", icon: <SettingsIcon /> }];
 
 const SectionTitle = ({ open, children }) => (
   <Typography
@@ -181,9 +178,7 @@ const SectionTitle = ({ open, children }) => (
         }),
       whiteSpace: "nowrap",
       overflow: "hidden",
-      minHeight: '30px',
- 
-
+      minHeight: "30px",
     }}
   >
     {children}
@@ -202,7 +197,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
-    const toggleDrawer = () => {
+  const toggleDrawer = () => {
     setOpen(!open);
   };
 
@@ -225,65 +220,99 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography 
-            variant="h6" 
-            noWrap 
-            component="div"
-            sx={{ flexGrow: 1}}>
-            Brain ERP
-          </Typography>
           <IconButton
-            size="large"
-            color = "inherit"
-          >
-            <HelpIcon/>
-          </IconButton>
-          <IconButton
-            size="large"
-            color = "inherit"
-          >
-            <NotificationsIcon/>
-          </IconButton>
-          <IconButton
-            size="large"
-            color = "inherit"
-          >
-            <MoreVertIcon/>
-          </IconButton>
-          <IconButton
-                size="large"
-                aria-label="Cuenta actual del usuario"
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+            color="inherit"
+            aria-label="close drawer"
+            onClick={handleDrawerClose}
+                        edge="start"
+            sx={[
+              {
+                marginRight: 5,
+              },
+              !open && { display: "none" },
+            ]}
+            >
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
               <ChevronLeftIcon />
             )}
           </IconButton>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            Brain ERP
+          </Typography>
+          <IconButton size="large" color="inherit">
+            <HelpIcon />
+          </IconButton>
+          <IconButton size="large" color="inherit">
+            <NotificationsIcon />
+          </IconButton>
+          <IconButton size="large" color="inherit">
+            <MoreVertIcon />
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="Cuenta actual del usuario"
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader
+          sx={{
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            padding: theme.spacing(1, 2),
+            minHeight: "80px",
+          }}
+        >
+          {open && (
+            <Box
+              sx={{
+                textAlign: "center",
+                padding: theme.spacing(1, 2),
+                marginBottom: theme.spacing(1),
+              }}
+            >
+              <Typography variant="caption" color="text.secondary">
+                32 | Jose Gabriel Alvarez Perez
+              </Typography>
+              <Typography
+                variant="caption"
+                display="block"
+                color="text.secondary"
+              >
+                correo@email
+              </Typography>
+
+              <Typography
+                variant="caption"
+                display="block"
+                color="text.secondary"
+              >
+                IP
+              </Typography>
+            </Box>
+          )}
         </DrawerHeader>
+
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            padding: "12px",
-            margin: "8px", 
+            padding: open ? "20px" : "12px",
           }}
         >
           <img
-            src="../../../public/img/circuito.ico" 
+            src="../../../public/img/circuito.ico"
             alt="Logo de la empresa"
             style={{
-              width:  "30px", 
-              transition: "width 0.3s ease", 
+              width: open ? "50px" : "30px",
+              transition: "width 0.3s ease",
+              border: 1,
             }}
           />
         </Box>
