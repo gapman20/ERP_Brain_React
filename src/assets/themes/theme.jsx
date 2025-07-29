@@ -11,9 +11,11 @@ const customTheme = createTheme({
       main: '#f50057',
     },
       background: {
-      default: '#AFB3B3', // Fondo gris claro
+      default: '#E9F5FE', // Fondo gris claro
       paper: '#FFFFFF',   // Fondo para componentes tipo "paper"
-      grey: '#D9DEDE'
+      grey: '#D9DEDE',
+      login: '#F3F9FF',
+      icono: '#E9F5FE'
     },
 
   },
