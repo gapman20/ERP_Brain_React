@@ -36,7 +36,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import HelpIcon from "@mui/icons-material/Help";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { borders } from '@mui/system';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MenuList from "./MenuList";
 
 const drawerWidth = 260;
@@ -164,30 +164,82 @@ const menuUtilerias = [
 
 const menuSoporte = [{ text: "Usuarios", icon: <SettingsIcon /> }];
 
-const SectionTitle = ({ open, children }) => (
-  <Typography
-    variant="subtitle1"
-    align="center"
-    gutterBottom
-    sx={{
-      opacity: open ? 1 : 0,
-      transition: (theme) =>
-        theme.transitions.create("opacity", {
+const SectionTitle = ({ open, children, onClick, isExpanded }) => {
+  const theme = useTheme(); // ← Esto es clave
+  
+  return (
+    <Box 
+      onClick={onClick}
+      sx={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        cursor: 'pointer',
+        py: 1,
+        '&:hover': { 
+          backgroundColor: theme.palette.action.hover // ← Usa el color del tema
+        }
+      }}
+    >
+      <Typography
+        variant="subtitle1"
+        sx={{
+          opacity: open ? 1 : 0,
+          transition: theme.transitions.create('opacity', { // ← Usa la transición del tema
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+          }),
+          fontSize: '0.75rem',
+          color: theme.palette.text.secondary, // ← Color del tema
+          textTransform: 'uppercase'
+        }}
+      >
+        {children}
+      </Typography>
+      {open && <ExpandMoreIcon sx={{ 
+        transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)',
+        transition: theme.transitions.create('transform', { // ← Transición del tema
           easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
+          duration: theme.transitions.duration.standard,
         }),
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      minHeight: "30px",
-    }}
-  >
-    {children}
-  </Typography>
-);
+        ml: 1,
+        color: theme.palette.text.secondary // ← Color del tema
+      }} />}
+    </Box>
+  );
+};
+
+const sectionMixin = (theme, expanded) => ({
+  height: expanded ? 'auto' : 0,
+  opacity: expanded ? 1 : 0,
+  overflow: 'hidden',
+  transition: theme.transitions.create(['height', 'opacity'], {
+    easing: theme.transitions.easing.sharp,
+    duration: expanded 
+      ? theme.transitions.duration.enteringScreen 
+      : theme.transitions.duration.leavingScreen,
+  }),
+});
 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [expandedSections, setExpandedSections] = React.useState({
+    implementacion: true,
+    nominas: true,
+    imss: true,
+    facturacion: true,
+    gastos: true,
+    utilerias: true,
+    soporte: true,
+  });
+
+  const toggleSection = (section) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -317,9 +369,17 @@ export default function MiniDrawer() {
           />
         </Box>
         <Divider />
-        <SectionTitle open={open}>IMPLEMENTACIÓN</SectionTitle>
+        <SectionTitle 
+          open={open}
+          onClick={() => toggleSection('implementacion')}
+          isExpanded={expandedSections.implementacion}
+        >IMPLEMENTACIÓN</SectionTitle>
         {/* Render Menú de implementación */}
-        <MenuList menuItems={menuImplementacion} open={open} />
+        {expandedSections.implementacion && (
+          <MenuList menuItems={menuImplementacion} open={open} />
+        )}
+
+
 
         <Divider />
         <SectionTitle open={open}>NÓMINAS</SectionTitle>
