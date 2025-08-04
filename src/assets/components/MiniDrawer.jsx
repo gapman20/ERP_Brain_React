@@ -37,6 +37,8 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import HelpIcon from "@mui/icons-material/Help";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Grow, Slide } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 import MenuList from "./MenuList";
 
 const drawerWidth = 260;
@@ -164,7 +166,7 @@ const menuUtilerias = [
 
 const menuSoporte = [{ text: "Usuarios", icon: <SettingsIcon /> }];
 
-const SectionTitle = ({ open, children, onClick, isExpanded }) => {
+/* const SectionTitle = ({ open, children, onClick, isExpanded }) => {
   const theme = useTheme(); // ← Esto es clave
   
   return (
@@ -203,8 +205,74 @@ const SectionTitle = ({ open, children, onClick, isExpanded }) => {
           duration: theme.transitions.duration.standard,
         }),
         ml: 1,
+        fontSize: open ? '1rem' : '1.2rem',
         color: theme.palette.text.secondary // ← Color del tema
       }} />}
+    </Box>
+  );
+}; */
+
+const SectionTitle = ({ open, children, onClick, isExpanded }) => {
+  const theme = useTheme();
+  
+  return (
+    <Box 
+      onClick={onClick}
+      sx={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        cursor: 'pointer',
+        py: 1,
+        position: 'relative',
+        userSelect: 'none', // Esto evita la selección de texto
+        WebkitUserSelect: 'none', // Para compatibilidad con Safari
+        MozUserSelect: 'none', // Para compatibilidad con Firefox
+        msUserSelect: 'none',
+        '&:hover .expand-icon': {
+          backgroundColor: theme.palette.action.hover,
+          borderRadius: '50%'
+        }
+      }}
+    >
+      <Typography
+        variant="subtitle1"
+        sx={{
+          opacity: open ? 1 : 0,
+          transition: theme.transitions.create('opacity'),
+          fontSize: '0.75rem',
+          color: theme.palette.text.secondary,
+          textTransform: 'uppercase'
+        }}
+      >
+        {children}
+      </Typography>
+      
+      <Tooltip 
+        title={`${isExpanded ? 'Ocultar' : 'Mostrar'} ${children}`} 
+        placement="right"
+      >
+        <IconButton
+          className="expand-icon"
+          size="small"
+          sx={{ 
+            position: 'absolute',
+            right: 8,
+            p: 0.5,
+            transform: isExpanded ? 'rotate(0deg)' : 'rotate(-90deg)',
+            transition: theme.transitions.create(['transform', 'background-color']),
+            opacity: 1,
+            visibility: 'visible',
+            color: theme.palette.text.secondary,
+            '&:hover': {
+              backgroundColor: theme.palette.action.selected,
+              transform: isExpanded ? 'rotate(0deg) scale(1.1)' : 'rotate(-90deg) scale(1.1)'
+            }
+          }} 
+        >
+          <ExpandMoreIcon fontSize="small" />
+        </IconButton>
+      </Tooltip>
     </Box>
   );
 };
@@ -276,14 +344,14 @@ export default function MiniDrawer() {
             color="inherit"
             aria-label="close drawer"
             onClick={handleDrawerClose}
-                        edge="start"
+            edge="start"
             sx={[
               {
                 marginRight: 5,
               },
               !open && { display: "none" },
             ]}
-            >
+          >
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
@@ -369,17 +437,58 @@ export default function MiniDrawer() {
           />
         </Box>
         <Divider />
-        <SectionTitle 
+        <SectionTitle
           open={open}
-          onClick={() => toggleSection('implementacion')}
+          onClick={() => toggleSection("implementacion")}
           isExpanded={expandedSections.implementacion}
-        >IMPLEMENTACIÓN</SectionTitle>
+        >
+          IMPLEMENTACIÓN
+        </SectionTitle>
         {/* Render Menú de implementación */}
-        {expandedSections.implementacion && (
-          <MenuList menuItems={menuImplementacion} open={open} />
-        )}
-
-
+        <Grow 
+          in={expandedSections.implementacion}
+          timeout={{
+            enter: 250,
+            exit: 150 // Permitimos un poco de tiempo para sincronizar
+          }}
+          style={{ transformOrigin: 'top center' }}
+          easing={{
+            enter: 'cubic-bezier(0.175, 0.885, 0.32, 1.35)',
+            exit: 'linear' // Suavizamos la salida del Grow
+          }}
+        >
+          <Box>
+            <Slide
+              direction="up"
+              in={expandedSections.implementacion}
+              timeout={{
+                enter: 0,
+                exit: 400
+              }}
+              easing={{
+                exit: 'cubic-bezier(0.68, -0.8, 0.62, 1.6)' // Rebote más exagerado
+              }}
+              style={{
+                transformOrigin: 'top center',
+                transition: 'transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)'
+              }}
+            >
+              <Box sx={{ 
+                transform: expandedSections.implementacion ? 'scaleY(1)' : 'scaleY(0.8)',
+                transition: expandedSections.implementacion 
+                  ? 'transform 0.25s ease-out' 
+                  : 'transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)',
+                boxShadow: expandedSections.implementacion 
+                  ? 'none' 
+                  : '0px -5px 10px rgba(0,0,0,0.1)' // Sombra durante el cierre
+              }}>
+                {expandedSections.implementacion && (
+                  <MenuList menuItems={menuImplementacion} open={open} />
+                )}
+              </Box>
+            </Slide>
+          </Box>
+        </Grow>
 
         <Divider />
         <SectionTitle open={open}>NÓMINAS</SectionTitle>
