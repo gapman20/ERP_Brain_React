@@ -36,12 +36,12 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import HelpIcon from "@mui/icons-material/Help";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Grow, Slide } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Grow, Slide } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
 import MenuList from "./MenuList";
 
-const drawerWidth = 260;
+const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -214,61 +214,66 @@ const menuSoporte = [{ text: "Usuarios", icon: <SettingsIcon /> }];
 
 const SectionTitle = ({ open, children, onClick, isExpanded }) => {
   const theme = useTheme();
-  
+
   return (
-    <Box 
+    <Box
       onClick={onClick}
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        cursor: 'pointer',
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        cursor: "pointer",
         py: 1,
-        position: 'relative',
-        userSelect: 'none', // Esto evita la selección de texto
-        WebkitUserSelect: 'none', // Para compatibilidad con Safari
-        MozUserSelect: 'none', // Para compatibilidad con Firefox
-        msUserSelect: 'none',
-        '&:hover .expand-icon': {
+        position: "relative",
+        userSelect: "none", // Esto evita la selección de texto
+        WebkitUserSelect: "none", // Para compatibilidad con Safari
+        MozUserSelect: "none", // Para compatibilidad con Firefox
+        msUserSelect: "none",
+        "&:hover .expand-icon": {
           backgroundColor: theme.palette.action.hover,
-          borderRadius: '50%'
-        }
+          borderRadius: "50%",
+        },
       }}
     >
       <Typography
         variant="subtitle1"
         sx={{
           opacity: open ? 1 : 0,
-          transition: theme.transitions.create('opacity'),
-          fontSize: '0.75rem',
+          transition: theme.transitions.create("opacity"),
+          fontSize: "0.75rem",
           color: theme.palette.text.secondary,
-          textTransform: 'uppercase'
+          textTransform: "uppercase",
         }}
       >
         {children}
       </Typography>
-      
-      <Tooltip 
-        title={`${isExpanded ? 'Ocultar' : 'Mostrar'} ${children}`} 
+
+      <Tooltip
+        title={`${isExpanded ? "Ocultar" : "Mostrar"} ${children}`}
         placement="right"
       >
         <IconButton
           className="expand-icon"
           size="small"
-          sx={{ 
-            position: 'absolute',
+          sx={{
+            position: "absolute",
             right: 8,
             p: 0.5,
-            transform: isExpanded ? 'rotate(0deg)' : 'rotate(-90deg)',
-            transition: theme.transitions.create(['transform', 'background-color']),
+            transform: isExpanded ? "rotate(0deg)" : "rotate(-90deg)",
+            transition: theme.transitions.create([
+              "transform",
+              "background-color",
+            ]),
             opacity: 1,
-            visibility: 'visible',
+            visibility: "visible",
             color: theme.palette.text.secondary,
-            '&:hover': {
+            "&:hover": {
               backgroundColor: theme.palette.action.selected,
-              transform: isExpanded ? 'rotate(0deg) scale(1.1)' : 'rotate(-90deg) scale(1.1)'
-            }
-          }} 
+              transform: isExpanded
+                ? "rotate(0deg) scale(1.1)"
+                : "rotate(-90deg) scale(1.1)",
+            },
+          }}
         >
           <ExpandMoreIcon fontSize="small" />
         </IconButton>
@@ -278,13 +283,13 @@ const SectionTitle = ({ open, children, onClick, isExpanded }) => {
 };
 
 const sectionMixin = (theme, expanded) => ({
-  height: expanded ? 'auto' : 0,
+  height: expanded ? "auto" : 0,
   opacity: expanded ? 1 : 0,
-  overflow: 'hidden',
-  transition: theme.transitions.create(['height', 'opacity'], {
+  overflow: "hidden",
+  transition: theme.transitions.create(["height", "opacity"], {
     easing: theme.transitions.easing.sharp,
-    duration: expanded 
-      ? theme.transitions.duration.enteringScreen 
+    duration: expanded
+      ? theme.transitions.duration.enteringScreen
       : theme.transitions.duration.leavingScreen,
   }),
 });
@@ -303,9 +308,9 @@ export default function MiniDrawer() {
   });
 
   const toggleSection = (section) => {
-    setExpandedSections(prev => ({
+    setExpandedSections((prev) => ({
       ...prev,
-      [section]: !prev[section]
+      [section]: !prev[section],
     }));
   };
 
@@ -445,16 +450,16 @@ export default function MiniDrawer() {
           IMPLEMENTACIÓN
         </SectionTitle>
         {/* Render Menú de implementación */}
-        <Grow 
+        <Grow
           in={expandedSections.implementacion}
           timeout={{
             enter: 250,
-            exit: 150 // Permitimos un poco de tiempo para sincronizar
+            exit: 150, // Permitimos un poco de tiempo para sincronizar
           }}
-          style={{ transformOrigin: 'top center' }}
+          style={{ transformOrigin: "top center" }}
           easing={{
-            enter: 'cubic-bezier(0.175, 0.885, 0.32, 1.35)',
-            exit: 'linear' // Suavizamos la salida del Grow
+            enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
+            exit: "linear", // Suavizamos la salida del Grow
           }}
         >
           <Box>
@@ -463,25 +468,30 @@ export default function MiniDrawer() {
               in={expandedSections.implementacion}
               timeout={{
                 enter: 0,
-                exit: 400
+                exit: 400,
               }}
               easing={{
-                exit: 'cubic-bezier(0.68, -0.8, 0.62, 1.6)' // Rebote más exagerado
+                exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
               }}
               style={{
-                transformOrigin: 'top center',
-                transition: 'transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)'
+                transformOrigin: "top center",
+                transition:
+                  "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
               }}
             >
-              <Box sx={{ 
-                transform: expandedSections.implementacion ? 'scaleY(1)' : 'scaleY(0.8)',
-                transition: expandedSections.implementacion 
-                  ? 'transform 0.25s ease-out' 
-                  : 'transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)',
-                boxShadow: expandedSections.implementacion 
-                  ? 'none' 
-                  : '0px -5px 10px rgba(0,0,0,0.1)' // Sombra durante el cierre
-              }}>
+              <Box
+                sx={{
+                  transform: expandedSections.implementacion
+                    ? "scaleY(1)"
+                    : "scaleY(0.8)",
+                  transition: expandedSections.implementacion
+                    ? "transform 0.25s ease-out"
+                    : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+                  boxShadow: expandedSections.implementacion
+                    ? "none"
+                    : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                }}
+              >
                 {expandedSections.implementacion && (
                   <MenuList menuItems={menuImplementacion} open={open} />
                 )}
@@ -491,28 +501,325 @@ export default function MiniDrawer() {
         </Grow>
 
         <Divider />
-        <SectionTitle open={open}>NÓMINAS</SectionTitle>
-        <MenuList menuItems={menuNominas} open={open} />
+        <SectionTitle
+          open={open}
+          onClick={() => toggleSection("nominas")}
+          isExpanded={expandedSections.nominas}
+        >
+          NÓMINAS
+        </SectionTitle>
+        <Grow
+          in={expandedSections.nominas}
+          timeout={{
+            enter: 250,
+            exit: 150, // Permitimos un poco de tiempo para sincronizar
+          }}
+          style={{ transformOrigin: "top center" }}
+          easing={{
+            enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
+            exit: "linear", // Suavizamos la salida del Grow
+          }}
+        >
+          <Box>
+            <Slide
+              direction="up"
+              in={expandedSections.nominas}
+              timeout={{
+                enter: 0,
+                exit: 400,
+              }}
+              easing={{
+                exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
+              }}
+              style={{
+                transformOrigin: "top center",
+                transition:
+                  "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+              }}
+            >
+              <Box
+                sx={{
+                  transform: expandedSections.nominas
+                    ? "scaleY(1)"
+                    : "scaleY(0.8)",
+                  transition: expandedSections.nominas
+                    ? "transform 0.25s ease-out"
+                    : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+                  boxShadow: expandedSections.nominas
+                    ? "none"
+                    : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                }}
+              >
+                {expandedSections.nominas && (
+                  <MenuList menuItems={menuNominas} open={open} />
+                )}
+              </Box>
+            </Slide>
+          </Box>
+        </Grow>
 
         <Divider />
-        <SectionTitle open={open}>IMSS</SectionTitle>
-        <MenuList menuItems={menuImss} open={open} />
+        <SectionTitle
+          open={open}
+          onClick={() => toggleSection("imss")}
+          isExpanded={expandedSections.imss}
+        >
+          IMSS
+        </SectionTitle>
+        <Grow
+          in={expandedSections.imss}
+          timeout={{
+            enter: 250,
+            exit: 150, // Permitimos un poco de tiempo para sincronizar
+          }}
+          style={{ transformOrigin: "top center" }}
+          easing={{
+            enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
+            exit: "linear", // Suavizamos la salida del Grow
+          }}
+        >
+          <Box>
+            <Slide
+              direction="up"
+              in={expandedSections.imss}
+              timeout={{
+                enter: 0,
+                exit: 400,
+              }}
+              easing={{
+                exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
+              }}
+              style={{
+                transformOrigin: "top center",
+                transition:
+                  "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+              }}
+            >
+              <Box
+                sx={{
+                  transform: expandedSections.imss
+                    ? "scaleY(1)"
+                    : "scaleY(0.8)",
+                  transition: expandedSections.imss
+                    ? "transform 0.25s ease-out"
+                    : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+                  boxShadow: expandedSections.imss
+                    ? "none"
+                    : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                }}
+              >
+                {expandedSections.imss && (
+                  <MenuList menuItems={menuImss} open={open} />
+                )}
+              </Box>
+            </Slide>
+          </Box>
+        </Grow>
+        <Divider />
+        <SectionTitle
+          open={open}
+          onClick={() => toggleSection("facturacion")}
+          isExpanded={expandedSections.facturacion}
+        >
+          FACTURACIÓN
+        </SectionTitle>
+        <Grow
+          in={expandedSections.facturacion}
+          timeout={{
+            enter: 250,
+            exit: 150, // Permitimos un poco de tiempo para sincronizar
+          }}
+          style={{ transformOrigin: "top center" }}
+          easing={{
+            enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
+            exit: "linear", // Suavizamos la salida del Grow
+          }}
+        >
+          <Box>
+            <Slide
+              direction="up"
+              in={expandedSections.facturacion}
+              timeout={{
+                enter: 0,
+                exit: 400,
+              }}
+              easing={{
+                exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
+              }}
+              style={{
+                transformOrigin: "top center",
+                transition:
+                  "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+              }}
+            >
+              <Box
+                sx={{
+                  transform: expandedSections.facturacion
+                    ? "scaleY(1)"
+                    : "scaleY(0.8)",
+                  transition: expandedSections.facturacion
+                    ? "transform 0.25s ease-out"
+                    : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+                  boxShadow: expandedSections.facturacion
+                    ? "none"
+                    : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                }}
+              >
+                {expandedSections.facturacion && (
+                  <MenuList menuItems={menuFacturacion} open={open} />
+                )}
+              </Box>
+            </Slide>
+          </Box>
+        </Grow>
+        <Divider />
+        <SectionTitle
+          open={open}
+          onClick={() => toggleSection("gastos")}
+          isExpanded={expandedSections.gastos}
+        >
+          GASTOS
+        </SectionTitle>
+        <Grow
+          in={expandedSections.gastos}
+          timeout={{ enter: 250, exit: 150 }}
+          style={{ transformOrigin: "top center" }}
+          easing={{
+            enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
+            exit: "linear",
+          }}
+        >
+          <Box>
+            <Slide
+              direction="up"
+              in={expandedSections.gastos}
+              timeout={{ enter: 0, exit: 400 }}
+              easing={{ exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)" }}
+              style={{
+                transformOrigin: "top center",
+                transition:
+                  "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+              }}
+            >
+              <Box
+                sx={{
+                  transform: expandedSections.gastos
+                    ? "scaleY(1)"
+                    : "scaleY(0.8)",
+                  transition: expandedSections.gastos
+                    ? "transform 0.25s ease-out"
+                    : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+                  boxShadow: expandedSections.gastos
+                    ? "none"
+                    : "0px -5px 10px rgba(0,0,0,0.1)",
+                }}
+              >
+                {expandedSections.gastos && (
+                  <MenuList menuItems={menuGastos} open={open} />
+                )}
+              </Box>
+            </Slide>
+          </Box>
+        </Grow>
+        <Divider />
+        <SectionTitle
+          open={open}
+          onClick={() => toggleSection("utilerias")}
+          isExpanded={expandedSections.utilerias}
+        >
+          UTILERIAS
+        </SectionTitle>
+        <Grow
+          in={expandedSections.utilerias}
+          timeout={{ enter: 250, exit: 150 }}
+          style={{ transformOrigin: "top center" }}
+          easing={{
+            enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
+            exit: "linear",
+          }}
+        >
+          <Box>
+            <Slide
+              direction="up"
+              in={expandedSections.utilerias}
+              timeout={{ enter: 0, exit: 400 }}
+              easing={{ exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)" }}
+              style={{
+                transformOrigin: "top center",
+                transition:
+                  "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+              }}
+            >
+              <Box
+                sx={{
+                  transform: expandedSections.utilerias
+                    ? "scaleY(1)"
+                    : "scaleY(0.8)",
+                  transition: expandedSections.utilerias
+                    ? "transform 0.25s ease-out"
+                    : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+                  boxShadow: expandedSections.utilerias
+                    ? "none"
+                    : "0px -5px 10px rgba(0,0,0,0.1)",
+                }}
+              >
+                {expandedSections.utilerias && (
+                  <MenuList menuItems={menuUtilerias} open={open} />
+                )}
+              </Box>
+            </Slide>
+          </Box>
+        </Grow>
 
         <Divider />
-        <SectionTitle open={open}>FACTURACIÓN</SectionTitle>
-        <MenuList menuItems={menuFacturacion} open={open} />
-
-        <Divider />
-        <SectionTitle open={open}>GASTOS</SectionTitle>
-        <MenuList menuItems={menuGastos} open={open} />
-
-        <Divider />
-        <SectionTitle open={open}>UTILERIAS</SectionTitle>
-        <MenuList menuItems={menuUtilerias} open={open} />
-
-        <Divider />
-        <SectionTitle open={open}>SOPORTE</SectionTitle>
-        <MenuList menuItems={menuSoporte} open={open} />
+        <SectionTitle
+          open={open}
+          onClick={() => toggleSection("soporte")}
+          isExpanded={expandedSections.soporte}
+        >
+          SOPORTE
+        </SectionTitle>
+        <Grow
+          in={expandedSections.soporte}
+          timeout={{ enter: 250, exit: 150 }}
+          style={{ transformOrigin: "top center" }}
+          easing={{
+            enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
+            exit: "linear",
+          }}
+        >
+          <Box>
+            <Slide
+              direction="up"
+              in={expandedSections.soporte}
+              timeout={{ enter: 0, exit: 400 }}
+              easing={{ exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)" }}
+              style={{
+                transformOrigin: "top center",
+                transition:
+                  "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+              }}
+            >
+              <Box
+                sx={{
+                  transform: expandedSections.soporte
+                    ? "scaleY(1)"
+                    : "scaleY(0.8)",
+                  transition: expandedSections.soporte
+                    ? "transform 0.25s ease-out"
+                    : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
+                  boxShadow: expandedSections.soporte
+                    ? "none"
+                    : "0px -5px 10px rgba(0,0,0,0.1)",
+                }}
+              >
+                {expandedSections.soporte && (
+                  <MenuList menuItems={menuSoporte} open={open} />
+                )}
+              </Box>
+            </Slide>
+          </Box>
+        </Grow>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
