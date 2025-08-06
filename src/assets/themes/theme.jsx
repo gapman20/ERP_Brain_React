@@ -9,6 +9,7 @@ const customTheme = createTheme({
       main: '#1E7FE3', 
       light: '#5DABFF', 
       dark: '#0057B0',
+      grey: '#D9DEDE',
     },
     secondary: {
       main: '#f50057',
@@ -20,6 +21,9 @@ const customTheme = createTheme({
       login: '#F3F9FF',
       icono: '#E9F5FE'
     },
+    text: {
+      Appbar: '#4A4B50'
+    }
 
   },
   
