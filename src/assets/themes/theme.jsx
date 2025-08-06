@@ -1,4 +1,7 @@
 import { createTheme } from '@mui/material/styles';
+import '@fontsource/inter/300.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/700.css';
 
 const customTheme = createTheme({
   palette: {
@@ -21,7 +24,7 @@ const customTheme = createTheme({
   },
   
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: `'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif`,
     fontSize: 14,
     h1: {
       fontSize: '2.5rem',
