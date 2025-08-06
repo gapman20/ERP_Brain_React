@@ -52,6 +52,37 @@ const openedMixin = (theme) => ({
   overflowX: "hidden",
 });
 
+const styles = {
+  body: {
+    width: "100%",
+    minHeight: "140px",
+    background: "linear-gradient(to bottom, #1E7FE3, #5DABFF)",
+    padding: "16px",
+    position: "relative",
+    overflow: "visible",
+    zIndex: 2,
+  },
+  wave: {
+    width: "100%",
+    height: "120px",
+    backgroundColor: "#5DABFF", // mismo que final del degradado
+    position: "relative",
+    overflow: "hidden",
+    zIndex: 1,
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background:
+        "radial-gradient(circle at 50% -20px, white 40%, transparent 41%)",
+      zIndex: 0,
+    },
+  },
+};
+
 const closedMixin = (theme) => ({
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
@@ -240,7 +271,7 @@ const SectionTitle = ({ open, children, onClick, isExpanded }) => {
         sx={{
           opacity: open ? 1 : 0,
           transition: theme.transitions.create("opacity"),
-          fontSize: "0.75rem",
+          fontSize: "0.90rem",
           color: theme.palette.text.secondary,
           textTransform: "uppercase",
         }}
@@ -387,18 +418,23 @@ export default function MiniDrawer() {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader
           sx={{
+            ...styles.body,
             justifyContent: "space-between",
             alignItems: "flex-start",
             padding: theme.spacing(1, 2),
-            minHeight: "80px",
+            minHeight: "100px",
+            position: "relative",
+            overflow: "visible",
+            zIndex: 2,
           }}
         >
           {open && (
             <Box
               sx={{
                 textAlign: "center",
-                padding: theme.spacing(1, 2),
+                padding: theme.spacing(1, 0),
                 marginBottom: theme.spacing(1),
+                width: "100%",
               }}
             >
               <Typography variant="caption" color="text.secondary">
@@ -422,15 +458,37 @@ export default function MiniDrawer() {
             </Box>
           )}
         </DrawerHeader>
-
         <Box
           sx={{
+            position: "relative",
+            width: "100%",
+            height: "120px",
+            backgroundColor: open ? "#5DABFF" : 'white' ,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            padding: open ? "20px" : "12px",
+            padding: open ? "40px" : "22px",
+            overflow: "hidden",
+            zIndex: 1,
           }}
         >
+          <svg
+            viewBox="0 0 500 100"
+            preserveAspectRatio="none"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100px",
+              transform: "rotate(180deg)",
+            }}
+          >
+            <path
+              d="M0,30 C150,100 350,0 500,70 L500,0 L0,0 Z"
+              style={{ fill: "white" }}
+            />
+          </svg>
           <img
             src="../../../public/img/circuito.ico"
             alt="Logo de la empresa"
@@ -438,6 +496,7 @@ export default function MiniDrawer() {
               width: open ? "50px" : "30px",
               transition: "width 0.3s ease",
               border: 1,
+              position: "relative",
             }}
           />
         </Box>
@@ -445,6 +504,7 @@ export default function MiniDrawer() {
         <SectionTitle
           open={open}
           onClick={() => toggleSection("implementacion")}
+          style={{ fontFamily: "Arial" }}
           isExpanded={expandedSections.implementacion}
         >
           IMPLEMENTACIÓN
@@ -460,6 +520,7 @@ export default function MiniDrawer() {
           easing={{
             enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
             exit: "linear", // Suavizamos la salida del Grow
+
           }}
         >
           <Box>
