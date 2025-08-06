@@ -62,25 +62,6 @@ const styles = {
     overflow: "visible",
     zIndex: 2,
   },
-  wave: {
-    width: "100%",
-    height: "120px",
-    backgroundColor: "#5DABFF", // mismo que final del degradado
-    position: "relative",
-    overflow: "hidden",
-    zIndex: 1,
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background:
-        "radial-gradient(circle at 50% -20px, white 40%, transparent 41%)",
-      zIndex: 0,
-    },
-  },
 };
 
 const closedMixin = (theme) => ({
@@ -196,52 +177,6 @@ const menuUtilerias = [
 ];
 
 const menuSoporte = [{ text: "Usuarios", icon: <SettingsIcon /> }];
-
-/* const SectionTitle = ({ open, children, onClick, isExpanded }) => {
-  const theme = useTheme(); // ← Esto es clave
-  
-  return (
-    <Box 
-      onClick={onClick}
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        cursor: 'pointer',
-        py: 1,
-        '&:hover': { 
-          backgroundColor: theme.palette.action.hover // ← Usa el color del tema
-        }
-      }}
-    >
-      <Typography
-        variant="subtitle1"
-        sx={{
-          opacity: open ? 1 : 0,
-          transition: theme.transitions.create('opacity', { // ← Usa la transición del tema
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-          }),
-          fontSize: '0.75rem',
-          color: theme.palette.text.secondary, // ← Color del tema
-          textTransform: 'uppercase'
-        }}
-      >
-        {children}
-      </Typography>
-      {open && <ExpandMoreIcon sx={{ 
-        transform: isExpanded ? 'rotate(0)' : 'rotate(-90deg)',
-        transition: theme.transitions.create('transform', { // ← Transición del tema
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.standard,
-        }),
-        ml: 1,
-        fontSize: open ? '1rem' : '1.2rem',
-        color: theme.palette.text.secondary // ← Color del tema
-      }} />}
-    </Box>
-  );
-}; */
 
 const SectionTitle = ({ open, children, onClick, isExpanded }) => {
   const theme = useTheme();
@@ -360,16 +295,25 @@ export default function MiniDrawer() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar
+        position="fixed"
+        open={open}
+        sx={{
+          backgroundColor: open
+            ? theme.palette.background.default
+            : theme.palette.primary.main,
+          boxShadow: open ? "none" : 6,
+        }}
+      >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer}
             edge="start"
             sx={[
               {
                 marginRight: 5,
+                color: "inherit",
               },
               open && { display: "none" },
             ]}
@@ -384,6 +328,7 @@ export default function MiniDrawer() {
             sx={[
               {
                 marginRight: 5,
+                color: "black",
               },
               !open && { display: "none" },
             ]}
@@ -394,22 +339,27 @@ export default function MiniDrawer() {
               <ChevronLeftIcon />
             )}
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, color: open ? "black" : "inherit" }}
+          >
             Brain ERP
           </Typography>
-          <IconButton size="large" color="inherit">
+          <IconButton size="large" sx={{ color: open ? "black" : "inherit" }}>
             <HelpIcon />
           </IconButton>
-          <IconButton size="large" color="inherit">
+          <IconButton size="large" sx={{ color: open ? "black" : "inherit" }}>
             <NotificationsIcon />
           </IconButton>
-          <IconButton size="large" color="inherit">
+          <IconButton size="large" sx={{ color: open ? "black" : "inherit" }}>
             <MoreVertIcon />
           </IconButton>
           <IconButton
             size="large"
             aria-label="Cuenta actual del usuario"
-            color="inherit"
+            sx={{ color: open ? "black" : "inherit" }}
           >
             <AccountCircle />
           </IconButton>
@@ -437,22 +387,14 @@ export default function MiniDrawer() {
                 width: "100%",
               }}
             >
-              <Typography variant="caption" color="text.secondary">
+              <Typography variant="caption" color="white">
                 32 | Jose Gabriel Alvarez Perez
               </Typography>
-              <Typography
-                variant="caption"
-                display="block"
-                color="text.secondary"
-              >
+              <Typography variant="caption" display="block" color="white">
                 correo@email
               </Typography>
 
-              <Typography
-                variant="caption"
-                display="block"
-                color="text.secondary"
-              >
+              <Typography variant="caption" display="block" color="white">
                 IP
               </Typography>
             </Box>
@@ -463,7 +405,7 @@ export default function MiniDrawer() {
             position: "relative",
             width: "100%",
             height: "120px",
-            backgroundColor: open ? "#5DABFF" : 'white' ,
+            backgroundColor: open ? "#5DABFF" : "white",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -472,21 +414,40 @@ export default function MiniDrawer() {
             zIndex: 1,
           }}
         >
+          {/* Ondas azul */}
           <svg
             viewBox="0 0 500 100"
             preserveAspectRatio="none"
             style={{
               position: "absolute",
-              top: 0,
+              bottom: "0px", // Sube toda la onda hacia arriba
               left: 0,
               width: "100%",
               height: "100px",
-              transform: "rotate(180deg)",
+              zIndex: 0,
             }}
           >
+            {/* 1. Onda principal (base blanca) - CURVA MÁS AMPLIA */}
             <path
-              d="M0,30 C150,100 350,0 500,70 L500,0 L0,0 Z"
+              d="M0,35 C125,20 375,95 500,50 L500,100 L0,100 Z" // Más ancha y pronunciada
               style={{ fill: "white" }}
+            />
+
+            {/* 2. Ondas decorativas (DIBUJADAS ENCIMA CON TRANSPARENCIA) */}
+            {/* Decorativa 1 (izquierda más marcada) */}
+            <path
+              d="M0,35 C150,-5 350,85 500,45 L500,100 L0,100 Z"
+              style={{ fill: "white", opacity: 0.6 }} // Más opaca para destacar
+            />
+            {/* Decorativa 2 */}
+            <path
+              d="M0,50 C130,15 370,90 500,50 L500,100 L0,100 Z"
+              style={{ fill: "white", opacity: 0.4 }}
+            />
+            {/* Decorativa 3 */}
+            <path
+              d="M0,55 C120,25 380,95 500,55 L500,100 L0,100 Z"
+              style={{ fill: "white", opacity: 0.2 }}
             />
           </svg>
           <img
@@ -520,7 +481,6 @@ export default function MiniDrawer() {
           easing={{
             enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
             exit: "linear", // Suavizamos la salida del Grow
-
           }}
         >
           <Box>
