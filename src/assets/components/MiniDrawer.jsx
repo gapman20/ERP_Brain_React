@@ -40,6 +40,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Grow, Slide } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import MenuList from "./MenuList";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 const drawerWidth = 240;
 
@@ -321,45 +322,52 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <IconButton
-            color="inherit"
             aria-label="close drawer"
-            onClick={handleDrawerClose}
+            onClick={toggleDrawer}
             edge="start"
             sx={[
               {
                 marginRight: 5,
-                color: "black",
+                color: theme.palette.text.Appbar,
               },
               !open && { display: "none" },
             ]}
           >
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+            <MenuOpenIcon />
           </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, color: open ? "black" : "inherit" }}
+            sx={{
+              flexGrow: 1,
+              color: open ? theme.palette.text.Appbar : "inherit",
+            }}
           >
             Brain ERP
           </Typography>
-          <IconButton size="large" sx={{ color: open ? "black" : "inherit" }}>
+          <IconButton
+            size="large"
+            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
+          >
             <HelpIcon />
           </IconButton>
-          <IconButton size="large" sx={{ color: open ? "black" : "inherit" }}>
+          <IconButton
+            size="large"
+            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
+          >
             <NotificationsIcon />
           </IconButton>
-          <IconButton size="large" sx={{ color: open ? "black" : "inherit" }}>
+          <IconButton
+            size="large"
+            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
+          >
             <MoreVertIcon />
           </IconButton>
           <IconButton
             size="large"
             aria-label="Cuenta actual del usuario"
-            sx={{ color: open ? "black" : "inherit" }}
+            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
           >
             <AccountCircle />
           </IconButton>
@@ -405,7 +413,7 @@ export default function MiniDrawer() {
             position: "relative",
             width: "100%",
             height: "120px",
-            backgroundColor: open ? "#5DABFF" : "white",
+            backgroundColor: open ? theme.palette.primary.light : "white",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -427,6 +435,7 @@ export default function MiniDrawer() {
               zIndex: 0,
             }}
           >
+
             {/* 1. Onda principal (base blanca) - CURVA MÁS AMPLIA */}
             <path
               d="M0,35 C125,20 375,95 500,50 L500,100 L0,100 Z" // Más ancha y pronunciada
