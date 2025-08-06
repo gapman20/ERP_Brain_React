@@ -249,29 +249,19 @@ const SectionTitle = ({ open, children, onClick, isExpanded }) => {
   );
 };
 
-const sectionMixin = (theme, expanded) => ({
-  height: expanded ? "auto" : 0,
-  opacity: expanded ? 1 : 0,
-  overflow: "hidden",
-  transition: theme.transitions.create(["height", "opacity"], {
-    easing: theme.transitions.easing.sharp,
-    duration: expanded
-      ? theme.transitions.duration.enteringScreen
-      : theme.transitions.duration.leavingScreen,
-  }),
-});
+
 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [expandedSections, setExpandedSections] = React.useState({
-    implementacion: true,
-    nominas: true,
-    imss: true,
-    facturacion: true,
-    gastos: true,
-    utilerias: true,
-    soporte: true,
+    implementacion: false,
+    nominas: false,
+    imss: false,
+    facturacion: false,
+    gastos: false,
+    utilerias: false,
+    soporte: false,
   });
 
   const toggleSection = (section) => {
@@ -281,13 +271,7 @@ export default function MiniDrawer() {
     }));
   };
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -380,7 +364,7 @@ export default function MiniDrawer() {
             justifyContent: "space-between",
             alignItems: "flex-start",
             padding: theme.spacing(1, 2),
-            minHeight: "100px",
+            height: "1rem",
             position: "relative",
             overflow: "visible",
             zIndex: 2,
@@ -412,7 +396,7 @@ export default function MiniDrawer() {
           sx={{
             position: "relative",
             width: "100%",
-            height: "120px",
+            height: "1rem",
             backgroundColor: open ? theme.palette.primary.light : "white",
             display: "flex",
             justifyContent: "center",
