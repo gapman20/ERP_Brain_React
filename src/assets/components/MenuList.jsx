@@ -26,9 +26,58 @@ const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
   },
 }));
 
-const MenuList = ({ menuItems, open }) => {
+const MenuList = ({ menuItems, open, context }) => {
   return (
-    <List>
+     <List>
+      {menuItems.map((item) => {
+        // Ejemplo: deshabilitar items según rol
+        const disabled = item.text === "Layouts" && context.user.role !== "admin";
+        
+        return (
+          <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
+          <Tooltip
+            title={item.text}
+            placement="right"
+            arrow
+            disableHoverListener={open}
+            componentsProps={{
+              tooltip: {
+                sx: {
+                  fontSize: "1rem", // Tamaño más grande (16px)
+                  fontWeight: 500, // Grosor medio
+                },
+              },
+            }}
+          >
+            <AnimatedListItemButton
+              sx={[
+                open
+                  ? { justifyContent: "initial" }
+                  : { justifyContent: "center" },
+              ]}
+            >
+              <ListItemIcon
+                sx={[
+                  {
+                    minWidth: 0,
+                    justifyContent: "center",
+                  },
+                  open ? { mr: 3 } : { mr: "auto" },
+                ]}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={item.text}
+                sx={[open ? { opacity: 1 } : { opacity: 0 }]}
+              />
+            </AnimatedListItemButton>
+          </Tooltip>
+          </ListItem>
+        );
+      })}
+    </List>
+/*     <List>
       {menuItems.map((item) => (
         <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
           <Tooltip
@@ -71,7 +120,7 @@ const MenuList = ({ menuItems, open }) => {
           </Tooltip>
         </ListItem>
       ))}
-    </List>
+    </List> */
   );
 };
 
