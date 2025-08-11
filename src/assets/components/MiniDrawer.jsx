@@ -40,6 +40,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuList from "./MenuList";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { AppProvider } from "@toolpad/core";
+import BrainLogo from "../../../public/img/circuito.ico"
 
 const drawerWidth = 250;
 
@@ -518,7 +519,7 @@ export default function MiniDrawer({ appContext }) {
             />
           </svg>
           <img
-            src="../../../public/img/circuito.ico"
+            src={BrainLogo}
             alt="Logo de la empresa"
             style={{
               width: open ? "50px" : "30px",
