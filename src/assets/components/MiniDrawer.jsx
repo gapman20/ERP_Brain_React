@@ -539,7 +539,7 @@ export default function MiniDrawer({ appContext }) {
               isExpanded={expandedSections.implementacion}
               disable={!appContext.permissions.implementacion}
             >
-              IMPLEMENTACIÓN
+              {/* IMPLEMENTACIÓN */}
             </SectionTitle>
             {/* Render Menú de implementación */}
             <Grow
