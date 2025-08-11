@@ -42,7 +42,7 @@ import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { AppProvider } from "@toolpad/core";
 import BrainLogo from "../../../public/img/circuito.ico"
 
-const drawerWidth = 250;
+const drawerWidth = 200;
 
 const menuImplementacion = [
   { text: "Alianzas", icon: <HandshakeIcon /> },
