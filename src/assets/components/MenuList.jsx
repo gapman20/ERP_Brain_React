@@ -27,100 +27,66 @@ const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
 }));
 
 const MenuList = ({ menuItems, open, context }) => {
+/*   const filteredMenuItems = menuItems.filter(item=> {
+    if(!item.permission) return true;
+
+    return context.permissions[item.permission];
+  });
+
+  console.log(filteredMenuItems); */
+  
   return (
-     <List>
+    <List>
       {menuItems.map((item) => {
-        // Ejemplo: deshabilitar items según rol
-        const disabled = item.text === "Layouts" && context.user.role !== "admin";
-        
+        /* // Ejemplo: deshabilitar items según rol
+        const disabled =
+          item.text === "Layouts" && context.user.role !== "admin"; */
+        const hasPermission = !item.permission || {context}.permissions[item.permission];
         return (
-          <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
-          <Tooltip
-            title={item.text}
-            placement="right"
-            arrow
-            disableHoverListener={open}
-            componentsProps={{
-              tooltip: {
-                sx: {
-                  fontSize: "1rem", // Tamaño más grande (16px)
-                  fontWeight: 500, // Grosor medio
-                },
-              },
-            }}
-          >
-            <AnimatedListItemButton
-              sx={[
-                open
-                  ? { justifyContent: "initial" }
-                  : { justifyContent: "center" },
-              ]}
-            >
-              <ListItemIcon
-                sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: "center",
+          <ListItem key={item.text} disablePadding sx={{ display: "block" }}
+          disabled={!hasPermission}>
+            <Tooltip
+              title={item.text}
+              placement="right"
+              arrow
+              disableHoverListener={open}
+              componentsProps={{
+                tooltip: {
+                  sx: {
+                    fontSize: "1rem", // Tamaño más grande (16px)
+                    fontWeight: 500, // Grosor medio
                   },
-                  open ? { mr: 3 } : { mr: "auto" },
+                },
+              }}
+            >
+              <AnimatedListItemButton
+                sx={[
+                  open
+                    ? { justifyContent: "initial" }
+                    : { justifyContent: "center" },
                 ]}
               >
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={item.text}
-                sx={[open ? { opacity: 1 } : { opacity: 0 }]}
-              />
-            </AnimatedListItemButton>
-          </Tooltip>
+                <ListItemIcon
+                  sx={[
+                    {
+                      minWidth: 0,
+                      justifyContent: "center",
+                    },
+                    open ? { mr: 3 } : { mr: "auto" },
+                  ]}
+                >
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.text}
+                  sx={[open ? { opacity: 1 } : { opacity: 0 }]}
+                />
+              </AnimatedListItemButton>
+            </Tooltip>
           </ListItem>
         );
       })}
     </List>
-/*     <List>
-      {menuItems.map((item) => (
-        <ListItem key={item.text} disablePadding sx={{ display: "block" }}>
-          <Tooltip
-            title={item.text}
-            placement="right"
-            arrow
-            disableHoverListener={open}
-            componentsProps={{
-              tooltip: {
-                sx: {
-                  fontSize: "1rem", // Tamaño más grande (16px)
-                  fontWeight: 500, // Grosor medio
-                },
-              },
-            }}
-          >
-            <AnimatedListItemButton
-              sx={[
-                open
-                  ? { justifyContent: "initial" }
-                  : { justifyContent: "center" },
-              ]}
-            >
-              <ListItemIcon
-                sx={[
-                  {
-                    minWidth: 0,
-                    justifyContent: "center",
-                  },
-                  open ? { mr: 3 } : { mr: "auto" },
-                ]}
-              >
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={item.text}
-                sx={[open ? { opacity: 1 } : { opacity: 0 }]}
-              />
-            </AnimatedListItemButton>
-          </Tooltip>
-        </ListItem>
-      ))}
-    </List> */
   );
 };
 
