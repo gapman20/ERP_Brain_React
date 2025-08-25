@@ -39,49 +39,150 @@ import { Grow, Slide } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import MenuList from "./MenuList";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import { AppProvider } from "@toolpad/core";
-import BrainLogo from "../../../public/img/circuito.ico"
-
+import BrainLogo from "../../../public/img/circuito.ico";
+import SettingsSystemDaydreamIcon from "@mui/icons-material/SettingsSystemDaydream";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import BarChartIcon from "@mui/icons-material/BarChart";
+import Groups3Icon from "@mui/icons-material/Groups3";
+import ShowChartIcon from "@mui/icons-material/ShowChart";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import FolderIcon from "@mui/icons-material/Folder";
+import FactCheckIcon from "@mui/icons-material/FactCheck";
+import MemoryIcon from "@mui/icons-material/Memory";
+import BalanceIcon from "@mui/icons-material/Balance";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import StorageIcon from "@mui/icons-material/Storage";
+import SendIcon from "@mui/icons-material/Send";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 const drawerWidth = 250;
 
 const menuImplementacion = [
-  { text: "Alianzas", icon: <HandshakeIcon /> },
-  { text: "Empresas", icon: <BusinessIcon /> },
-  { text: "Clientes", icon: <PersonIcon /> },
-  { text: "Remunerados", icon: <PeopleIcon /> },
-  { text: "Layouts", icon: <FilePresentIcon /> },
-  { text: "Contratos", icon: <DescriptionIcon /> },
+  { text: "Alianzas", icon: <HandshakeIcon />, permissions: "alianzas" },
+  { text: "Empresas", icon: <BusinessIcon />, permissions: "empresas" },
+  { text: "Clientes", icon: <PersonIcon />, permissions: "clientes" },
+  { text: "Remunerados", icon: <PeopleIcon />, permissions: "remunerados" },
+  { text: "Layouts", icon: <FilePresentIcon />, permissions: "layouts" },
+  { text: "Contratos", icon: <DescriptionIcon />, permissions: "contratos" },
 ];
 
 const menuNominas = [
-  { text: "Nominas", icon: <PaymentsIcon /> },
-  { text: "Recibos", icon: <PictureAsPdfIcon /> },
-  { text: "Reportes", icon: <LeaderboardIcon /> },
+  { text: "Nominas", icon: <PaymentsIcon />, permissions: "nominas" },
+  { text: "Recibos", icon: <PictureAsPdfIcon />, permissions: "recibidos" },
+  { text: "Reportes", icon: <LeaderboardIcon />, permissions: "reportes" },
+  {
+    text: "Movimientos",
+    icon: <SettingsSystemDaydreamIcon />,
+    permissions: "movimientos",
+  },
+  {
+    text: "Calendario",
+    icon: <CalendarMonthIcon />,
+    permissions: "calendario",
+  },
 ];
 
 const menuImss = [
-  { text: "Generales IMSS", icon: <PaymentsIcon /> },
-  { text: "Cargos x anticipo", icon: <PriceChangeIcon /> },
-  { text: "Obras", icon: <HistoryEduIcon /> },
+  {
+    text: "Generales IMSS",
+    icon: <PaymentsIcon />,
+    permissions: "generales_imss",
+  },
+  {
+    text: "Cargos x anticipo",
+    icon: <PriceChangeIcon />,
+    permissions: "cargos_anticipo",
+  },
+  { text: "Reportes", icon: <BarChartIcon />, permissions: "reportes" },
+  { text: "Obras", icon: <HistoryEduIcon />, permissions: "obras" },
+  {
+    text: "Calculo de sueldos",
+    icon: <RequestQuoteIcon />,
+    permissions: "calculo_sueldos",
+  },
+  {
+    text: "Altas pendientes",
+    icon: <Groups3Icon />,
+    permissions: "altas_clientes",
+  },
+  {
+    text: "Concilacion Infonacot",
+    icon: <ShowChartIcon />,
+    permissions: "concilacion_infonacot",
+  },
 ];
 
 const menuFacturacion = [
-  { text: "Facturas", icon: <ArticleIcon /> },
-  { text: "Complemento de pago", icon: <MonetizationOnIcon /> },
-  { text: "Notas de Credito", icon: <PaymentIcon /> },
-  { text: "Depositos", icon: <AssuredWorkloadIcon /> },
+  { text: "Facturas", icon: <ArticleIcon />, permissions: "facturas" },
+  {
+    text: "Complemento de pago",
+    icon: <MonetizationOnIcon />,
+    permissions: "complemento_pago",
+  },
+  {
+    text: "Notas de Credito",
+    icon: <PaymentIcon />,
+    permissions: "notas_credito",
+  },
+  {
+    text: "Depositos",
+    icon: <AssuredWorkloadIcon />,
+    permissions: "depositos",
+  },
+  {
+    text: "Despositos bancarios",
+    icon: <AccountBalanceWalletIcon />,
+    permissions: "despositos_bancarios",
+  },
 ];
 
 const menuGastos = [
-  { text: "Solicitud de Gastos", icon: <MonetizationOnIcon /> },
-  { text: "Proveedores", icon: <FactoryIcon /> },
+  {
+    text: "Solicitud de Gastos",
+    icon: <MonetizationOnIcon />,
+    permissions: "solicitud_gastos",
+  },
+  { text: "Proveedores", icon: <FactoryIcon />, permissions: "proveedores" },
+  { text: "Archivos", icon: <FolderIcon />, permissions: "archivos" },
+  { text: "Concentrador", icon: <MemoryIcon />, permissions: "concentrador" },
 ];
 
 const menuUtilerias = [
-  { text: "Lector XML", icon: <UploadFileIcon /> },
-  { text: "Bancos", icon: <LocalAtmIcon /> },
-  { text: "Asignacion de cuentas", icon: <DashboardIcon /> },
-  { text: "Fondeos", icon: <RequestQuoteIcon /> },
+  { text: "Lector XML", icon: <UploadFileIcon />, permissions: "lector_xml" },
+  { text: "Bancos", icon: <LocalAtmIcon />, permissions: "bancos" },
+  {
+    text: "Asignacion de cuentas",
+    icon: <DashboardIcon />,
+    permissions: "asignacion_cuentas",
+  },
+  { text: "Fondeos", icon: <RequestQuoteIcon />, permissions: "fondeos" },
+  { text: "Cheques", icon: <FactCheckIcon />, permissions: "cheques" },
+  {
+    text: "Conciliaciones",
+    icon: <BalanceIcon />,
+    permissions: "conciliaciones",
+  },
+  { text: "Periodos", icon: <DateRangeIcon />, permissions: "periodos" },
+  {
+    text: "Indicadores anuales",
+    icon: <BookmarksIcon />,
+    permissions: "indicadores_anuales",
+  },
+  { text: "Bitacora", icon: <LibraryBooksIcon />, permissions: "bitacora" },
+  { text: "Repositorio", icon: <StorageIcon />, permissions: "repositorio" },
+  { text: "Envíos Nómina", icon: <SendIcon />, permissions: "envios_nomina" },
+];
+
+const menuSoporte = [
+  { text: "Usuarios", icon: <SettingsIcon />, permissions: "usuarios" },
+  { text: "Tickets", icon: <SupportAgentIcon />, permissions: "tickets" },
+  {
+    text: "Notificaciones",
+    icon: <NotificationsActiveIcon />,
+    permissions: "notificaciones",
+  },
 ];
 
 const openedMixin = (theme) => ({
@@ -177,8 +278,6 @@ const Drawer = styled(MuiDrawer, {
   ],
 }));
 
-const menuSoporte = [{ text: "Usuarios", icon: <SettingsIcon /> }];
-
 const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
   const theme = useTheme();
 
@@ -191,7 +290,6 @@ const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
         justifyContent: "center",
         alignItems: "center",
         cursor: disabled ? "not-allowed" : "pointer",
-        cursor: "pointer",
         py: 1,
         position: "relative",
         opacity: disabled ? 0.5 : 1,
@@ -214,7 +312,6 @@ const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
             : theme.palette.text.secondary,
           transition: theme.transitions.create("opacity"),
           fontSize: "0.90rem",
-          color: theme.palette.text.secondary,
           textTransform: "uppercase",
         }}
       >
@@ -257,9 +354,19 @@ const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
   );
 };
 
-export default function MiniDrawer({ appContext }) {
+export default function MiniDrawer() {
+  const renderCount = React.useRef(0);
+  renderCount.current++;
+  
+  console.log(`Render ${renderCount.current} en producción`);
+  console.log(`Render a las ${Date.now()}`);
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [user, setUser] = React.useState({});
+  const [permissions, setPermissions] = React.useState({});
+  const [error, setError] = React.useState(null);
+  const [open, setOpen] = React.useState(true);
+  const [loading, setLoading] = React.useState(true);
+  const hasFetched = React.useRef(false);
   const [expandedSections, setExpandedSections] = React.useState({
     implementacion: false,
     nominas: false,
@@ -270,24 +377,86 @@ export default function MiniDrawer({ appContext }) {
     soporte: false,
   });
 
-  React.useEffect(() => {
-  setExpandedSections(prev => {
-    const newState = {};
-    Object.keys(prev).forEach(key => {
-      newState[key] = open; // true si drawer está abierto, false si está cerrado
-    });
-    return newState;
-  });
-}, [open]);
+  console.log("1. Componente renderizado - user:", user);
+  console.log("1. Componente renderizado - permissions:", permissions);
+  console.log("1. Componente renderizado - loading:", loading);
 
-  // Filtra menús según permisos
-  const filteredMenuImplementacion = menuImplementacion.filter((item) => {
-    return appContext.permissions.implementacion || item.text === "Clientes"; // Ejemplo: siempre mostrar "Clientes"
-  });
+  // Api fetch user y permisos
+  React.useEffect(() => {
+    console.log("2. useEffect ejecutado - hasFetched:", hasFetched.current);
+
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+    const fetchData = async () => {
+      try {
+        console.log("3. Iniciando fetch...");
+        setLoading(true);
+
+        // Fetch user data
+        const userResponse = await fetch("/json/usuario.json");
+        if (!userResponse.ok) throw new Error("Error loading user data");
+        const userData = (await userResponse.json()).user;
+        console.log("4. Datos de usuario obtenidos:", userData);
+        console.log(userData);
+        // Fetch permissions data
+        const permissionsResponse = await fetch("/json/permisos.json");
+        if (!permissionsResponse.ok)
+          throw new Error("Error loading permissions data");
+        const permissionsData = (await permissionsResponse.json()).permissions;
+        console.log("5. Datos de permisos obtenidos:", permissionsData);
+
+        setUser(userData);
+        setPermissions(permissionsData);
+        console.log("6. Estados actualizados (setUser/setPermissions)");
+      } catch (err) {
+        console.error("7. Error en fetch:", err);
+        setError(err.message);
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+        console.log("8. Loading terminado");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  React.useEffect(() => {
+    console.log("9. user o permissions cambiaron:", { user, permissions });
+  }, [user, permissions]);
+
+  const countEnabledSections = () => {
+    return Object.keys(permissions).filter((key) => permissions[key] === true)
+      .length;
+  };
+
+  const enabledSectionCounts = countEnabledSections();
+
+  const enabledSections = Object.keys(permissions).filter(
+    (key) => permissions[key] === true
+  );
+
+  React.useEffect(() => {
+    setExpandedSections((prev) => {
+      const newState = {};
+      Object.keys(prev).forEach((key) => {
+        if (enabledSectionCounts <= 2 && permissions[key]) {
+          newState[key] = true;
+        } else {
+          if (open) {
+            newState[key] = permissions[key];
+          } else {
+            const firstTwoSections = enabledSections.slice(0, 2);
+            newState[key] = firstTwoSections.includes(key);
+          }
+        }
+      });
+      return newState;
+    });
+  }, [open,permissions]);
 
   const toggleSection = (section) => {
-    
-    if (appContext.permissions[section] !== true) {
+    if (permissions[section] !== true) {
       return;
     }
     setExpandedSections((prev) => ({
@@ -295,13 +464,6 @@ export default function MiniDrawer({ appContext }) {
       [section]: !prev[section],
     }));
   };
-
-  /*   const toggleSection = (section) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [section]: !prev[section],
-    }));
-  }; */
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -401,143 +563,119 @@ export default function MiniDrawer({ appContext }) {
         }}
       >
         {/* DrawerHeader con lectura de usuarios */}
-        <DrawerHeader
-          sx={{
-            ...styles.body,
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            padding: theme.spacing(1, 2),
-            height: "1rem",
-            position: "relative",
-            overflow: "visible",
-            zIndex: 2,
-          }}
-        >
-          {open && (
-            <Box
-              sx={{
-                textAlign: "center",
-                padding: theme.spacing(1, 0),
-                marginBottom: theme.spacing(1),
-                width: "100%",
-              }}
-            >
-              <Typography variant="caption" color="white">
-                {appContext.user.id} | {appContext.user.name}
-              </Typography>
-              <Typography variant="caption" display="block" color="white">
-                {appContext.user.email}
-              </Typography>
-              <Typography variant="caption" display="block" color="white">
-                IP: {appContext.user.ip}
-              </Typography>
-            </Box>
-          )}
-        </DrawerHeader>
-        {/* <DrawerHeader
-          sx={{
-            ...styles.body,
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            padding: theme.spacing(1, 2),
-            height: "1rem",
-            position: "relative",
-            overflow: "visible",
-            zIndex: 2,
-          }}
-        >
-          {open && (
-            <Box
-              sx={{
-                textAlign: "center",
-                padding: theme.spacing(1, 0),
-                marginBottom: theme.spacing(1),
-                width: "100%",
-              }}
-            >
-              <Typography variant="caption" color="white">
-                32 | Jose Gabriel Alvarez Perez
-              </Typography>
-              <Typography variant="caption" display="block" color="white">
-                correo@email
-              </Typography>
-
-              <Typography variant="caption" display="block" color="white">
-                IP
-              </Typography>
-            </Box>
-          )}
-        </DrawerHeader> */}
         <Box
           sx={{
-            position: "relative",
-            width: "100%",
-            height: "1rem",
-            backgroundColor: open ? theme.palette.primary.light : "white",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: open ? "45px" : "22px",
-            overflow: "hidden",
+            position: "sticky",
+            top: 0,
             zIndex: 1,
+            boxShadow: 6,
           }}
         >
-          {/* Ondas azul */}
-          <svg
-            viewBox="0 0 500 100"
-            preserveAspectRatio="none"
-            style={{
-              position: "absolute",
-              bottom: "0px", // Sube toda la onda hacia arriba
-              left: 0,
-              width: "100%",
-              height: "100px",
-              zIndex: 0,
+          <DrawerHeader
+            sx={{
+              ...styles.body,
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              padding: theme.spacing(1, 2),
+              height: "1rem",
+              position: "relative",
+              overflow: "visible",
+              zIndex: 2,
             }}
           >
-            {/* 1. Onda principal (base blanca) - CURVA MÁS AMPLIA */}
-            <path
-              d="M0,35 C125,20 375,95 500,50 L500,100 L0,100 Z" // Más ancha y pronunciada
-              style={{ fill: "white" }}
-            />
+            {open && (
+              <Box
+                sx={{
+                  textAlign: "center",
+                  padding: theme.spacing(1, 0),
+                  marginBottom: theme.spacing(1),
+                  width: "100%",
+                }}
+              >
+                <Typography variant="caption" color="white">
+                  {user.id} | {user.name}
+                </Typography>
+                <Typography variant="caption" display="block" color="white">
+                  {user.email}
+                </Typography>
+                <Typography variant="caption" display="block" color="white">
+                  IP: {user.ip}
+                </Typography>
+              </Box>
+            )}
+          </DrawerHeader>
 
-            {/* 2. Ondas decorativas (DIBUJADAS ENCIMA CON TRANSPARENCIA) */}
-            {/* Decorativa 1 (izquierda más marcada) */}
-            <path
-              d="M0,35 C150,-5 350,85 500,45 L500,100 L0,100 Z"
-              style={{ fill: "white", opacity: 0.6 }} // Más opaca para destacar
-            />
-            {/* Decorativa 2 */}
-            <path
-              d="M0,50 C130,15 370,90 500,50 L500,100 L0,100 Z"
-              style={{ fill: "white", opacity: 0.4 }}
-            />
-            {/* Decorativa 3 */}
-            <path
-              d="M0,55 C120,25 380,95 500,55 L500,100 L0,100 Z"
-              style={{ fill: "white", opacity: 0.2 }}
-            />
-          </svg>
-          <img
-            src={BrainLogo}
-            alt="Logo de la empresa"
-            style={{
-              width: open ? "50px" : "30px",
-              transition: "width 0.3s ease",
-              border: 1,
+          <Box
+            sx={{
               position: "relative",
+              width: "100%",
+              height: "1rem",
+              backgroundColor: open ? theme.palette.primary.light : "white",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: open ? "45px" : "22px",
+              overflow: "hidden",
+              zIndex: 1,
             }}
-          />
+          >
+            {/* Ondas azul */}
+            <svg
+              viewBox="0 0 500 100"
+              preserveAspectRatio="none"
+              style={{
+                position: "absolute",
+                bottom: "0px", // Sube toda la onda hacia arriba
+                left: 0,
+                width: "100%",
+                height: "100px",
+                zIndex: 0,
+              }}
+            >
+              {/* 1. Onda principal (base blanca) - CURVA MÁS AMPLIA */}
+              <path
+                d="M0,35 C125,20 375,95 500,50 L500,100 L0,100 Z" // Más ancha y pronunciada
+                style={{ fill: "white" }}
+              />
+
+              {/* 2. Ondas decorativas (DIBUJADAS ENCIMA CON TRANSPARENCIA) */}
+              {/* Decorativa 1 (izquierda más marcada) */}
+              <path
+                d="M0,35 C150,-5 350,85 500,45 L500,100 L0,100 Z"
+                style={{ fill: "white", opacity: 0.6 }} // Más opaca para destacar
+              />
+              {/* Decorativa 2 */}
+              <path
+                d="M0,50 C130,15 370,90 500,50 L500,100 L0,100 Z"
+                style={{ fill: "white", opacity: 0.4 }}
+              />
+              {/* Decorativa 3 */}
+              <path
+                d="M0,55 C120,25 380,95 500,55 L500,100 L0,100 Z"
+                style={{ fill: "white", opacity: 0.2 }}
+              />
+            </svg>
+            <img
+              src={BrainLogo}
+              alt="Logo de la empresa"
+              style={{
+                width: open ? "50px" : "30px",
+                transition: "width 0.3s ease",
+                border: 1,
+                position: "relative",
+              }}
+            />
+          </Box>
         </Box>
         {/* Menu de navegación */}
-        {appContext.permissions.implementacion && (
+        {permissions.implementacion && (
           <>
             <Divider />
             <SectionTitle
               open={open}
               onClick={() => toggleSection("implementacion")}
               isExpanded={expandedSections.implementacion}
-              disable={!appContext.permissions.implementacion}
+              disabled={!permissions.implementacion}
             >
               IMPLEMENTACIÓN
             </SectionTitle>
@@ -588,7 +726,7 @@ export default function MiniDrawer({ appContext }) {
                       <MenuList
                         menuItems={menuImplementacion}
                         open={open}
-                        context={appContext}
+                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -597,14 +735,14 @@ export default function MiniDrawer({ appContext }) {
             </Grow>
           </>
         )}
-        {appContext.permissions.nominas && (
+        {permissions.nominas && (
           <>
             <Divider />
             <SectionTitle
               open={open}
               onClick={() => toggleSection("nominas")}
               isExpanded={expandedSections.nominas}
-              disable={!appContext.permissions.nominas}
+              disabled={!permissions.nominas}
             >
               NÓMINAS
             </SectionTitle>
@@ -654,7 +792,7 @@ export default function MiniDrawer({ appContext }) {
                       <MenuList
                         menuItems={menuNominas}
                         open={open}
-                        context={appContext}
+                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -663,14 +801,14 @@ export default function MiniDrawer({ appContext }) {
             </Grow>
           </>
         )}
-        {appContext.permissions.imss && (
+        {permissions.imss && (
           <>
             <Divider />
             <SectionTitle
               open={open}
               onClick={() => toggleSection("imss")}
               isExpanded={expandedSections.imss}
-              disable={!appContext.permissions.imss}
+              disabled={!permissions.imss}
             >
               IMSS
             </SectionTitle>
@@ -720,7 +858,7 @@ export default function MiniDrawer({ appContext }) {
                       <MenuList
                         menuItems={menuImss}
                         open={open}
-                        context={appContext}
+                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -729,14 +867,14 @@ export default function MiniDrawer({ appContext }) {
             </Grow>
           </>
         )}
-        {appContext.permissions.facturacion && (
+        {permissions.facturacion && (
           <>
             <Divider />
             <SectionTitle
               open={open}
               onClick={() => toggleSection("facturacion")}
               isExpanded={expandedSections.facturacion}
-              disable={!appContext.permissions.facturacion}
+              disabled={!permissions.facturacion}
             >
               FACTURACIÓN
             </SectionTitle>
@@ -786,7 +924,7 @@ export default function MiniDrawer({ appContext }) {
                       <MenuList
                         menuItems={menuFacturacion}
                         open={open}
-                        context={appContext}
+                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -795,14 +933,14 @@ export default function MiniDrawer({ appContext }) {
             </Grow>
           </>
         )}
-        {appContext.permissions.gastos && (
+        {permissions.gastos && (
           <>
             <Divider />
             <SectionTitle
               open={open}
               onClick={() => toggleSection("gastos")}
               isExpanded={expandedSections.gastos}
-              disable={!appContext.permissions.gastos}
+              disabled={!permissions.gastos}
             >
               GASTOS
             </SectionTitle>
@@ -844,7 +982,7 @@ export default function MiniDrawer({ appContext }) {
                       <MenuList
                         menuItems={menuGastos}
                         open={open}
-                        context={appContext}
+                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -853,14 +991,14 @@ export default function MiniDrawer({ appContext }) {
             </Grow>
           </>
         )}
-        {appContext.permissions.utilerias && (
+        {permissions.utilerias && (
           <>
             <Divider />
             <SectionTitle
               open={open}
               onClick={() => toggleSection("utilerias")}
               isExpanded={expandedSections.utilerias}
-              disable={!appContext.permissions.utilerias}
+              disabled={!permissions.utilerias}
             >
               UTILERIAS
             </SectionTitle>
@@ -902,7 +1040,7 @@ export default function MiniDrawer({ appContext }) {
                       <MenuList
                         menuItems={menuUtilerias}
                         open={open}
-                        context={appContext}
+                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -911,14 +1049,14 @@ export default function MiniDrawer({ appContext }) {
             </Grow>
           </>
         )}
-        {appContext.permissions.soporte && (
+        {permissions.soporte && (
           <>
             <Divider />
             <SectionTitle
               open={open}
               onClick={() => toggleSection("soporte")}
               isExpanded={expandedSections.soporte}
-              disable={!appContext.permissions.soporte}
+              disabled={!permissions.soporte}
             >
               SOPORTE
             </SectionTitle>
@@ -960,7 +1098,7 @@ export default function MiniDrawer({ appContext }) {
                       <MenuList
                         menuItems={menuSoporte}
                         open={open}
-                        context={appContext}
+                        /* context={appContext} */
                       />
                     )}
                   </Box>
