@@ -8,6 +8,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Link, useLocation } from "react-router-dom";
 
 const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
   minHeight: 48,
@@ -26,25 +27,23 @@ const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
   },
 }));
 
-const MenuList = ({ menuItems, open, context }) => {
-/*   const filteredMenuItems = menuItems.filter(item=> {
-    if(!item.permission) return true;
+const MenuList = ({ menuItems, open, context, module }) => {
+  const location = useLocation();
 
-    return context.permissions[item.permission];
-  });
-
-  console.log(filteredMenuItems); */
-  
   return (
     <List>
       {menuItems.map((item) => {
-        /* // Ejemplo: deshabilitar items según rol
-        const disabled =
-          item.text === "Layouts" && context.user.role !== "admin"; */
-        const hasPermission = !item.permission || {context}.permissions[item.permission];
+        const hasPermission =
+          !item.permission || { context }.permissions[item.permission];
+        const routePath = `/${module}/${item.text.toLowerCase().replace(/\s+/g, "-")}`;
+        const isActive = location.pathname === routePath;
         return (
-          <ListItem key={item.text} disablePadding sx={{ display: "block" }}
-          disabled={!hasPermission}>
+          <ListItem
+            key={item.text}
+            disablePadding
+            sx={{ display: "block" }}
+            disabled={!hasPermission}
+          >
             <Tooltip
               title={item.text}
               placement="right"
@@ -60,10 +59,19 @@ const MenuList = ({ menuItems, open, context }) => {
               }}
             >
               <AnimatedListItemButton
+                component={Link}
+                to={routePath}
                 sx={[
                   open
                     ? { justifyContent: "initial" }
                     : { justifyContent: "center" },
+                  isActive && {
+                    backgroundColor: "primary.light",
+                    color: "white",
+                    "&:hover": {
+                      backgroundColor: "primary.dark",
+                    },
+                  },
                 ]}
               >
                 <ListItemIcon
