@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "implementacion": true,
+    "nominas": true ,
+    "imss": true,
+    "facturacion": true,
+    "gastos": true,
+    "utilerias": true,
+    "soporte": true
+  }
+}
