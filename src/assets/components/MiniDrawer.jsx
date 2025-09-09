@@ -57,6 +57,8 @@ import StorageIcon from "@mui/icons-material/Storage";
 import SendIcon from "@mui/icons-material/Send";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import { Outlet } from "react-router-dom";
+
 const drawerWidth = 250;
 
 const menuImplementacion = [
@@ -223,7 +225,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -284,7 +285,6 @@ const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
   return (
     <Box
       onClick={!disabled ? onClick : undefined}
-      /* onClick={onClick} */
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -293,9 +293,9 @@ const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
         py: 1,
         position: "relative",
         opacity: disabled ? 0.5 : 1,
-        userSelect: "none", // Esto evita la selección de texto
-        WebkitUserSelect: "none", // Para compatibilidad con Safari
-        MozUserSelect: "none", // Para compatibilidad con Firefox
+        userSelect: "none",
+        WebkitUserSelect: "none",
+        MozUserSelect: "none",
         msUserSelect: "none",
         "&:hover .expand-icon": {
           backgroundColor: theme.palette.action.hover,
@@ -355,11 +355,6 @@ const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
 };
 
 export default function MiniDrawer() {
-  const renderCount = React.useRef(0);
-  renderCount.current++;
-  
-  console.log(`Render ${renderCount.current} en producción`);
-  console.log(`Render a las ${Date.now()}`);
   const theme = useTheme();
   const [user, setUser] = React.useState({});
   const [permissions, setPermissions] = React.useState({});
@@ -377,53 +372,36 @@ export default function MiniDrawer() {
     soporte: false,
   });
 
-  console.log("1. Componente renderizado - user:", user);
-  console.log("1. Componente renderizado - permissions:", permissions);
-  console.log("1. Componente renderizado - loading:", loading);
-
   // Api fetch user y permisos
   React.useEffect(() => {
-    console.log("2. useEffect ejecutado - hasFetched:", hasFetched.current);
-
     if (hasFetched.current) return;
     hasFetched.current = true;
     const fetchData = async () => {
       try {
-        console.log("3. Iniciando fetch...");
         setLoading(true);
 
         // Fetch user data
         const userResponse = await fetch("/json/usuario.json");
         if (!userResponse.ok) throw new Error("Error loading user data");
         const userData = (await userResponse.json()).user;
-        console.log("4. Datos de usuario obtenidos:", userData);
-        console.log(userData);
+
         // Fetch permissions data
         const permissionsResponse = await fetch("/json/permisos.json");
         if (!permissionsResponse.ok)
           throw new Error("Error loading permissions data");
         const permissionsData = (await permissionsResponse.json()).permissions;
-        console.log("5. Datos de permisos obtenidos:", permissionsData);
 
         setUser(userData);
         setPermissions(permissionsData);
-        console.log("6. Estados actualizados (setUser/setPermissions)");
       } catch (err) {
-        console.error("7. Error en fetch:", err);
         setError(err.message);
-        console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
-        console.log("8. Loading terminado");
       }
     };
 
     fetchData();
   }, []);
-
-  React.useEffect(() => {
-    console.log("9. user o permissions cambiaron:", { user, permissions });
-  }, [user, permissions]);
 
   const countEnabledSections = () => {
     return Object.keys(permissions).filter((key) => permissions[key] === true)
@@ -453,7 +431,7 @@ export default function MiniDrawer() {
       });
       return newState;
     });
-  }, [open,permissions]);
+  }, [open, permissions]);
 
   const toggleSection = (section) => {
     if (permissions[section] !== true) {
@@ -557,12 +535,11 @@ export default function MiniDrawer() {
             "&::-webkit-scrollbar": {
               display: "none",
             },
-            msOverflowStyle: "none", // IE and Edge
-            scrollbarWidth: "none", // Firefox
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
           },
         }}
       >
-        {/* DrawerHeader con lectura de usuarios */}
         <Box
           sx={{
             position: "sticky",
@@ -619,37 +596,30 @@ export default function MiniDrawer() {
               zIndex: 1,
             }}
           >
-            {/* Ondas azul */}
             <svg
               viewBox="0 0 500 100"
               preserveAspectRatio="none"
               style={{
                 position: "absolute",
-                bottom: "0px", // Sube toda la onda hacia arriba
+                bottom: "0px",
                 left: 0,
                 width: "100%",
                 height: "100px",
                 zIndex: 0,
               }}
             >
-              {/* 1. Onda principal (base blanca) - CURVA MÁS AMPLIA */}
               <path
-                d="M0,35 C125,20 375,95 500,50 L500,100 L0,100 Z" // Más ancha y pronunciada
+                d="M0,35 C125,20 375,95 500,50 L500,100 L0,100 Z"
                 style={{ fill: "white" }}
               />
-
-              {/* 2. Ondas decorativas (DIBUJADAS ENCIMA CON TRANSPARENCIA) */}
-              {/* Decorativa 1 (izquierda más marcada) */}
               <path
                 d="M0,35 C150,-5 350,85 500,45 L500,100 L0,100 Z"
-                style={{ fill: "white", opacity: 0.6 }} // Más opaca para destacar
+                style={{ fill: "white", opacity: 0.6 }}
               />
-              {/* Decorativa 2 */}
               <path
                 d="M0,50 C130,15 370,90 500,50 L500,100 L0,100 Z"
                 style={{ fill: "white", opacity: 0.4 }}
               />
-              {/* Decorativa 3 */}
               <path
                 d="M0,55 C120,25 380,95 500,55 L500,100 L0,100 Z"
                 style={{ fill: "white", opacity: 0.2 }}
@@ -667,7 +637,6 @@ export default function MiniDrawer() {
             />
           </Box>
         </Box>
-        {/* Menu de navegación */}
         {permissions.implementacion && (
           <>
             <Divider />
@@ -679,17 +648,16 @@ export default function MiniDrawer() {
             >
               IMPLEMENTACIÓN
             </SectionTitle>
-            {/* Render Menú de implementación */}
             <Grow
               in={expandedSections.implementacion}
               timeout={{
                 enter: 250,
-                exit: 150, // Permitimos un poco de tiempo para sincronizar
+                exit: 150,
               }}
               style={{ transformOrigin: "top center" }}
               easing={{
                 enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear", // Suavizamos la salida del Grow
+                exit: "linear",
               }}
             >
               <Box>
@@ -701,7 +669,7 @@ export default function MiniDrawer() {
                     exit: 400,
                   }}
                   easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
+                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                   }}
                   style={{
                     transformOrigin: "top center",
@@ -719,14 +687,15 @@ export default function MiniDrawer() {
                         : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                       boxShadow: expandedSections.implementacion
                         ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                        : "0px -5px 10px rgba(0,0,0,0.1)",
                     }}
                   >
                     {expandedSections.implementacion && (
                       <MenuList
                         menuItems={menuImplementacion}
                         open={open}
-                        /* context={appContext} */
+                        context={{ permissions, user }}
+                        module={"implementacion"}
                       />
                     )}
                   </Box>
@@ -750,12 +719,12 @@ export default function MiniDrawer() {
               in={expandedSections.nominas}
               timeout={{
                 enter: 250,
-                exit: 150, // Permitimos un poco de tiempo para sincronizar
+                exit: 150,
               }}
               style={{ transformOrigin: "top center" }}
               easing={{
                 enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear", // Suavizamos la salida del Grow
+                exit: "linear",
               }}
             >
               <Box>
@@ -767,7 +736,7 @@ export default function MiniDrawer() {
                     exit: 400,
                   }}
                   easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
+                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                   }}
                   style={{
                     transformOrigin: "top center",
@@ -785,14 +754,13 @@ export default function MiniDrawer() {
                         : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                       boxShadow: expandedSections.nominas
                         ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                        : "0px -5px 10px rgba(0,0,0,0.1)",
                     }}
                   >
                     {expandedSections.nominas && (
                       <MenuList
                         menuItems={menuNominas}
                         open={open}
-                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -816,12 +784,12 @@ export default function MiniDrawer() {
               in={expandedSections.imss}
               timeout={{
                 enter: 250,
-                exit: 150, // Permitimos un poco de tiempo para sincronizar
+                exit: 150,
               }}
               style={{ transformOrigin: "top center" }}
               easing={{
                 enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear", // Suavizamos la salida del Grow
+                exit: "linear",
               }}
             >
               <Box>
@@ -833,7 +801,7 @@ export default function MiniDrawer() {
                     exit: 400,
                   }}
                   easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
+                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                   }}
                   style={{
                     transformOrigin: "top center",
@@ -851,14 +819,13 @@ export default function MiniDrawer() {
                         : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                       boxShadow: expandedSections.imss
                         ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                        : "0px -5px 10px rgba(0,0,0,0.1)",
                     }}
                   >
                     {expandedSections.imss && (
                       <MenuList
                         menuItems={menuImss}
                         open={open}
-                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -882,12 +849,12 @@ export default function MiniDrawer() {
               in={expandedSections.facturacion}
               timeout={{
                 enter: 250,
-                exit: 150, // Permitimos un poco de tiempo para sincronizar
+                exit: 150,
               }}
               style={{ transformOrigin: "top center" }}
               easing={{
                 enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear", // Suavizamos la salida del Grow
+                exit: "linear",
               }}
             >
               <Box>
@@ -899,7 +866,7 @@ export default function MiniDrawer() {
                     exit: 400,
                   }}
                   easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)", // Rebote más exagerado
+                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                   }}
                   style={{
                     transformOrigin: "top center",
@@ -917,14 +884,13 @@ export default function MiniDrawer() {
                         : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
                       boxShadow: expandedSections.facturacion
                         ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)", // Sombra durante el cierre
+                        : "0px -5px 10px rgba(0,0,0,0.1)",
                     }}
                   >
                     {expandedSections.facturacion && (
                       <MenuList
                         menuItems={menuFacturacion}
                         open={open}
-                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -982,7 +948,6 @@ export default function MiniDrawer() {
                       <MenuList
                         menuItems={menuGastos}
                         open={open}
-                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -1040,7 +1005,6 @@ export default function MiniDrawer() {
                       <MenuList
                         menuItems={menuUtilerias}
                         open={open}
-                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -1098,7 +1062,6 @@ export default function MiniDrawer() {
                       <MenuList
                         menuItems={menuSoporte}
                         open={open}
-                        /* context={appContext} */
                       />
                     )}
                   </Box>
@@ -1110,6 +1073,7 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
+        <Outlet/>
       </Box>
     </Box>
   );
