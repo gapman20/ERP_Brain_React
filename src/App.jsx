@@ -5,7 +5,7 @@ import MiniDrawer from "./assets/components/MiniDrawer";
 import { ThemeProvider } from "@mui/material/styles";
 import customTheme from "./assets/themes/theme";
 import AlianzasPage from "./assets/pages/Alianzas/Alianzas";
-import ImplementacionLayout from "./assets/views/implementacion/implementacion";
+import ImplementacionLayout from "./assets/views/implementacion/implementacion.jsx";
 import { useState } from "react";
 
 
