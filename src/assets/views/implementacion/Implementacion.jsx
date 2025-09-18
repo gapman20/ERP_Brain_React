@@ -20,8 +20,8 @@ const ImplementacionLayout = () => {
         <Outlet />
       </Container>
       
-      {/* Footer específico de Implementación (opcional) */}
-      <Box sx={{ bgcolor: "grey.100", py: 2, mt: 3 }}>
+      {/* Footer específico de Implementación */}
+      <Box sx={{ position: 'sticky', bottom: 0,zIndex: 10,bgcolor: "grey.100", py: 2, mt: 3, }}>
         <Container maxWidth="xl">
           <Typography variant="body2" color="textSecondary" align="center">
             Módulo de Implementación - Brain ERP
