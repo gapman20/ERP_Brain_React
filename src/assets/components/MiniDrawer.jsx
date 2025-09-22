@@ -533,10 +533,19 @@ export default function MiniDrawer() {
         sx={{
           "& .MuiDrawer-paper": {
             "&::-webkit-scrollbar": {
-              display: "none",
+              width: "8px",
             },
-            msOverflowStyle: "none",
-            scrollbarWidth: "none",
+            "&::-webkit-scrollbar-track": {
+              background: "#f1f1f1",
+              borderRadius: "4px",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              background: "#bbb",
+              borderRadius: "4px",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+              background: "#999",
+            },
           },
         }}
       >
@@ -758,10 +767,7 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.nominas && (
-                      <MenuList
-                        menuItems={menuNominas}
-                        open={open}
-                      />
+                      <MenuList menuItems={menuNominas} open={open} />
                     )}
                   </Box>
                 </Slide>
@@ -823,10 +829,7 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.imss && (
-                      <MenuList
-                        menuItems={menuImss}
-                        open={open}
-                      />
+                      <MenuList menuItems={menuImss} open={open} />
                     )}
                   </Box>
                 </Slide>
@@ -888,10 +891,7 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.facturacion && (
-                      <MenuList
-                        menuItems={menuFacturacion}
-                        open={open}
-                      />
+                      <MenuList menuItems={menuFacturacion} open={open} />
                     )}
                   </Box>
                 </Slide>
@@ -945,10 +945,7 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.gastos && (
-                      <MenuList
-                        menuItems={menuGastos}
-                        open={open}
-                      />
+                      <MenuList menuItems={menuGastos} open={open} />
                     )}
                   </Box>
                 </Slide>
@@ -1002,10 +999,7 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.utilerias && (
-                      <MenuList
-                        menuItems={menuUtilerias}
-                        open={open}
-                      />
+                      <MenuList menuItems={menuUtilerias} open={open} />
                     )}
                   </Box>
                 </Slide>
@@ -1059,10 +1053,7 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.soporte && (
-                      <MenuList
-                        menuItems={menuSoporte}
-                        open={open}
-                      />
+                      <MenuList menuItems={menuSoporte} open={open} />
                     )}
                   </Box>
                 </Slide>
@@ -1073,7 +1064,7 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Outlet/>
+        <Outlet />
       </Box>
     </Box>
   );
