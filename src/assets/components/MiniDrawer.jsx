@@ -448,7 +448,7 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -1062,7 +1062,13 @@ export default function MiniDrawer() {
           </>
         )}
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          height: "100vh"
+        }}
+      >
         <DrawerHeader />
         <Outlet />
       </Box>
