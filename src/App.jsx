@@ -28,7 +28,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<MiniDrawer />}>
-              <Route path="implementacion" element={<ImplementacionLayout />}>
+              <Route path="implementacion/*" element={<ImplementacionLayout />}>
                 <Route path="alianzas" element ={<AlianzasPage/>}/>
               </Route>
             </Route>
