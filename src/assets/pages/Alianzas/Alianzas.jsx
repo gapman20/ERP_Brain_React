@@ -1,4 +1,3 @@
-// pages/AlianzasPage.jsx
 import { Box, Typography, Paper, Button } from '@mui/material';
 
 const AlianzasPage = () => {
