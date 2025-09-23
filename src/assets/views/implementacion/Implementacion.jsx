@@ -16,8 +16,8 @@ const ImplementacionLayout = () => {
           position: "sticky",
           top: 0,
           zIndex: 1100,
-          bgcolor: "primary.grey",
-          color: "text.Appbar",
+          bgcolor: "primary.light",
+          color: "white",
           py: 2,
         }}
       >
