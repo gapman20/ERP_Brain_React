@@ -1,4 +1,3 @@
-import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -77,7 +76,7 @@ const demoTheme = createTheme({
 });
 
 function DemoPageContent({ pathname }) {
-  console.log('Current pathname: ',pathname);
+  // console.log('Current pathname: ',pathname); // Comentado para evitar logs en producción
   
 
 

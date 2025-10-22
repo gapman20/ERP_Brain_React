@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { SignInPage } from '@toolpad/core/SignInPage';
 import { useTheme } from '@mui/material/styles';
@@ -8,7 +7,7 @@ const providers = [{ id: 'credentials', name: 'Credentials' }];
 const BRANDING = {
   logo: (
     <img
-      src="../../../public/img/circuito.ico"
+      src="/img/circuito.ico"
       alt="Brain logo"
       style={{ height: 100 }}
     />
@@ -17,10 +16,9 @@ const BRANDING = {
 };
 // preview-end
 
-const signIn = async (provider) => {
+const signIn = async () => {
   const promise = new Promise((resolve) => {
     setTimeout(() => {
-      console.log(`Sign in with ${provider.id}`);
       resolve({error: 'Verifique sus credenciales.'});
     }, 500);
   });
@@ -36,8 +34,10 @@ export default function BrandingSignInPage() {
       <SignInPage
         signIn={signIn}
         providers={providers}
-        slotProps={{ emailField: { autoFocus: false }, form: { noValidate: true },
-                     emailField: {placeholder: 'tucorreo@email'} }}
+        slotProps={{
+          emailField: { autoFocus: false, placeholder: 'tucorreo@email' },
+          form: { noValidate: true }
+        }}
       />
     </AppProvider>
     // preview-end
