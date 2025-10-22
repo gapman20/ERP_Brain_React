@@ -1,11 +1,13 @@
 import "./App.css";
 import { useState } from "react";
-import { MemoryRouter as Router, Routes, Route } from "react-router-dom";
+import { MemoryRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import MiniDrawer from "./assets/components/MiniDrawer";
 import { ThemeProvider } from "@mui/material/styles";
 import customTheme from "./assets/themes/theme";
 import AlianzasPage from "./assets/pages/Alianzas/Alianzas";
 import ImplementacionLayout from "./assets/views/implementacion/Implementacion.jsx";
+import Login from "./assets/pages/Login/Login";
+import ProtectedRoute from "./assets/components/ProtectedRoute";
 import { AppContext } from "./context/AppContext";
 
 function App() {
@@ -22,11 +24,25 @@ function App() {
           setCurrentSection,
         }}
       >
-        <Router>
+        <Router initialEntries={['/login']} initialIndex={0}>
           <Routes>
-            <Route path="/" element={<MiniDrawer />}>
+            {/* Ruta de Login (pública) */}
+            <Route path="/login" element={<Login />} />
+
+            {/* Redirigir raíz a login */}
+            <Route path="/" element={<Navigate to="/login" replace />} />
+
+            {/* Rutas protegidas del sistema */}
+            <Route
+              path="/*"
+              element={
+                <ProtectedRoute>
+                  <MiniDrawer />
+                </ProtectedRoute>
+              }
+            >
               <Route path="implementacion/*" element={<ImplementacionLayout />}>
-                <Route path="alianzas" element ={<AlianzasPage/>}/>
+                <Route path="alianzas" element={<AlianzasPage />} />
               </Route>
             </Route>
           </Routes>
