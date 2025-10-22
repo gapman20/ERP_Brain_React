@@ -321,46 +321,17 @@ export default function MiniDrawer() {
             </SectionTitle>
             <Grow
               in={expandedSections.implementacion}
-              timeout={{
-                enter: 250,
-                exit: 150,
-              }}
+              timeout={180}
               style={{ transformOrigin: "top center" }}
-              easing={{
-                enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear",
-              }}
             >
               <Box>
                 <Slide
                   direction="up"
                   in={expandedSections.implementacion}
-                  timeout={{
-                    enter: 0,
-                    exit: 400,
-                  }}
-                  easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
-                  style={{
-                    transformOrigin: "top center",
-                    transition:
-                      "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
+                  timeout={180}
+                  style={{ transformOrigin: "top center" }}
                 >
-                  <Box
-                    sx={{
-                      transform: expandedSections.implementacion
-                        ? "scaleY(1)"
-                        : "scaleY(0.8)",
-                      transition: expandedSections.implementacion
-                        ? "transform 0.25s ease-out"
-                        : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                      boxShadow: expandedSections.implementacion
-                        ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)",
-                    }}
-                  >
+                  <Box>
                     {expandedSections.implementacion && (
                       <MenuList
                         menuItems={menuImplementacion}
@@ -388,46 +359,17 @@ export default function MiniDrawer() {
             </SectionTitle>
             <Grow
               in={expandedSections.nominas}
-              timeout={{
-                enter: 250,
-                exit: 150,
-              }}
+              timeout={180}
               style={{ transformOrigin: "top center" }}
-              easing={{
-                enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear",
-              }}
             >
               <Box>
                 <Slide
                   direction="up"
                   in={expandedSections.nominas}
-                  timeout={{
-                    enter: 0,
-                    exit: 400,
-                  }}
-                  easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
-                  style={{
-                    transformOrigin: "top center",
-                    transition:
-                      "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
+                  timeout={180}
+                  style={{ transformOrigin: "top center" }}
                 >
-                  <Box
-                    sx={{
-                      transform: expandedSections.nominas
-                        ? "scaleY(1)"
-                        : "scaleY(0.8)",
-                      transition: expandedSections.nominas
-                        ? "transform 0.25s ease-out"
-                        : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                      boxShadow: expandedSections.nominas
-                        ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)",
-                    }}
-                  >
+                  <Box>
                     {expandedSections.nominas && (
                       <MenuList
                         menuItems={menuNominas}
@@ -455,46 +397,17 @@ export default function MiniDrawer() {
             </SectionTitle>
             <Grow
               in={expandedSections.imss}
-              timeout={{
-                enter: 250,
-                exit: 150,
-              }}
+              timeout={180}
               style={{ transformOrigin: "top center" }}
-              easing={{
-                enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear",
-              }}
             >
               <Box>
                 <Slide
                   direction="up"
                   in={expandedSections.imss}
-                  timeout={{
-                    enter: 0,
-                    exit: 400,
-                  }}
-                  easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
-                  style={{
-                    transformOrigin: "top center",
-                    transition:
-                      "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
+                  timeout={180}
+                  style={{ transformOrigin: "top center" }}
                 >
-                  <Box
-                    sx={{
-                      transform: expandedSections.imss
-                        ? "scaleY(1)"
-                        : "scaleY(0.8)",
-                      transition: expandedSections.imss
-                        ? "transform 0.25s ease-out"
-                        : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                      boxShadow: expandedSections.imss
-                        ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)",
-                    }}
-                  >
+                  <Box>
                     {expandedSections.imss && (
                       <MenuList
                         menuItems={menuImss}
@@ -522,46 +435,17 @@ export default function MiniDrawer() {
             </SectionTitle>
             <Grow
               in={expandedSections.facturacion}
-              timeout={{
-                enter: 250,
-                exit: 150,
-              }}
+              timeout={180}
               style={{ transformOrigin: "top center" }}
-              easing={{
-                enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear",
-              }}
             >
               <Box>
                 <Slide
                   direction="up"
                   in={expandedSections.facturacion}
-                  timeout={{
-                    enter: 0,
-                    exit: 400,
-                  }}
-                  easing={{
-                    exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
-                  style={{
-                    transformOrigin: "top center",
-                    transition:
-                      "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
+                  timeout={180}
+                  style={{ transformOrigin: "top center" }}
                 >
-                  <Box
-                    sx={{
-                      transform: expandedSections.facturacion
-                        ? "scaleY(1)"
-                        : "scaleY(0.8)",
-                      transition: expandedSections.facturacion
-                        ? "transform 0.25s ease-out"
-                        : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                      boxShadow: expandedSections.facturacion
-                        ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)",
-                    }}
-                  >
+                  <Box>
                     {expandedSections.facturacion && (
                       <MenuList
                         menuItems={menuFacturacion}
@@ -589,38 +473,17 @@ export default function MiniDrawer() {
             </SectionTitle>
             <Grow
               in={expandedSections.gastos}
-              timeout={{ enter: 250, exit: 150 }}
+              timeout={180}
               style={{ transformOrigin: "top center" }}
-              easing={{
-                enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear",
-              }}
             >
               <Box>
                 <Slide
                   direction="up"
                   in={expandedSections.gastos}
-                  timeout={{ enter: 0, exit: 400 }}
-                  easing={{ exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)" }}
-                  style={{
-                    transformOrigin: "top center",
-                    transition:
-                      "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
+                  timeout={180}
+                  style={{ transformOrigin: "top center" }}
                 >
-                  <Box
-                    sx={{
-                      transform: expandedSections.gastos
-                        ? "scaleY(1)"
-                        : "scaleY(0.8)",
-                      transition: expandedSections.gastos
-                        ? "transform 0.25s ease-out"
-                        : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                      boxShadow: expandedSections.gastos
-                        ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)",
-                    }}
-                  >
+                  <Box>
                     {expandedSections.gastos && (
                       <MenuList
                         menuItems={menuGastos}
@@ -648,38 +511,17 @@ export default function MiniDrawer() {
             </SectionTitle>
             <Grow
               in={expandedSections.utilerias}
-              timeout={{ enter: 250, exit: 150 }}
+              timeout={180}
               style={{ transformOrigin: "top center" }}
-              easing={{
-                enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear",
-              }}
             >
               <Box>
                 <Slide
                   direction="up"
                   in={expandedSections.utilerias}
-                  timeout={{ enter: 0, exit: 400 }}
-                  easing={{ exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)" }}
-                  style={{
-                    transformOrigin: "top center",
-                    transition:
-                      "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
+                  timeout={180}
+                  style={{ transformOrigin: "top center" }}
                 >
-                  <Box
-                    sx={{
-                      transform: expandedSections.utilerias
-                        ? "scaleY(1)"
-                        : "scaleY(0.8)",
-                      transition: expandedSections.utilerias
-                        ? "transform 0.25s ease-out"
-                        : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                      boxShadow: expandedSections.utilerias
-                        ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)",
-                    }}
-                  >
+                  <Box>
                     {expandedSections.utilerias && (
                       <MenuList
                         menuItems={menuUtilerias}
@@ -707,38 +549,17 @@ export default function MiniDrawer() {
             </SectionTitle>
             <Grow
               in={expandedSections.soporte}
-              timeout={{ enter: 250, exit: 150 }}
+              timeout={180}
               style={{ transformOrigin: "top center" }}
-              easing={{
-                enter: "cubic-bezier(0.175, 0.885, 0.32, 1.35)",
-                exit: "linear",
-              }}
             >
               <Box>
                 <Slide
                   direction="up"
                   in={expandedSections.soporte}
-                  timeout={{ enter: 0, exit: 400 }}
-                  easing={{ exit: "cubic-bezier(0.68, -0.8, 0.62, 1.6)" }}
-                  style={{
-                    transformOrigin: "top center",
-                    transition:
-                      "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                  }}
+                  timeout={180}
+                  style={{ transformOrigin: "top center" }}
                 >
-                  <Box
-                    sx={{
-                      transform: expandedSections.soporte
-                        ? "scaleY(1)"
-                        : "scaleY(0.8)",
-                      transition: expandedSections.soporte
-                        ? "transform 0.25s ease-out"
-                        : "transform 0.4s cubic-bezier(0.68, -0.8, 0.62, 1.6)",
-                      boxShadow: expandedSections.soporte
-                        ? "none"
-                        : "0px -5px 10px rgba(0,0,0,0.1)",
-                    }}
-                  >
+                  <Box>
                     {expandedSections.soporte && (
                       <MenuList
                         menuItems={menuSoporte}
