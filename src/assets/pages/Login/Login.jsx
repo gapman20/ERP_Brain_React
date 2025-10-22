@@ -81,7 +81,7 @@ export default function Login() {
 
       // Esperar un momento antes de redirigir (para mostrar el loader)
       setTimeout(() => {
-        navigate('/implementacion/alianzas');
+        navigate('/dashboard');
       }, 1500);
     } catch (err) {
       console.error('Error en login:', err);
