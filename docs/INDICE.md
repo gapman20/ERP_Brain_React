@@ -60,6 +60,24 @@ Esta es la guía completa de navegación por toda la documentación del proyecto
 
 ---
 
+### 🔐 [AUTENTICACION.md](AUTENTICACION.md)
+**Propósito:** Documentación completa del sistema de autenticación
+
+**Contenido:**
+- Arquitectura de autenticación
+- Componentes del sistema (Login, ProtectedRoute)
+- Flujo de autenticación paso a paso
+- Protección de rutas
+- Gestión de sesión con localStorage
+- Integración con servicios
+- Menú de usuario y logout
+- Personalización y mejores prácticas
+- Troubleshooting
+
+**Para quién:** Desarrolladores que trabajan con autenticación y seguridad
+
+---
+
 ### 📋 [CAMBIOS_SERVICIOS.md](../CAMBIOS_SERVICIOS.md)
 **Propósito:** Resumen de los cambios realizados en la implementación de servicios
 
