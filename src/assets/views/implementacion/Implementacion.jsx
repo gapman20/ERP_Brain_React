@@ -1,14 +1,19 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import { Box, Typography, Container } from "@mui/material";
+import { Outlet, useLocation } from "react-router-dom";
+import { Box, Typography, Container, Button, Stack } from "@mui/material";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import { buttonConfig } from "../../js/bottonConfig.jsx";
 
 const ImplementacionLayout = () => {
+  const location = useLocation();
+  const currentSection = location.pathname.split("/").pop();
+  const currentButtons = buttonConfig[currentSection] || [];
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "90%"
+        height: "90%",
       }}
     >
       <Box
@@ -22,10 +27,34 @@ const ImplementacionLayout = () => {
         }}
       >
         <Container maxWidth="xl">
-          <Typography variant="h4">Implementación</Typography>
-          <Typography variant="subtitle1">
-            Gestión de alianzas, empresas y clientes
-          </Typography>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <WidgetsIcon sx={{ fontSize: 40 }} /> {/* Icono más grande */}
+              <Box>
+                <Typography variant="h4">Implementación</Typography>
+                <Typography variant="subtitle1">
+                  Gestión de alianzas, empresas y clientes
+                </Typography>
+              </Box>
+            </Box>
+            <Stack direction="row" spacing={2}>
+              {currentButtons.map((button) => {
+                const { label, ...buttonProps } = button;
+                return (
+                  <Button
+                    key={label}
+                    {...buttonProps}
+                  >
+                    {label}
+                  </Button>
+                );
+              })}
+            </Stack>
+          </Stack>
         </Container>
       </Box>
 
@@ -33,7 +62,7 @@ const ImplementacionLayout = () => {
         sx={{
           flexGrow: 1,
           overflowY: "auto",
-          boxSizing: "border-box"
+          boxSizing: "border-box",
         }}
       >
         <Container maxWidth="xl" sx={{ py: 3 }}>
