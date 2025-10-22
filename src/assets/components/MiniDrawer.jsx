@@ -1,17 +1,23 @@
 import * as React from "react";
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import HelpIcon from "@mui/icons-material/Help";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from "@mui/icons-material/Person";
 import { Grow, Slide } from "@mui/material";
 import MenuList from "./MenuList";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
@@ -34,6 +40,7 @@ import {
 
 export default function MiniDrawer() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const { user, permissions, error, loading } = useUserData();
   const [open, setOpen] = React.useState(true);
   const [expandedSections, setExpandedSections] = React.useState({
@@ -45,6 +52,10 @@ export default function MiniDrawer() {
     utilerias: false,
     soporte: false,
   });
+
+  // Estado para el menú de usuario
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const openUserMenu = Boolean(anchorElUser);
 
   // Memoize expensive calculations
   const enabledSectionCounts = useMemo(() => {
@@ -88,6 +99,25 @@ export default function MiniDrawer() {
   const toggleDrawer = useCallback(() => {
     setOpen(!open);
   }, [open]);
+
+  // Funciones del menú de usuario
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    // Limpiar localStorage
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
+    // Cerrar menú
+    handleCloseUserMenu();
+    // Redirigir al login
+    navigate('/login');
+  };
 
   // Mostrar estado de carga
   if (loading) {
@@ -183,10 +213,51 @@ export default function MiniDrawer() {
           <IconButton
             size="large"
             aria-label="Cuenta actual del usuario"
+            onClick={handleOpenUserMenu}
             sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
           >
             <AccountCircle />
           </IconButton>
+
+          {/* Menú de usuario */}
+          <Menu
+            anchorEl={anchorElUser}
+            open={openUserMenu}
+            onClose={handleCloseUserMenu}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <Box sx={{ px: 2, py: 1, borderBottom: 1, borderColor: 'divider' }}>
+              <Typography variant="subtitle2" fontWeight="bold">
+                {user.name}
+              </Typography>
+              <Typography variant="caption" color="text.secondary">
+                {user.email}
+              </Typography>
+            </Box>
+
+            <MenuItem onClick={handleCloseUserMenu}>
+              <ListItemIcon>
+                <PersonIcon fontSize="small" />
+              </ListItemIcon>
+              Perfil
+            </MenuItem>
+
+            <Divider />
+
+            <MenuItem onClick={handleLogout}>
+              <ListItemIcon>
+                <LogoutIcon fontSize="small" />
+              </ListItemIcon>
+              Cerrar Sesión
+            </MenuItem>
+          </Menu>
         </Toolbar>
       </AppBar>
       <Drawer
