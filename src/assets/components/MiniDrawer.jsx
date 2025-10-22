@@ -1,367 +1,41 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { useMemo, useCallback } from "react";
+import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import BusinessIcon from "@mui/icons-material/Business";
-import PersonIcon from "@mui/icons-material/Person";
-import PeopleIcon from "@mui/icons-material/People";
-import FilePresentIcon from "@mui/icons-material/FilePresent";
-import DescriptionIcon from "@mui/icons-material/Description";
-import HandshakeIcon from "@mui/icons-material/Handshake";
-import PaymentsIcon from "@mui/icons-material/Payments";
-import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
-import LeaderboardIcon from "@mui/icons-material/Leaderboard";
-import PriceChangeIcon from "@mui/icons-material/PriceChange";
-import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
-import ArticleIcon from "@mui/icons-material/Article";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import PaymentIcon from "@mui/icons-material/Payment";
-import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
-import FactoryIcon from "@mui/icons-material/Factory";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
-import LocalAtmIcon from "@mui/icons-material/LocalAtm";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
-import SettingsIcon from "@mui/icons-material/Settings";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import HelpIcon from "@mui/icons-material/Help";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Grow, Slide } from "@mui/material";
-import Tooltip from "@mui/material/Tooltip";
 import MenuList from "./MenuList";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
-import BrainLogo from "../../../public/img/circuito.ico";
-import SettingsSystemDaydreamIcon from "@mui/icons-material/SettingsSystemDaydream";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import Groups3Icon from "@mui/icons-material/Groups3";
-import ShowChartIcon from "@mui/icons-material/ShowChart";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import FolderIcon from "@mui/icons-material/Folder";
-import FactCheckIcon from "@mui/icons-material/FactCheck";
-import MemoryIcon from "@mui/icons-material/Memory";
-import BalanceIcon from "@mui/icons-material/Balance";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import BookmarksIcon from "@mui/icons-material/Bookmarks";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import StorageIcon from "@mui/icons-material/Storage";
-import SendIcon from "@mui/icons-material/Send";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import BrainLogo from "../img/circuito.ico";
 import { Outlet } from "react-router-dom";
 
-const drawerWidth = 250;
-
-const menuImplementacion = [
-  { text: "Alianzas", icon: <HandshakeIcon />, permissions: "alianzas" },
-  { text: "Empresas", icon: <BusinessIcon />, permissions: "empresas" },
-  { text: "Clientes", icon: <PersonIcon />, permissions: "clientes" },
-  { text: "Remunerados", icon: <PeopleIcon />, permissions: "remunerados" },
-  { text: "Layouts", icon: <FilePresentIcon />, permissions: "layouts" },
-  { text: "Contratos", icon: <DescriptionIcon />, permissions: "contratos" },
-];
-
-const menuNominas = [
-  { text: "Nominas", icon: <PaymentsIcon />, permissions: "nominas" },
-  { text: "Recibos", icon: <PictureAsPdfIcon />, permissions: "recibidos" },
-  { text: "Reportes", icon: <LeaderboardIcon />, permissions: "reportes" },
-  {
-    text: "Movimientos",
-    icon: <SettingsSystemDaydreamIcon />,
-    permissions: "movimientos",
-  },
-  {
-    text: "Calendario",
-    icon: <CalendarMonthIcon />,
-    permissions: "calendario",
-  },
-];
-
-const menuImss = [
-  {
-    text: "Generales IMSS",
-    icon: <PaymentsIcon />,
-    permissions: "generales_imss",
-  },
-  {
-    text: "Cargos x anticipo",
-    icon: <PriceChangeIcon />,
-    permissions: "cargos_anticipo",
-  },
-  { text: "Reportes", icon: <BarChartIcon />, permissions: "reportes" },
-  { text: "Obras", icon: <HistoryEduIcon />, permissions: "obras" },
-  {
-    text: "Calculo de sueldos",
-    icon: <RequestQuoteIcon />,
-    permissions: "calculo_sueldos",
-  },
-  {
-    text: "Altas pendientes",
-    icon: <Groups3Icon />,
-    permissions: "altas_clientes",
-  },
-  {
-    text: "Concilacion Infonacot",
-    icon: <ShowChartIcon />,
-    permissions: "concilacion_infonacot",
-  },
-];
-
-const menuFacturacion = [
-  { text: "Facturas", icon: <ArticleIcon />, permissions: "facturas" },
-  {
-    text: "Complemento de pago",
-    icon: <MonetizationOnIcon />,
-    permissions: "complemento_pago",
-  },
-  {
-    text: "Notas de Credito",
-    icon: <PaymentIcon />,
-    permissions: "notas_credito",
-  },
-  {
-    text: "Depositos",
-    icon: <AssuredWorkloadIcon />,
-    permissions: "depositos",
-  },
-  {
-    text: "Despositos bancarios",
-    icon: <AccountBalanceWalletIcon />,
-    permissions: "despositos_bancarios",
-  },
-];
-
-const menuGastos = [
-  {
-    text: "Solicitud de Gastos",
-    icon: <MonetizationOnIcon />,
-    permissions: "solicitud_gastos",
-  },
-  { text: "Proveedores", icon: <FactoryIcon />, permissions: "proveedores" },
-  { text: "Archivos", icon: <FolderIcon />, permissions: "archivos" },
-  { text: "Concentrador", icon: <MemoryIcon />, permissions: "concentrador" },
-];
-
-const menuUtilerias = [
-  { text: "Lector XML", icon: <UploadFileIcon />, permissions: "lector_xml" },
-  { text: "Bancos", icon: <LocalAtmIcon />, permissions: "bancos" },
-  {
-    text: "Asignacion de cuentas",
-    icon: <DashboardIcon />,
-    permissions: "asignacion_cuentas",
-  },
-  { text: "Fondeos", icon: <RequestQuoteIcon />, permissions: "fondeos" },
-  { text: "Cheques", icon: <FactCheckIcon />, permissions: "cheques" },
-  {
-    text: "Conciliaciones",
-    icon: <BalanceIcon />,
-    permissions: "conciliaciones",
-  },
-  { text: "Periodos", icon: <DateRangeIcon />, permissions: "periodos" },
-  {
-    text: "Indicadores anuales",
-    icon: <BookmarksIcon />,
-    permissions: "indicadores_anuales",
-  },
-  { text: "Bitacora", icon: <LibraryBooksIcon />, permissions: "bitacora" },
-  { text: "Repositorio", icon: <StorageIcon />, permissions: "repositorio" },
-  { text: "Envíos Nómina", icon: <SendIcon />, permissions: "envios_nomina" },
-];
-
-const menuSoporte = [
-  { text: "Usuarios", icon: <SettingsIcon />, permissions: "usuarios" },
-  { text: "Tickets", icon: <SupportAgentIcon />, permissions: "tickets" },
-  {
-    text: "Notificaciones",
-    icon: <NotificationsActiveIcon />,
-    permissions: "notificaciones",
-  },
-];
-
-const openedMixin = (theme) => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
-
-const styles = {
-  body: {
-    width: "100%",
-    minHeight: "140px",
-    background: "linear-gradient(to bottom, #1E7FE3, #5DABFF)",
-    padding: "16px",
-    position: "relative",
-    overflow: "visible",
-    zIndex: 2,
-  },
-};
-
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-}));
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  variants: [
-    {
-      props: ({ open }) => open,
-      style: {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(["width", "margin"], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-      },
-    },
-  ],
-}));
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  "& .MuiDrawer-paper": {
-    backgroundColor: theme.palette.background.paper,
-  },
-  variants: [
-    {
-      props: ({ open }) => open,
-      style: {
-        ...openedMixin(theme),
-        "& .MuiDrawer-paper": openedMixin(theme),
-      },
-    },
-    {
-      props: ({ open }) => !open,
-      style: {
-        ...closedMixin(theme),
-        "& .MuiDrawer-paper": closedMixin(theme),
-      },
-    },
-  ],
-}));
-
-const SectionTitle = ({ open, children, onClick, isExpanded, disabled }) => {
-  const theme = useTheme();
-
-  return (
-    <Box
-      onClick={!disabled ? onClick : undefined}
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        cursor: disabled ? "not-allowed" : "pointer",
-        py: 1,
-        position: "relative",
-        opacity: disabled ? 0.5 : 1,
-        userSelect: "none",
-        WebkitUserSelect: "none",
-        MozUserSelect: "none",
-        msUserSelect: "none",
-        "&:hover .expand-icon": {
-          backgroundColor: theme.palette.action.hover,
-          borderRadius: "50%",
-        },
-      }}
-    >
-      <Typography
-        variant="subtitle1"
-        sx={{
-          opacity: open ? 1 : 0,
-          color: disabled
-            ? theme.palette.text.disabled
-            : theme.palette.text.secondary,
-          transition: theme.transitions.create("opacity"),
-          fontSize: "0.90rem",
-          textTransform: "uppercase",
-        }}
-      >
-        {children}
-      </Typography>
-
-      {!disabled && (
-        <Tooltip
-          title={`${isExpanded ? "Ocultar" : "Mostrar"} ${children}`}
-          placement="right"
-        >
-          <IconButton
-            className="expand-icon"
-            size="small"
-            sx={{
-              position: "absolute",
-              right: 8,
-              p: 0.5,
-              transform: isExpanded ? "rotate(0deg)" : "rotate(-90deg)",
-              transition: theme.transitions.create([
-                "transform",
-                "background-color",
-              ]),
-              opacity: 1,
-              visibility: "visible",
-              color: theme.palette.text.secondary,
-              "&:hover": {
-                backgroundColor: theme.palette.action.selected,
-                transform: isExpanded
-                  ? "rotate(0deg) scale(1.1)"
-                  : "rotate(-90deg) scale(1.1)",
-              },
-            }}
-          >
-            <ExpandMoreIcon fontSize="small" />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Box>
-  );
-};
+// Imports refactorizados
+import { AppBar, Drawer, DrawerHeader, styles } from "./MiniDrawer/Drawer.styles";
+import SectionTitle from "./MiniDrawer/SectionTitle";
+import { useUserData } from "./MiniDrawer/hooks/useUserData";
+import {
+  menuImplementacion,
+  menuNominas,
+  menuImss,
+  menuFacturacion,
+  menuGastos,
+  menuUtilerias,
+  menuSoporte,
+} from "./MiniDrawer/menuConfig.jsx";
 
 export default function MiniDrawer() {
   const theme = useTheme();
-  const [user, setUser] = React.useState({});
-  const [permissions, setPermissions] = React.useState({});
-  const [error, setError] = React.useState(null);
+  const { user, permissions, error, loading } = useUserData();
   const [open, setOpen] = React.useState(true);
-  const [loading, setLoading] = React.useState(true);
-  const hasFetched = React.useRef(false);
   const [expandedSections, setExpandedSections] = React.useState({
     implementacion: false,
     nominas: false,
@@ -372,47 +46,14 @@ export default function MiniDrawer() {
     soporte: false,
   });
 
-  // Api fetch user y permisos
-  React.useEffect(() => {
-    if (hasFetched.current) return;
-    hasFetched.current = true;
-    const fetchData = async () => {
-      try {
-        setLoading(true);
+  // Memoize expensive calculations
+  const enabledSectionCounts = useMemo(() => {
+    return Object.keys(permissions).filter((key) => permissions[key] === true).length;
+  }, [permissions]);
 
-        // Fetch user data
-        const userResponse = await fetch("/json/usuario.json");
-        if (!userResponse.ok) throw new Error("Error loading user data");
-        const userData = (await userResponse.json()).user;
-
-        // Fetch permissions data
-        const permissionsResponse = await fetch("/json/permisos.json");
-        if (!permissionsResponse.ok)
-          throw new Error("Error loading permissions data");
-        const permissionsData = (await permissionsResponse.json()).permissions;
-
-        setUser(userData);
-        setPermissions(permissionsData);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const countEnabledSections = () => {
-    return Object.keys(permissions).filter((key) => permissions[key] === true)
-      .length;
-  };
-
-  const enabledSectionCounts = countEnabledSections();
-
-  const enabledSections = Object.keys(permissions).filter(
-    (key) => permissions[key] === true
-  );
+  const enabledSections = useMemo(() => {
+    return Object.keys(permissions).filter((key) => permissions[key] === true);
+  }, [permissions]);
 
   React.useEffect(() => {
     setExpandedSections((prev) => {
@@ -431,9 +72,10 @@ export default function MiniDrawer() {
       });
       return newState;
     });
-  }, [open, permissions]);
+  }, [open, permissions, enabledSectionCounts, enabledSections]);
 
-  const toggleSection = (section) => {
+  // Memoize callbacks to prevent unnecessary re-renders
+  const toggleSection = useCallback((section) => {
     if (permissions[section] !== true) {
       return;
     }
@@ -441,11 +83,29 @@ export default function MiniDrawer() {
       ...prev,
       [section]: !prev[section],
     }));
-  };
+  }, [permissions]);
 
-  const toggleDrawer = () => {
+  const toggleDrawer = useCallback(() => {
     setOpen(!open);
-  };
+  }, [open]);
+
+  // Mostrar estado de carga
+  if (loading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+        <Typography>Cargando...</Typography>
+      </Box>
+    );
+  }
+
+  // Mostrar error si existe
+  if (error) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+        <Typography color="error">Error: {error}</Typography>
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ display: "flex", minHeight: "100vh" }}>
@@ -455,7 +115,7 @@ export default function MiniDrawer() {
         open={open}
         sx={{
           backgroundColor: open
-            ? theme.palette.background.default
+            ? theme.palette.background.secondary
             : theme.palette.primary.main,
           boxShadow: open ? "none" : 6,
         }}
@@ -495,7 +155,9 @@ export default function MiniDrawer() {
             component="div"
             sx={{
               flexGrow: 1,
-              color: open ? theme.palette.text.Appbar : "inherit",
+              color: open
+                ? theme.palette.text.Appbar
+                : theme.palette.primary.contrastText,
             }}
           >
             Brain ERP
@@ -767,7 +429,12 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.nominas && (
-                      <MenuList menuItems={menuNominas} open={open} />
+                      <MenuList
+                        menuItems={menuNominas}
+                        open={open}
+                        context={{ permissions, user }}
+                        module={"nominas"}
+                      />
                     )}
                   </Box>
                 </Slide>
@@ -829,7 +496,12 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.imss && (
-                      <MenuList menuItems={menuImss} open={open} />
+                      <MenuList
+                        menuItems={menuImss}
+                        open={open}
+                        context={{ permissions, user }}
+                        module={"imss"}
+                      />
                     )}
                   </Box>
                 </Slide>
@@ -891,7 +563,12 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.facturacion && (
-                      <MenuList menuItems={menuFacturacion} open={open} />
+                      <MenuList
+                        menuItems={menuFacturacion}
+                        open={open}
+                        context={{ permissions, user }}
+                        module={"facturacion"}
+                      />
                     )}
                   </Box>
                 </Slide>
@@ -945,7 +622,12 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.gastos && (
-                      <MenuList menuItems={menuGastos} open={open} />
+                      <MenuList
+                        menuItems={menuGastos}
+                        open={open}
+                        context={{ permissions, user }}
+                        module={"gastos"}
+                      />
                     )}
                   </Box>
                 </Slide>
@@ -999,7 +681,12 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.utilerias && (
-                      <MenuList menuItems={menuUtilerias} open={open} />
+                      <MenuList
+                        menuItems={menuUtilerias}
+                        open={open}
+                        context={{ permissions, user }}
+                        module={"utilerias"}
+                      />
                     )}
                   </Box>
                 </Slide>
@@ -1053,7 +740,12 @@ export default function MiniDrawer() {
                     }}
                   >
                     {expandedSections.soporte && (
-                      <MenuList menuItems={menuSoporte} open={open} />
+                      <MenuList
+                        menuItems={menuSoporte}
+                        open={open}
+                        context={{ permissions, user }}
+                        module={"soporte"}
+                      />
                     )}
                   </Box>
                 </Slide>
@@ -1066,7 +758,8 @@ export default function MiniDrawer() {
         component="main"
         sx={{
           flexGrow: 1,
-          height: "100vh"
+          height: "100vh",
+          backgroundColor: theme.palette.background.secondary,
         }}
       >
         <DrawerHeader />
