@@ -1,0 +1,96 @@
+{
+  "alianzas": [
+    {
+      "id": 1,
+      "nombre": "Alianza Corporativa Norte",
+      "descripcion": "Alianza estratégica con empresas del norte del país",
+      "tipo": "corporativo",
+      "status": "activo",
+      "empresas_asociadas": 12,
+      "contacto": {
+        "nombre": "María González",
+        "email": "maria.gonzalez@alianza-norte.com",
+        "telefono": "+52 81 1234 5678"
+      },
+      "fecha_inicio": "2023-06-15",
+      "fecha_renovacion": "2025-06-15",
+      "created_at": "2023-05-10T10:30:00Z",
+      "updated_at": "2024-12-01T15:45:00Z"
+    },
+    {
+      "id": 2,
+      "nombre": "Alianza Tecnológica Central",
+      "descripcion": "Colaboración con empresas tecnológicas de CDMX",
+      "tipo": "tecnologico",
+      "status": "activo",
+      "empresas_asociadas": 8,
+      "contacto": {
+        "nombre": "Carlos Ramírez",
+        "email": "carlos.ramirez@tech-central.mx",
+        "telefono": "+52 55 9876 5432"
+      },
+      "fecha_inicio": "2024-01-20",
+      "fecha_renovacion": "2026-01-20",
+      "created_at": "2023-12-15T09:00:00Z",
+      "updated_at": "2024-12-10T11:20:00Z"
+    },
+    {
+      "id": 3,
+      "nombre": "Alianza Educativa Nacional",
+      "descripcion": "Red de instituciones educativas a nivel nacional",
+      "tipo": "educativo",
+      "status": "activo",
+      "empresas_asociadas": 25,
+      "contacto": {
+        "nombre": "Ana Patricia Morales",
+        "email": "ana.morales@edu-nacional.org",
+        "telefono": "+52 33 5555 1234"
+      },
+      "fecha_inicio": "2022-09-01",
+      "fecha_renovacion": "2025-09-01",
+      "created_at": "2022-08-01T08:15:00Z",
+      "updated_at": "2024-11-05T14:30:00Z"
+    },
+    {
+      "id": 4,
+      "nombre": "Alianza Manufacturera del Bajío",
+      "descripcion": "Consorcio de empresas manufactureras del Bajío",
+      "tipo": "industrial",
+      "status": "pendiente",
+      "empresas_asociadas": 6,
+      "contacto": {
+        "nombre": "Roberto Silva",
+        "email": "roberto.silva@manufactura-bajio.com",
+        "telefono": "+52 442 888 9999"
+      },
+      "fecha_inicio": "2024-03-01",
+      "fecha_renovacion": "2026-03-01",
+      "created_at": "2024-02-01T10:00:00Z",
+      "updated_at": "2024-12-15T09:30:00Z"
+    },
+    {
+      "id": 5,
+      "nombre": "Alianza de Servicios Financieros",
+      "descripcion": "Agrupación de instituciones financieras",
+      "tipo": "financiero",
+      "status": "inactivo",
+      "empresas_asociadas": 4,
+      "contacto": {
+        "nombre": "Gabriela Torres",
+        "email": "gabriela.torres@finanzas-alianza.mx",
+        "telefono": "+52 55 1234 7890"
+      },
+      "fecha_inicio": "2021-11-10",
+      "fecha_renovacion": "2023-11-10",
+      "created_at": "2021-10-01T12:00:00Z",
+      "updated_at": "2023-11-15T16:00:00Z"
+    }
+  ],
+  "metadata": {
+    "total": 5,
+    "activos": 3,
+    "pendientes": 1,
+    "inactivos": 1,
+    "total_empresas": 55
+  }
+}

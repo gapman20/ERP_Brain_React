@@ -1,0 +1,197 @@
+{
+  "facturas": [
+    {
+      "id": 1,
+      "folio": "FAC-2024-001",
+      "serie": "A",
+      "uuid": "12345678-1234-1234-1234-123456789abc",
+      "cliente": {
+        "id": 101,
+        "nombre": "Corporativo Tecnológico SA de CV",
+        "rfc": "CTE123456ABC",
+        "email": "facturacion@corptech.mx"
+      },
+      "fecha_emision": "2024-12-01",
+      "fecha_vencimiento": "2024-12-31",
+      "conceptos": [
+        {
+          "id": 1,
+          "descripcion": "Servicios de Desarrollo de Software",
+          "cantidad": 1,
+          "precio_unitario": 85000.00,
+          "subtotal": 85000.00,
+          "iva": 13600.00,
+          "total": 98600.00
+        }
+      ],
+      "subtotal": 85000.00,
+      "iva": 13600.00,
+      "total": 98600.00,
+      "status": "pagada",
+      "forma_pago": "Transferencia electrónica",
+      "metodo_pago": "PUE",
+      "moneda": "MXN",
+      "tipo_cambio": 1.00,
+      "uso_cfdi": "G03",
+      "created_at": "2024-12-01T09:30:00Z",
+      "updated_at": "2024-12-15T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "folio": "FAC-2024-002",
+      "serie": "A",
+      "uuid": "87654321-4321-4321-4321-cba987654321",
+      "cliente": {
+        "id": 102,
+        "nombre": "Industrias del Norte SA",
+        "rfc": "IDN890123XYZ",
+        "email": "cuentasporcobrar@idnorte.com"
+      },
+      "fecha_emision": "2024-12-05",
+      "fecha_vencimiento": "2025-01-05",
+      "conceptos": [
+        {
+          "id": 2,
+          "descripcion": "Consultoría en Sistemas ERP",
+          "cantidad": 40,
+          "precio_unitario": 1500.00,
+          "subtotal": 60000.00,
+          "iva": 9600.00,
+          "total": 69600.00
+        },
+        {
+          "id": 3,
+          "descripcion": "Licencias de Software Anual",
+          "cantidad": 1,
+          "precio_unitario": 25000.00,
+          "subtotal": 25000.00,
+          "iva": 4000.00,
+          "total": 29000.00
+        }
+      ],
+      "subtotal": 85000.00,
+      "iva": 13600.00,
+      "total": 98600.00,
+      "status": "pendiente",
+      "forma_pago": "Transferencia electrónica",
+      "metodo_pago": "PPD",
+      "moneda": "MXN",
+      "tipo_cambio": 1.00,
+      "uso_cfdi": "G03",
+      "created_at": "2024-12-05T11:15:00Z",
+      "updated_at": "2024-12-05T11:15:00Z"
+    },
+    {
+      "id": 3,
+      "folio": "FAC-2024-003",
+      "serie": "B",
+      "uuid": "abcdef12-3456-7890-abcd-ef1234567890",
+      "cliente": {
+        "id": 103,
+        "nombre": "Comercializadora del Bajío SC",
+        "rfc": "CDB567890DEF",
+        "email": "administracion@comercbajio.mx"
+      },
+      "fecha_emision": "2024-12-10",
+      "fecha_vencimiento": "2025-01-10",
+      "conceptos": [
+        {
+          "id": 4,
+          "descripcion": "Implementación de Sistema de Nóminas",
+          "cantidad": 1,
+          "precio_unitario": 120000.00,
+          "subtotal": 120000.00,
+          "iva": 19200.00,
+          "total": 139200.00
+        }
+      ],
+      "subtotal": 120000.00,
+      "iva": 19200.00,
+      "total": 139200.00,
+      "status": "vencida",
+      "forma_pago": "Cheque nominativo",
+      "metodo_pago": "PPD",
+      "moneda": "MXN",
+      "tipo_cambio": 1.00,
+      "uso_cfdi": "G03",
+      "created_at": "2024-12-10T08:45:00Z",
+      "updated_at": "2024-12-20T16:30:00Z"
+    },
+    {
+      "id": 4,
+      "folio": "FAC-2024-004",
+      "serie": "A",
+      "uuid": "fedcba09-8765-4321-fedc-ba0987654321",
+      "cliente": {
+        "id": 101,
+        "nombre": "Corporativo Tecnológico SA de CV",
+        "rfc": "CTE123456ABC",
+        "email": "facturacion@corptech.mx"
+      },
+      "fecha_emision": "2024-12-15",
+      "fecha_vencimiento": "2025-01-15",
+      "conceptos": [
+        {
+          "id": 5,
+          "descripcion": "Mantenimiento de Aplicaciones Web",
+          "cantidad": 1,
+          "precio_unitario": 35000.00,
+          "subtotal": 35000.00,
+          "iva": 5600.00,
+          "total": 40600.00
+        }
+      ],
+      "subtotal": 35000.00,
+      "iva": 5600.00,
+      "total": 40600.00,
+      "status": "pendiente",
+      "forma_pago": "Transferencia electrónica",
+      "metodo_pago": "PUE",
+      "moneda": "MXN",
+      "tipo_cambio": 1.00,
+      "uso_cfdi": "G03",
+      "created_at": "2024-12-15T10:00:00Z",
+      "updated_at": "2024-12-15T10:00:00Z"
+    }
+  ],
+  "complementos_pago": [
+    {
+      "id": 1,
+      "factura_id": 1,
+      "folio": "CP-2024-001",
+      "uuid": "comp1234-5678-9012-3456-789012345678",
+      "monto": 98600.00,
+      "fecha_pago": "2024-12-15",
+      "forma_pago": "Transferencia electrónica",
+      "moneda": "MXN",
+      "referencia": "REF-123456",
+      "status": "timbrado",
+      "created_at": "2024-12-15T10:30:00Z"
+    }
+  ],
+  "notas_credito": [
+    {
+      "id": 1,
+      "factura_id": 3,
+      "folio": "NC-2024-001",
+      "uuid": "nota1234-5678-9012-3456-789012345678",
+      "motivo": "Descuento por volumen",
+      "subtotal": 12000.00,
+      "iva": 1920.00,
+      "total": 13920.00,
+      "fecha_emision": "2024-12-18",
+      "status": "aplicada",
+      "created_at": "2024-12-18T14:20:00Z"
+    }
+  ],
+  "metadata": {
+    "total_facturas": 4,
+    "facturas_pagadas": 1,
+    "facturas_pendientes": 2,
+    "facturas_vencidas": 1,
+    "monto_total_facturado": 376800.00,
+    "monto_cobrado": 98600.00,
+    "monto_pendiente": 278200.00,
+    "clientes_activos": 3
+  }
+}

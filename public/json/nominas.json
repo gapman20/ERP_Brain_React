@@ -1,0 +1,135 @@
+{
+  "nominas": [
+    {
+      "id": 1,
+      "periodo": "2024-12-01",
+      "tipo": "Quincenal",
+      "numero_empleados": 145,
+      "total_percepciones": 1850000.50,
+      "total_deducciones": 425000.75,
+      "total_neto": 1424999.75,
+      "status": "pagada",
+      "fecha_pago": "2024-12-15",
+      "created_at": "2024-12-01T08:00:00Z",
+      "updated_at": "2024-12-15T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "periodo": "2024-12-16",
+      "tipo": "Quincenal",
+      "numero_empleados": 148,
+      "total_percepciones": 1920000.00,
+      "total_deducciones": 438000.50,
+      "total_neto": 1481999.50,
+      "status": "pendiente",
+      "fecha_pago": "2024-12-31",
+      "created_at": "2024-12-16T08:00:00Z",
+      "updated_at": "2024-12-20T14:20:00Z"
+    },
+    {
+      "id": 3,
+      "periodo": "2024-11-16",
+      "tipo": "Quincenal",
+      "numero_empleados": 142,
+      "total_percepciones": 1780000.25,
+      "total_deducciones": 410000.00,
+      "total_neto": 1370000.25,
+      "status": "pagada",
+      "fecha_pago": "2024-11-30",
+      "created_at": "2024-11-16T08:00:00Z",
+      "updated_at": "2024-11-30T09:45:00Z"
+    },
+    {
+      "id": 4,
+      "periodo": "2024-11-01",
+      "tipo": "Quincenal",
+      "numero_empleados": 140,
+      "total_percepciones": 1750000.00,
+      "total_deducciones": 402500.00,
+      "total_neto": 1347500.00,
+      "status": "pagada",
+      "fecha_pago": "2024-11-15",
+      "created_at": "2024-11-01T08:00:00Z",
+      "updated_at": "2024-11-15T11:00:00Z"
+    }
+  ],
+  "recibos": [
+    {
+      "id": 101,
+      "nomina_id": 1,
+      "empleado_id": 532,
+      "empleado_nombre": "Juan Pérez López",
+      "puesto": "Desarrollador Senior",
+      "percepciones": {
+        "sueldo_base": 25000.00,
+        "horas_extra": 2500.00,
+        "bonos": 3000.00,
+        "total": 30500.00
+      },
+      "deducciones": {
+        "imss": 1500.00,
+        "isr": 4200.00,
+        "infonavit": 800.00,
+        "total": 6500.00
+      },
+      "neto": 24000.00,
+      "fecha_pago": "2024-12-15",
+      "status": "pagado"
+    },
+    {
+      "id": 102,
+      "nomina_id": 1,
+      "empleado_id": 533,
+      "empleado_nombre": "María García Sánchez",
+      "puesto": "Project Manager",
+      "percepciones": {
+        "sueldo_base": 35000.00,
+        "bonos": 5000.00,
+        "total": 40000.00
+      },
+      "deducciones": {
+        "imss": 2000.00,
+        "isr": 6800.00,
+        "infonavit": 1200.00,
+        "total": 10000.00
+      },
+      "neto": 30000.00,
+      "fecha_pago": "2024-12-15",
+      "status": "pagado"
+    }
+  ],
+  "reportes": {
+    "total_empleados_activos": 148,
+    "promedio_salario_mensual": 12770.27,
+    "total_percepciones_anual": 21600000.00,
+    "total_deducciones_anual": 4968000.00,
+    "departamentos": [
+      {
+        "nombre": "Desarrollo",
+        "empleados": 45,
+        "promedio_salario": 18500.00
+      },
+      {
+        "nombre": "Administración",
+        "empleados": 28,
+        "promedio_salario": 12000.00
+      },
+      {
+        "nombre": "Operaciones",
+        "empleados": 52,
+        "promedio_salario": 9500.00
+      },
+      {
+        "nombre": "Ventas",
+        "empleados": 23,
+        "promedio_salario": 15000.00
+      }
+    ]
+  },
+  "metadata": {
+    "total_nominas": 4,
+    "nominas_pagadas": 3,
+    "nominas_pendientes": 1,
+    "ultimo_periodo": "2024-12-16"
+  }
+}
