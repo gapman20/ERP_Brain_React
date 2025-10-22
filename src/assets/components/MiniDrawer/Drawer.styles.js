@@ -19,19 +19,21 @@ export const styles = {
 export const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
+    easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+    duration: 225,
   }),
   overflowX: "hidden",
+  willChange: "width",
 });
 
 export const closedMixin = (theme) => ({
   transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
+    easing: "cubic-bezier(0.4, 0, 0.6, 1)",
+    duration: 195,
   }),
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
+  willChange: "width",
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },
@@ -50,9 +52,10 @@ export const AppBar = styled(MuiAppBar, {
 })(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
+    easing: "cubic-bezier(0.4, 0, 0.6, 1)",
+    duration: 195,
   }),
+  willChange: "width, margin",
   variants: [
     {
       props: ({ open }) => open,
@@ -60,8 +63,8 @@ export const AppBar = styled(MuiAppBar, {
         marginLeft: drawerWidth,
         width: `calc(100% - ${drawerWidth}px)`,
         transition: theme.transitions.create(["width", "margin"], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.enteringScreen,
+          easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+          duration: 225,
         }),
       },
     },
@@ -77,6 +80,8 @@ export const Drawer = styled(MuiDrawer, {
   boxSizing: "border-box",
   "& .MuiDrawer-paper": {
     backgroundColor: theme.palette.background.paper,
+    backfaceVisibility: "hidden",
+    transform: "translateZ(0)",
   },
   variants: [
     {
