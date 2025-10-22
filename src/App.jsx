@@ -7,6 +7,7 @@ import customTheme from "./assets/themes/theme";
 import AlianzasPage from "./assets/pages/Alianzas/Alianzas";
 import ImplementacionLayout from "./assets/views/implementacion/Implementacion.jsx";
 import Login from "./assets/pages/Login/Login";
+import Dashboard from "./assets/pages/Dashboard/Dashboard";
 import ProtectedRoute from "./assets/components/ProtectedRoute";
 import { AppContext } from "./context/AppContext";
 
@@ -41,6 +42,10 @@ function App() {
                 </ProtectedRoute>
               }
             >
+              {/* Dashboard principal (sin submenu seleccionado) */}
+              <Route path="dashboard" element={<Dashboard />} />
+
+              {/* Rutas de módulos */}
               <Route path="implementacion/*" element={<ImplementacionLayout />}>
                 <Route path="alianzas" element={<AlianzasPage />} />
               </Route>
