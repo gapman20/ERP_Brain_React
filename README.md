@@ -19,7 +19,25 @@ Brain ERP cuenta con una arquitectura de servicios flexible que permite:
 - **Producción con API real (MySQL)** - Cambio automático mediante variables de entorno
 - **Cliente HTTP centralizado** con Axios e interceptores
 - **Manejo de errores unificado**
-- **Autenticación JWT preparada**
+- **Sistema de autenticación completo** - Login, protección de rutas y logout
+
+## Sistema de Autenticación
+
+Brain ERP incluye un sistema completo de autenticación:
+
+- **Página de Login** - Diseño profesional con validación de credenciales
+- **Protección de rutas** - ProtectedRoute component para rutas privadas
+- **Gestión de sesión** - Token JWT guardado en localStorage
+- **Menú de usuario** - Información del usuario y opción de logout
+- **URL constante** - MemoryRouter mantiene la URL sin cambios
+
+**Flujo de autenticación:**
+1. Usuario inicia en página de Login
+2. Ingresa credenciales y valida con el servicio
+3. Sistema guarda token en localStorage
+4. Redirige automáticamente al dashboard
+5. Puede navegar por todos los módulos autorizados
+6. Cierra sesión desde el menú de usuario
 
 ### Estructura de servicios
 
@@ -89,6 +107,10 @@ npm run dev
 ```
 
 Abre [http://localhost:3000](http://localhost:3000)
+
+**Credenciales de desarrollo:**
+- Email: `correo@email`
+- Contraseña: `admin`
 
 ### Build para producción
 
@@ -160,7 +182,9 @@ npm run dev
 ## Documentación Completa
 
 - **[Arquitectura del Código](docs/ARQUITECTURA_CODIGO.md)** - Explicación detallada de todo el código del proyecto
+- **[Sistema de Autenticación](docs/AUTENTICACION.md)** - Guía completa de login, protección de rutas y logout
 - **[Documentación de Servicios](docs/SERVICIOS.md)** - Guía completa de uso de servicios y API
+- **[Índice de Documentación](docs/INDICE.md)** - Navegación rápida por toda la documentación
 
 ## Variables de Entorno
 
