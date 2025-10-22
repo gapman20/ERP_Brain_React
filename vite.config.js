@@ -62,6 +62,7 @@ export default defineConfig({
       '@hooks': '/src/assets/components/MiniDrawer/hooks',
       '@context': '/src/context',
       '@themes': '/src/assets/themes',
+      '@services': '/src/services',
     },
   },
 })
