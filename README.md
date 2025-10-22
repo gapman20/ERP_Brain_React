@@ -35,9 +35,10 @@ Brain ERP incluye un sistema completo de autenticación:
 1. Usuario inicia en página de Login
 2. Ingresa credenciales y valida con el servicio
 3. Sistema guarda token en localStorage
-4. Redirige automáticamente al dashboard
-5. Puede navegar por todos los módulos autorizados
-6. Cierra sesión desde el menú de usuario
+4. Muestra pantalla de carga con animación
+5. Redirige al Dashboard de bienvenida (sin módulo preseleccionado)
+6. Usuario elige manualmente qué módulo visitar según sus permisos
+7. Cierra sesión desde el menú de usuario
 
 ### Estructura de servicios
 

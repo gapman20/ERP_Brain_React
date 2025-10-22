@@ -18,11 +18,13 @@
 Brain ERP implementa un sistema completo de autenticación que incluye:
 
 - ✅ Página de Login funcional
+- ✅ Pantalla de carga animada (loader)
+- ✅ Dashboard de bienvenida personalizado
 - ✅ Validación de credenciales
 - ✅ Protección de rutas privadas
 - ✅ Gestión de tokens JWT en localStorage
 - ✅ Menú de usuario con logout
-- ✅ Redirecciones automáticas
+- ✅ Sin navegación automática a módulos
 - ✅ URL constante (MemoryRouter)
 
 ---
@@ -44,11 +46,22 @@ Usuario → Login Page
      ↓             ↓
 Guarda token    Muestra error
      ↓
-Redirige a dashboard
+Muestra Loader (1.5s)
+  - Logo animado
+  - "Iniciando sesión..."
+     ↓
+Redirige a /dashboard
      ↓
 ProtectedRoute verifica token
      ↓
-Acceso a módulos
+Dashboard de Bienvenida
+  - Información del usuario
+  - Módulos disponibles
+  - Sin módulo preseleccionado
+     ↓
+Usuario elige módulo del menú lateral
+     ↓
+Acceso a módulos según permisos
      ↓
 Usuario → Menú Usuario → Logout
                            ↓
@@ -222,7 +235,87 @@ export default function ProtectedRoute({ children }) {
 
 ---
 
-### 3. App.jsx - Configuración de Rutas
+### 3. Dashboard.jsx - Página de Bienvenida
+
+**Ubicación:** `src/assets/pages/Dashboard/Dashboard.jsx`
+
+**Propósito:** Página de bienvenida que se muestra después del login exitoso.
+
+#### Características
+
+- **Sin módulo preseleccionado** - Evita problemas de permisos
+- **Información personalizada** - Nombre, email, rol del usuario
+- **Contador de módulos** - Muestra cuántos módulos tiene disponibles
+- **Logo de Brain ERP** - Icono del circuito en el header
+- **Instrucciones** - Guía de primeros pasos
+- **Diseño responsive** - Funciona en todos los dispositivos
+
+#### Código Principal
+
+```javascript
+import BrainLogo from '../../img/circuito.ico';
+
+const Dashboard = () => {
+  const { user, permissions } = useUserData();
+
+  const modulesCount = Object.keys(permissions).filter(
+    (key) => permissions[key] === true
+  ).length;
+
+  return (
+    <Box sx={{ p: 3 }}>
+      {/* Header con logo y bienvenida */}
+      <Paper sx={{ background: 'linear-gradient(135deg, #1E7FE3 0%, #5DABFF 100%)' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box component="img" src={BrainLogo}
+               sx={{ width: 80, height: 80, filter: 'brightness(0) invert(1)' }} />
+          <Box>
+            <Typography variant="h3">¡Bienvenido a Brain ERP!</Typography>
+            <Typography variant="h6">{user.name}</Typography>
+          </Box>
+        </Box>
+      </Paper>
+
+      {/* Cards de información y módulos */}
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={6}>
+          {/* Información del usuario */}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          {/* {modulesCount} módulos disponibles */}
+        </Grid>
+      </Grid>
+
+      {/* Instrucciones de uso */}
+    </Box>
+  );
+};
+```
+
+#### ¿Por Qué Usar Dashboard?
+
+**Problemas que resuelve:**
+
+1. **Seguridad** - No intenta navegar a módulos sin permiso
+2. **UX** - Usuario ve bienvenida personalizada
+3. **Flexibilidad** - Cada usuario ve solo sus módulos
+4. **Claridad** - Instrucciones de cómo usar el sistema
+
+**Flujo antes (problemático):**
+```
+Login exitoso → /implementacion/alianzas
+❌ Si usuario no tiene permiso → Error
+```
+
+**Flujo ahora (correcto):**
+```
+Login exitoso → /dashboard
+✅ Usuario ve sus datos → Elige módulo manualmente
+```
+
+---
+
+### 4. App.jsx - Configuración de Rutas
 
 **Ubicación:** `src/App.jsx`
 
