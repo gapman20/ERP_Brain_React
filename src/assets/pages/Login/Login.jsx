@@ -31,6 +31,7 @@ export default function Login() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const [error, setError] = useState('');
 
   /**
@@ -74,8 +75,14 @@ export default function Login() {
         localStorage.setItem('user', JSON.stringify(response.data.user));
       }
 
-      // Redirigir al dashboard
-      navigate('/implementacion/alianzas');
+      // Mostrar loader de redirección
+      setLoading(false);
+      setIsRedirecting(true);
+
+      // Esperar un momento antes de redirigir (para mostrar el loader)
+      setTimeout(() => {
+        navigate('/implementacion/alianzas');
+      }, 1500);
     } catch (err) {
       console.error('Error en login:', err);
       setError(
@@ -86,6 +93,71 @@ export default function Login() {
       setLoading(false);
     }
   };
+
+  // Mostrar loader de pantalla completa durante redirección
+  if (isRedirecting) {
+    return (
+      <Box
+        sx={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'primary.main',
+          backgroundImage: 'linear-gradient(135deg, #1E7FE3 0%, #0057B0 100%)',
+        }}
+      >
+        <Box
+          component="img"
+          src={BrainLogo}
+          alt="Brain ERP Logo"
+          sx={{
+            width: 120,
+            height: 120,
+            mb: 4,
+            animation: 'pulse 2s ease-in-out infinite',
+            '@keyframes pulse': {
+              '0%, 100%': {
+                transform: 'scale(1)',
+                opacity: 1,
+              },
+              '50%': {
+                transform: 'scale(1.1)',
+                opacity: 0.8,
+              },
+            },
+          }}
+        />
+        <CircularProgress
+          size={60}
+          thickness={4}
+          sx={{
+            color: 'white',
+            mb: 3,
+          }}
+        />
+        <Typography
+          variant="h5"
+          sx={{
+            color: 'white',
+            fontWeight: 500,
+            mb: 1,
+          }}
+        >
+          Iniciando sesión...
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            color: 'rgba(255, 255, 255, 0.8)',
+          }}
+        >
+          Bienvenido a Brain ERP
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <Box
