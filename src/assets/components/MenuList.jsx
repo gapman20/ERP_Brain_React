@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import Tooltip from "@mui/material/Tooltip"; // Nos funciona para que la hacer hover sobre un elemento se muestre un texto
 import {
   List,
@@ -9,21 +9,21 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
   minHeight: 48,
   px: 2.5,
-  transition: "all 0.3s ease", // Animación suave para todas las propiedades
+  transition: "all 0.3s ease",
   "&:hover": {
-    transform: "translateX(5px)", // Desplaza 5px a la derecha
-    backgroundColor: theme.palette.action.hover, // Color de hover del tema
+    transform: "translateX(5px)",
+    backgroundColor: theme.palette.action.hover,
     "& .MuiListItemIcon-root": {
-      color: theme.palette.primary.main, // Cambia color del ícono al hover
+      color: theme.palette.primary.main,
     },
   },
   "&:active": {
-    // Efecto al hacer clic
-    transform: "scale(1.02)", // Aumenta ligeramente el tamaño
+    transform: "scale(1.02)",
   },
 }));
 
@@ -67,7 +67,7 @@ const MenuList = ({ menuItems, open, context, module }) => {
                     : { justifyContent: "center" },
                   isActive && {
                     backgroundColor: "primary.light",
-                    color: "white",
+                    color: "primary.contrastText",
                     "&:hover": {
                       backgroundColor: "primary.dark",
                     },
@@ -81,6 +81,12 @@ const MenuList = ({ menuItems, open, context, module }) => {
                       justifyContent: "center",
                     },
                     open ? { mr: 3 } : { mr: "auto" },
+                    isActive && {
+                      color: "primary.contrastText",
+                      "&:hover":{
+                        color:"primary.lihgt",
+                      }
+                    },
                   ]}
                 >
                   {item.icon}
@@ -98,4 +104,20 @@ const MenuList = ({ menuItems, open, context, module }) => {
   );
 };
 
-export default MenuList;
+MenuList.propTypes = {
+  menuItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+      icon: PropTypes.element.isRequired,
+      permission: PropTypes.string,
+    })
+  ).isRequired,
+  open: PropTypes.bool.isRequired,
+  context: PropTypes.shape({
+    permissions: PropTypes.object,
+  }).isRequired,
+  module: PropTypes.string.isRequired,
+};
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(MenuList);
