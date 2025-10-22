@@ -2,6 +2,7 @@ import { Box, Typography, Paper, Grid, Card, CardContent } from '@mui/material';
 import { useUserData } from '../../components/MiniDrawer/hooks/useUserData';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
+import BrainLogo from '../../img/circuito.ico';
 
 /**
  * Página de Dashboard Principal
@@ -31,8 +32,17 @@ const Dashboard = () => {
           borderRadius: 2,
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <DashboardIcon sx={{ fontSize: 60 }} />
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+          <Box
+            component="img"
+            src={BrainLogo}
+            alt="Brain ERP Logo"
+            sx={{
+              width: 80,
+              height: 80,
+              filter: 'brightness(0) invert(1)', // Logo blanco
+            }}
+          />
           <Box>
             <Typography variant="h3" fontWeight="bold" gutterBottom>
               ¡Bienvenido a Brain ERP!
