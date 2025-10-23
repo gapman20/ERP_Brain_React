@@ -106,6 +106,7 @@ export default function Login() {
           justifyContent: 'center',
           bgcolor: 'primary.main',
           backgroundImage: 'linear-gradient(135deg, #1E7FE3 0%, #0057B0 100%)',
+          px: 2,
         }}
       >
         <Box
@@ -113,9 +114,9 @@ export default function Login() {
           src={BrainLogo}
           alt="Brain ERP Logo"
           sx={{
-            width: 120,
-            height: 120,
-            mb: 4,
+            width: { xs: 80, sm: 100, md: 120 },
+            height: { xs: 80, sm: 100, md: 120 },
+            mb: { xs: 3, sm: 4 },
             animation: 'pulse 2s ease-in-out infinite',
             '@keyframes pulse': {
               '0%, 100%': {
@@ -143,6 +144,8 @@ export default function Login() {
             color: 'white',
             fontWeight: 500,
             mb: 1,
+            fontSize: { xs: '1.25rem', sm: '1.5rem' },
+            textAlign: 'center',
           }}
         >
           Iniciando sesión...
@@ -151,6 +154,7 @@ export default function Login() {
           variant="body2"
           sx={{
             color: 'rgba(255, 255, 255, 0.8)',
+            textAlign: 'center',
           }}
         >
           Bienvenido a Brain ERP
@@ -168,13 +172,15 @@ export default function Login() {
         justifyContent: 'center',
         bgcolor: 'background.login',
         backgroundImage: 'linear-gradient(135deg, #E9F5FE 0%, #F3F9FF 100%)',
+        px: { xs: 2, sm: 3 },
+        py: { xs: 2, sm: 0 },
       }}
     >
       <Container maxWidth="sm">
         <Card
           elevation={8}
           sx={{
-            borderRadius: 3,
+            borderRadius: { xs: 2, sm: 3 },
             overflow: 'hidden',
           }}
         >
@@ -182,7 +188,8 @@ export default function Login() {
             sx={{
               bgcolor: 'primary.main',
               color: 'white',
-              py: 4,
+              py: { xs: 3, sm: 4 },
+              px: { xs: 2, sm: 3 },
               textAlign: 'center',
             }}
           >
@@ -191,24 +198,40 @@ export default function Login() {
               src={BrainLogo}
               alt="Brain ERP Logo"
               sx={{
-                width: 80,
-                height: 80,
-                mb: 2,
+                width: { xs: 60, sm: 80 },
+                height: { xs: 60, sm: 80 },
+                mb: { xs: 1.5, sm: 2 },
               }}
             />
-            <Typography variant="h4" fontWeight="bold">
+            <Typography
+              variant="h4"
+              fontWeight="bold"
+              sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}
+            >
               Brain ERP
             </Typography>
-            <Typography variant="subtitle1" sx={{ mt: 1, opacity: 0.9 }}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                mt: 1,
+                opacity: 0.9,
+                fontSize: { xs: '0.875rem', sm: '1rem' },
+              }}
+            >
               Sistema de Gestión Empresarial
             </Typography>
           </Box>
 
-          <CardContent sx={{ p: 4 }}>
+          <CardContent sx={{ p: { xs: 2, sm: 4 } }}>
             <Typography
               variant="h5"
               gutterBottom
-              sx={{ mb: 3, textAlign: 'center', fontWeight: 500 }}
+              sx={{
+                mb: { xs: 2, sm: 3 },
+                textAlign: 'center',
+                fontWeight: 500,
+                fontSize: { xs: '1.25rem', sm: '1.5rem' },
+              }}
             >
               Iniciar Sesión
             </Typography>
@@ -267,8 +290,8 @@ export default function Login() {
                 size="large"
                 disabled={loading}
                 sx={{
-                  py: 1.5,
-                  fontSize: '1.1rem',
+                  py: { xs: 1.2, sm: 1.5 },
+                  fontSize: { xs: '1rem', sm: '1.1rem' },
                   fontWeight: 600,
                   textTransform: 'none',
                 }}
@@ -284,7 +307,12 @@ export default function Login() {
               </Button>
             </form>
 
-            <Box sx={{ mt: 3, p: 2, bgcolor: 'grey.100', borderRadius: 1 }}>
+            <Box sx={{
+              mt: { xs: 2, sm: 3 },
+              p: { xs: 1.5, sm: 2 },
+              bgcolor: 'grey.100',
+              borderRadius: 1
+            }}>
               <Typography variant="caption" color="text.secondary" display="block">
                 <strong>Modo de desarrollo:</strong>
               </Typography>
@@ -301,12 +329,16 @@ export default function Login() {
           <Box
             sx={{
               bgcolor: 'grey.100',
-              py: 2,
-              px: 4,
+              py: { xs: 1.5, sm: 2 },
+              px: { xs: 2, sm: 4 },
               textAlign: 'center',
             }}
           >
-            <Typography variant="caption" color="text.secondary">
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ fontSize: { xs: '0.65rem', sm: '0.75rem' } }}
+            >
               © 2025 Brain ERP - Todos los derechos reservados
             </Typography>
           </Box>
