@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useMemo, useCallback, useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -18,7 +19,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
-import { Grow, Slide } from "@mui/material";
+import { Grow, Slide, Drawer as MuiDrawer } from "@mui/material";
 import MenuList from "./MenuList";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import BrainLogo from "../img/circuito.ico";
@@ -41,8 +42,9 @@ import {
 export default function MiniDrawer() {
   const theme = useTheme();
   const navigate = useNavigate();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { user, permissions, error, loading } = useUserData();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(!isMobile); // Cerrado por defecto en móviles
   const [expandedSections, setExpandedSections] = React.useState({
     implementacion: false,
     nominas: false,
@@ -100,6 +102,15 @@ export default function MiniDrawer() {
     setOpen(!open);
   }, [open]);
 
+  // Cerrar drawer automáticamente en móviles cuando cambia el tamaño
+  React.useEffect(() => {
+    if (isMobile) {
+      setOpen(false);
+    } else {
+      setOpen(true);
+    }
+  }, [isMobile]);
+
   // Funciones del menú de usuario
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -142,12 +153,12 @@ export default function MiniDrawer() {
       <CssBaseline />
       <AppBar
         position="fixed"
-        open={open}
+        open={!isMobile && open}
         sx={{
-          backgroundColor: open
+          backgroundColor: (!isMobile && open)
             ? theme.palette.background.secondary
             : theme.palette.primary.main,
-          boxShadow: open ? "none" : 6,
+          boxShadow: (!isMobile && open) ? "none" : 6,
         }}
       >
         <Toolbar>
@@ -157,10 +168,10 @@ export default function MiniDrawer() {
             edge="start"
             sx={[
               {
-                marginRight: 5,
+                marginRight: { xs: 2, sm: 5 },
                 color: "inherit",
               },
-              open && { display: "none" },
+              !isMobile && open && { display: "none" },
             ]}
           >
             <MenuIcon />
@@ -174,7 +185,7 @@ export default function MiniDrawer() {
                 marginRight: 5,
                 color: theme.palette.text.Appbar,
               },
-              !open && { display: "none" },
+              (isMobile || !open) && { display: "none" },
             ]}
           >
             <MenuOpenIcon />
@@ -185,7 +196,8 @@ export default function MiniDrawer() {
             component="div"
             sx={{
               flexGrow: 1,
-              color: open
+              fontSize: { xs: '1rem', sm: '1.25rem' },
+              color: (!isMobile && open)
                 ? theme.palette.text.Appbar
                 : theme.palette.primary.contrastText,
             }}
@@ -194,19 +206,28 @@ export default function MiniDrawer() {
           </Typography>
           <IconButton
             size="large"
-            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
+            sx={{
+              color: (!isMobile && open) ? theme.palette.text.Appbar : "inherit",
+              display: { xs: 'none', sm: 'inline-flex' }
+            }}
           >
             <HelpIcon />
           </IconButton>
           <IconButton
             size="large"
-            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
+            sx={{
+              color: (!isMobile && open) ? theme.palette.text.Appbar : "inherit",
+              display: { xs: 'none', sm: 'inline-flex' }
+            }}
           >
             <NotificationsIcon />
           </IconButton>
           <IconButton
             size="large"
-            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
+            sx={{
+              color: (!isMobile && open) ? theme.palette.text.Appbar : "inherit",
+              display: { xs: 'none', md: 'inline-flex' }
+            }}
           >
             <MoreVertIcon />
           </IconButton>
@@ -214,7 +235,7 @@ export default function MiniDrawer() {
             size="large"
             aria-label="Cuenta actual del usuario"
             onClick={handleOpenUserMenu}
-            sx={{ color: open ? theme.palette.text.Appbar : "inherit" }}
+            sx={{ color: (!isMobile && open) ? theme.palette.text.Appbar : "inherit" }}
           >
             <AccountCircle />
           </IconButton>
@@ -260,28 +281,11 @@ export default function MiniDrawer() {
           </Menu>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        open={open}
-        sx={{
-          "& .MuiDrawer-paper": {
-            "&::-webkit-scrollbar": {
-              width: "8px",
-            },
-            "&::-webkit-scrollbar-track": {
-              background: "#f1f1f1",
-              borderRadius: "4px",
-            },
-            "&::-webkit-scrollbar-thumb": {
-              background: "#bbb",
-              borderRadius: "4px",
-            },
-            "&::-webkit-scrollbar-thumb:hover": {
-              background: "#999",
-            },
-          },
-        }}
-      >
+
+      {/* Componente reutilizable del contenido del Drawer */}
+      {(() => {
+        const drawerContent = (
+          <>
         <Box
           sx={{
             position: "sticky",
@@ -645,7 +649,63 @@ export default function MiniDrawer() {
             </Grow>
           </>
         )}
-      </Drawer>
+          </>
+        );
+
+        // Drawer temporal para móviles
+        if (isMobile) {
+          return (
+            <MuiDrawer
+              variant="temporary"
+              open={open}
+              onClose={toggleDrawer}
+              ModalProps={{
+                keepMounted: true,
+              }}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+                '& .MuiDrawer-paper': {
+                  width: 250,
+                  boxSizing: 'border-box',
+                  backgroundColor: theme.palette.background.paper,
+                },
+              }}
+            >
+              {drawerContent}
+            </MuiDrawer>
+          );
+        }
+
+        // Drawer permanente para desktop
+        return (
+          <Drawer
+            variant="permanent"
+            open={open}
+            sx={{
+              display: { xs: 'none', md: 'block' },
+              "& .MuiDrawer-paper": {
+                "&::-webkit-scrollbar": {
+                  width: "8px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: "#f1f1f1",
+                  borderRadius: "4px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "#bbb",
+                  borderRadius: "4px",
+                },
+                "&::-webkit-scrollbar-thumb:hover": {
+                  background: "#999",
+                },
+              },
+            }}
+          >
+            {drawerContent}
+          </Drawer>
+        );
+      })()}
+
       <Box
         component="main"
         sx={{
