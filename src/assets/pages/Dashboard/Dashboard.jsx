@@ -1,4 +1,4 @@
-import { Box, Typography, Paper, Grid, Card, CardContent } from '@mui/material';
+import { Box, Typography, Paper, Grid, Card, CardContent, CircularProgress } from '@mui/material';
 import { useUserData } from '../../components/MiniDrawer/hooks/useUserData';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
@@ -12,12 +12,33 @@ import BrainLogo from '../../img/circuito.ico';
  * elige desde el menú lateral según sus permisos.
  */
 const Dashboard = () => {
-  const { user, permissions } = useUserData();
+  const { user, permissions, loading } = useUserData();
 
   // Contar módulos con permiso
   const modulesCount = Object.keys(permissions).filter(
     (key) => permissions[key] === true
   ).length;
+
+  // Mostrar loader mientras se cargan los datos
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          minHeight: '80vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 2,
+        }}
+      >
+        <CircularProgress size={60} />
+        <Typography variant="h6" color="text.secondary">
+          Cargando información...
+        </Typography>
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ p: 3 }}>
