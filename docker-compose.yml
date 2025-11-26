@@ -11,6 +11,8 @@ services:
     restart: unless-stopped
     networks:
       - brain-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 networks:
   brain-network:
