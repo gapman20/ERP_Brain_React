@@ -14,4 +14,4 @@ services:
 
 networks:
   brain-network:
-    driver: bridges
+    driver: bridge
