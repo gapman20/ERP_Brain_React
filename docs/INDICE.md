@@ -78,6 +78,41 @@ Esta es la guía completa de navegación por toda la documentación del proyecto
 
 ---
 
+### 🐳 [DESPLIEGUE_DOCKER.md](DESPLIEGUE_DOCKER.md)
+**Propósito:** Guía completa para desplegar Brain React con Docker
+
+**Contenido:**
+- Arquitectura del despliegue
+- Configuración inicial del servidor
+- Setup de Git con hooks post-receive para despliegue automático
+- Archivos de configuración Docker (Dockerfile, docker-compose.yml, nginx.conf)
+- Flujo de trabajo diario
+- Comandos útiles
+- Solución de problemas
+- Seguridad y mantenimiento
+
+**Para quién:** DevOps y desarrolladores que necesitan desplegar la aplicación
+
+---
+
+### 🗄️ [CONEXION_BASE_DATOS.md](CONEXION_BASE_DATOS.md)
+**Propósito:** Guía completa para conectar Brain React a MySQL
+
+**Contenido:**
+- Arquitectura de conexión (React → Backend → MySQL)
+- Configuración de MySQL para aceptar conexiones
+- Creación de usuarios y permisos
+- Configuración de Docker con extra_hosts
+- Ejemplos de backend (Node.js y PHP)
+- Dockerización del backend
+- Verificación de conexiones
+- Estructura de base de datos
+- Seguridad y mejores prácticas
+
+**Para quién:** Desarrolladores backend y administradores de base de datos
+
+---
+
 ### 📋 [CAMBIOS_SERVICIOS.md](../CAMBIOS_SERVICIOS.md)
 **Propósito:** Resumen de los cambios realizados en la implementación de servicios
 
@@ -183,6 +218,46 @@ export default TuPagina;
 
 ---
 
+### ¿Necesito desplegar la aplicación con Docker?
+👉 Lee: [DESPLIEGUE_DOCKER.md](DESPLIEGUE_DOCKER.md)
+
+**Pasos rápidos:**
+1. Configurar servidor (repositorio Git bare + directorio de trabajo)
+2. Crear hook post-receive para despliegue automático
+3. Agregar remote en tu máquina local
+4. `git push brainDell main` → Despliegue automático
+
+**Comandos esenciales:**
+```bash
+# Ver estado
+docker compose ps
+
+# Ver logs
+docker compose logs -f
+
+# Reiniciar
+docker compose restart
+```
+
+---
+
+### ¿Necesito conectar a MySQL?
+👉 Lee: [CONEXION_BASE_DATOS.md](CONEXION_BASE_DATOS.md)
+
+**Pasos rápidos:**
+1. Configurar MySQL: `bind-address = 0.0.0.0`
+2. Crear usuario: `CREATE USER 'brain_user'@'%'`
+3. Configurar `extra_hosts` en docker-compose.yml
+4. Crear backend API (Node.js/PHP)
+5. Actualizar `VITE_API_URL` en docker-compose.yml
+
+**Importante:** React NO se conecta directamente a MySQL. El flujo es:
+```
+React → Backend API → MySQL
+```
+
+---
+
 ### ¿Necesito modificar el tema (colores, fuentes)?
 👉 Lee: [ARQUITECTURA_CODIGO.md](ARQUITECTURA_CODIGO.md) - Sección "Sistema de Temas y Estilos"
 
@@ -249,7 +324,15 @@ Brain/
 ├── docs/
 │   ├── INDICE.md                  # 📑 Este documento
 │   ├── ARQUITECTURA_CODIGO.md     # 🏗️ Explicación del código
-│   └── SERVICIOS.md               # 🔌 Guía de servicios y API
+│   ├── SERVICIOS.md               # 🔌 Guía de servicios y API
+│   ├── AUTENTICACION.md           # 🔐 Sistema de autenticación
+│   ├── DESPLIEGUE_DOCKER.md       # 🐳 Despliegue con Docker
+│   └── CONEXION_BASE_DATOS.md     # 🗄️ Conexión a MySQL
+│
+├── Dockerfile                      # Configuración Docker
+├── docker-compose.yml             # Orquestación de contenedores
+├── nginx.conf                     # Configuración Nginx
+├── .dockerignore                  # Archivos excluidos de Docker
 │
 ├── src/
 │   ├── services/                  # Código de servicios
@@ -278,7 +361,25 @@ Brain/
 
 **Respuesta en:** [SERVICIOS.md](SERVICIOS.md) - Sección "Modo Simulación vs Producción"
 
-TL;DR: Cambia `VITE_ENABLE_MOCK_DATA` en `.env.development` o `.env.production`
+TL;DR: Cambia `VITE_ENABLE_MOCK_DATA` en `docker-compose.yml` y reconstruye:
+```bash
+docker compose down
+docker compose build --no-cache
+docker compose up -d
+```
+
+---
+
+### ¿Cómo despliego cambios al servidor?
+
+**Respuesta en:** [DESPLIEGUE_DOCKER.md](DESPLIEGUE_DOCKER.md) - Sección "Flujo de Trabajo Diario"
+
+TL;DR:
+```bash
+git add .
+git commit -m "feat: cambios"
+git push brainDell main  # Despliegue automático
+```
 
 ---
 
@@ -363,5 +464,5 @@ Si agregas nueva funcionalidad, por favor:
 
 ---
 
-**Última actualización:** Octubre 2025
+**Última actualización:** Noviembre 2025
 **Mantenido por:** Equipo Brain ERP
