@@ -34,15 +34,15 @@ const MenuList = ({ menuItems, open, context, module }) => {
     <List>
       {menuItems.map((item) => {
         const hasPermission =
-          !item.permission || { context }.permissions[item.permission];
+          !item.permission || userPermisions.includes(item.permissions);
         const routePath = `/${module}/${item.text.toLowerCase().replace(/\s+/g, "-")}`;
         const isActive = location.pathname === routePath;
+        if (!hasPermission) return null;
         return (
           <ListItem
             key={item.text}
             disablePadding
             sx={{ display: "block" }}
-            disabled={!hasPermission}
           >
             <Tooltip
               title={item.text}
