@@ -271,6 +271,67 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .register-left  { display: none !important; }
-  .register-right { padding: 3rem 1.5rem !important; }
+  .register-container {
+    flex-direction: column;
+  }
+  .register-left { 
+    display: flex !important;
+    flex: 0 0 auto;
+    height: 180px;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .register-left > div {
+    padding: 1.5rem !important;
+  }
+  .register-left img {
+    height: 40px !important;
+  }
+  .register-left h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .register-left > div > div:last-child {
+    display: none;
+  }
+  .register-right { 
+    flex: 1;
+    width: 100%;
+    padding: 2rem 1.5rem !important;
+  }
+  .register-form-wrapper {
+    max-width: 100% !important;
+  }
+  .register-input {
+    padding: 1rem 1.25rem;
+    font-size: 1.1rem;
+  }
+  .btn-register, .register-google-btn {
+    padding: 1.25rem;
+    font-size: 1.1rem;
+  }
+  .captcha-widget {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .captcha-label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-left {
+    height: 140px;
+  }
+  .register-right {
+    padding: 1.5rem 1rem !important;
+  }
+  .captcha-widget {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .captcha-logo {
+    display: none;
+  }
 }

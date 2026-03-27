@@ -111,7 +111,7 @@ export default function ForgotPassword() {
           zIndex: 1,
         }} />
 
-        <div style={{
+        <div className="fp-left-content" style={{
           position: 'relative', zIndex: 10, height: '100%', display: 'flex',
           flexDirection: 'column', justifyContent: 'space-between', padding: '4rem',
         }}>
