@@ -123,7 +123,7 @@ export default function Login() {
           zIndex: 1
         }}></div>
 
-        <div style={{ 
+        <div className="login-left-content" style={{ 
           position: 'relative', zIndex: 10, height: '100%', 
           display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
           padding: '4rem'
@@ -161,11 +161,11 @@ export default function Login() {
       <div className="login-right">
         <div className="animate-fade-in" style={{ width: '100%', maxWidth: '420px', zIndex: 5 }}>
           
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 style={{ fontSize: '2.2rem', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '800' }}>
+          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <h2 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', color: 'var(--text-primary)', fontWeight: '800' }}>
               Bienvenido a <span className="text-gradient">Brain ERP</span>
             </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Gestiona tu empresa con elegancia y precisión</p>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Gestiona tu empresa con elegancia y precisión</p>
           </div>
 
           {error && (

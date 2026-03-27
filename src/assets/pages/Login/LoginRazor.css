@@ -190,6 +190,68 @@
 }
 
 @media (max-width: 900px) {
-  .login-left { display: none !important; }
-  .login-right { padding: 4rem 2rem !important; }
+  .login-container {
+    flex-direction: column;
+  }
+  .login-left { 
+    display: flex !important;
+    flex: 0 0 auto;
+    height: 180px;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .login-left > div {
+    padding: 1.5rem !important;
+  }
+  .login-left img {
+    height: 40px !important;
+  }
+  .login-left h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+  .login-left > div > div:last-child {
+    display: none;
+  }
+  .login-right { 
+    flex: 1;
+    width: 100%;
+    padding: 2rem 1.5rem !important;
+    align-items: flex-start;
+  }
+  .login-right > div {
+    max-width: 100% !important;
+  }
+  .login-input {
+    padding: 1rem 1.25rem;
+    font-size: 1.1rem;
+  }
+  .btn-login {
+    padding: 1.25rem;
+    font-size: 1.1rem;
+  }
+  .captcha-widget {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .captcha-label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-left {
+    height: 140px;
+  }
+  .login-right {
+    padding: 1.5rem 1rem !important;
+  }
+  .captcha-widget {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .captcha-logo {
+    display: none;
+  }
 }
