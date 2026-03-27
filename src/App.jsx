@@ -7,6 +7,8 @@ import customTheme from "./assets/themes/theme";
 import AlianzasPage from "./assets/pages/Alianzas/Alianzas";
 import ImplementacionLayout from "./assets/views/implementacion/Implementacion.jsx";
 import Login from "./assets/pages/Login/Login";
+import Register from "./assets/pages/Register/Register";
+import ForgotPassword from "./assets/pages/ForgotPassword/ForgotPassword";
 import Dashboard from "./assets/pages/Dashboard/Dashboard";
 import ProtectedRoute from "./assets/components/ProtectedRoute";
 import { AppContext } from "./context/AppContext";
@@ -29,6 +31,12 @@ function App() {
           <Routes>
             {/* Ruta de Login (pública) */}
             <Route path="/login" element={<Login />} />
+
+            {/* Ruta de Registro (pública) */}
+            <Route path="/register" element={<Register />} />
+
+            {/* Ruta de Recuperar contraseña (pública) */}
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
             {/* Redirigir raíz a login */}
             <Route path="/" element={<Navigate to="/login" replace />} />
