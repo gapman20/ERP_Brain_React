@@ -27,7 +27,7 @@ const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
   },
 }));
 
-const MenuList = ({ menuItems, open, context, module, onItemClick }) => {
+const MenuList = ({ menuItems, open, context, module, onItemClick, isMobile }) => {
   const location = useLocation();
 
   const handleClick = () => {
@@ -54,7 +54,7 @@ const MenuList = ({ menuItems, open, context, module, onItemClick }) => {
               title={item.text}
               placement="right"
               arrow
-              disableHoverListener={open}
+              disableHoverListener={open || isMobile}
               componentsProps={{
                 tooltip: {
                   sx: {
@@ -125,6 +125,7 @@ MenuList.propTypes = {
   }).isRequired,
   module: PropTypes.string.isRequired,
   onItemClick: PropTypes.func,
+  isMobile: PropTypes.bool,
 };
 
 // Memoize component to prevent unnecessary re-renders
