@@ -116,11 +116,11 @@ export default function Register() {
       <div className="register-form-wrapper">
 
           {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.4rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
+            <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
               Crear una <span className="register-gradient-text">cuenta</span>
             </h2>
-            <p style={{ color: '#475569', fontSize: '0.95rem' }}>
+            <p style={{ color: '#475569', fontSize: '0.875rem' }}>
               Completa el formulario para acceder a Brain ERP
             </p>
           </div>
@@ -129,7 +129,7 @@ export default function Register() {
             <Alert severity="error" sx={{ mb: 2, borderRadius: '0.75rem' }}>{submitError}</Alert>
           )}
 
-          <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+          <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
 
             {/* Nombre de usuario */}
             <div>
@@ -204,7 +204,7 @@ export default function Register() {
             </div>
 
             {/* Checkboxes legales */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.25rem' }}>
               <label className="register-checkbox-row">
                 <input
                   type="checkbox"
@@ -266,7 +266,7 @@ export default function Register() {
             </div>
 
             {/* Botón Registrar */}
-            <button type="submit" className="btn-register" disabled={loading} style={{ marginTop: '0.5rem' }}>
+            <button type="submit" className="btn-register" disabled={loading}>
               {loading
                 ? <><CircularProgress size={22} sx={{ mr: 1, color: 'white' }} /> Creando cuenta...</>
                 : 'Registrar'

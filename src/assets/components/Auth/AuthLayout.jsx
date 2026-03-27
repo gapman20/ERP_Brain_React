@@ -5,9 +5,7 @@ export default function AuthLayout({ children, quote }) {
     <section className="auth-container">
       <AuthHeader quote={quote} />
       <div className="auth-right">
-        <div className="auth-content">
-          {children}
-        </div>
+        {children}
       </div>
     </section>
   );

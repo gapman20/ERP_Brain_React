@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Alert, Box } from '@mui/material';
 import { dataService } from '../../../services';
+import BrainLogo from '../../img/circuito.ico';
 import AuthLayout from '../../components/Auth/AuthLayout';
 import '../../components/Auth/Auth.css';
 import './LoginRazor.css';
