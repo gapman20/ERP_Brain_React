@@ -313,6 +313,7 @@ export default function MiniDrawer() {
                   padding: theme.spacing(1, 0),
                   marginBottom: theme.spacing(1),
                   width: "100%",
+                  mt: isMobile ? 6 : 0,
                 }}
               >
                 <Typography variant="caption" color="white">
