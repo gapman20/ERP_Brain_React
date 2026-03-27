@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Alert } from '@mui/material';
-import accountingBg from '../../img/accounting_bg.png';
-import BrainLogo from '../../img/circuito.ico';
+import AuthLayout from '../../components/Auth/AuthLayout';
+import '../../components/Auth/Auth.css';
 import './ForgotPassword.css';
 
 /**
@@ -92,56 +92,8 @@ export default function ForgotPassword() {
 
   /* ── Main view ── */
   return (
-    <section className="fp-container">
-
-      {/* ── LEFT: Branding ── */}
-      <div
-        className="fp-left"
-        style={{
-          backgroundImage: `url(${accountingBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        {/* Overlay */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(rgba(15,23,42,0.75), rgba(15,23,42,0.45))',
-          zIndex: 1,
-        }} />
-
-        <div className="fp-left-content" style={{
-          position: 'relative', zIndex: 10, height: '100%', display: 'flex',
-          flexDirection: 'column', justifyContent: 'space-between', padding: '4rem',
-        }}>
-          {/* Logo */}
-          <div>
-            <img src={BrainLogo} alt="Brain ERP" style={{ height: '60px', filter: 'brightness(0) invert(1)' }} />
-            <span style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold', marginLeft: '1rem', letterSpacing: '1px' }}>
-              BRAIN ERP
-            </span>
-          </div>
-
-          {/* Quote */}
-          <div style={{ maxWidth: '480px' }}>
-            <h2 style={{
-              fontSize: '2.8rem', fontWeight: 800, color: 'white',
-              marginBottom: '2rem', lineHeight: 1.1, textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-            }}>
-              "Tu seguridad es nuestra prioridad."
-            </h2>
-            <div style={{ borderLeft: '4px solid #4f46e5', paddingLeft: '1.5rem' }}>
-              <p style={{ fontWeight: 600, color: 'white', margin: 0, fontSize: '1.1rem' }}>Equipo Brain ERP</p>
-              <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)', margin: 0 }}>Gestión Empresarial de Próxima Generación</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── RIGHT: Form ── */}
-      <div className="fp-right">
-        <div className="fp-form-wrapper">
+    <AuthLayout quote="Tu seguridad es nuestra prioridad.">
+      <div className="fp-form-wrapper">
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
@@ -247,9 +199,8 @@ export default function ForgotPassword() {
               </button>
             </div>
 
-          </form>
+            </form>
         </div>
-      </div>
-    </section>
+    </AuthLayout>
   );
 }
