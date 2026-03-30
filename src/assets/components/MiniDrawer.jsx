@@ -313,6 +313,7 @@ export default function MiniDrawer() {
                   padding: theme.spacing(1, 0),
                   marginBottom: theme.spacing(1),
                   width: "100%",
+                  mt: isMobile ? 6 : 0,
                 }}
               >
                 <Typography variant="caption" color="white">
@@ -413,6 +414,8 @@ export default function MiniDrawer() {
                         open={open}
                         context={{ permissions, user }}
                         module={"implementacion"}
+                        onItemClick={isMobile ? toggleDrawer : undefined}
+                        isMobile={isMobile}
                       />
                     )}
                   </Box>
@@ -451,6 +454,8 @@ export default function MiniDrawer() {
                         open={open}
                         context={{ permissions, user }}
                         module={"nominas"}
+                        onItemClick={isMobile ? toggleDrawer : undefined}
+                        isMobile={isMobile}
                       />
                     )}
                   </Box>
@@ -489,6 +494,8 @@ export default function MiniDrawer() {
                         open={open}
                         context={{ permissions, user }}
                         module={"imss"}
+                        onItemClick={isMobile ? toggleDrawer : undefined}
+                        isMobile={isMobile}
                       />
                     )}
                   </Box>
@@ -527,6 +534,8 @@ export default function MiniDrawer() {
                         open={open}
                         context={{ permissions, user }}
                         module={"facturacion"}
+                        onItemClick={isMobile ? toggleDrawer : undefined}
+                        isMobile={isMobile}
                       />
                     )}
                   </Box>
@@ -565,6 +574,8 @@ export default function MiniDrawer() {
                         open={open}
                         context={{ permissions, user }}
                         module={"gastos"}
+                        onItemClick={isMobile ? toggleDrawer : undefined}
+                        isMobile={isMobile}
                       />
                     )}
                   </Box>
@@ -603,6 +614,8 @@ export default function MiniDrawer() {
                         open={open}
                         context={{ permissions, user }}
                         module={"utilerias"}
+                        onItemClick={isMobile ? toggleDrawer : undefined}
+                        isMobile={isMobile}
                       />
                     )}
                   </Box>
@@ -641,6 +654,8 @@ export default function MiniDrawer() {
                         open={open}
                         context={{ permissions, user }}
                         module={"soporte"}
+                        onItemClick={isMobile ? toggleDrawer : undefined}
+                        isMobile={isMobile}
                       />
                     )}
                   </Box>

@@ -1,6 +1,6 @@
-/* LoginRazor.css - Scoped styles for the Razor-style login page */
+/* LoginRazor.css - Scoped styles for the Login page */
 
-.login-container {
+:root {
   --primary: #4f46e5;
   --primary-hover: #4338ca;
   --secondary: #0284c7;
@@ -12,41 +12,6 @@
   --text-muted: #94a3b8;
   --border: rgba(0, 0, 0, 0.08);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  background: var(--bg-color);
-  overflow: hidden;
-  font-family: 'Inter', sans-serif;
-}
-
-.login-left {
-  flex: 0 0 50%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-right: 1px solid var(--border);
-}
-
-.bg-glow {
-  position: absolute;
-  border-radius: 50%;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.login-right {
-  flex: 0 0 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2.5rem;
-  position: relative;
-  background: white;
 }
 
 .text-gradient {
@@ -190,6 +155,70 @@
 }
 
 @media (max-width: 900px) {
-  .login-left { display: none !important; }
-  .login-right { padding: 4rem 2rem !important; }
+  .login-container {
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .login-left { 
+    display: flex !important;
+    flex: 0 0 auto;
+    height: 160px;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .login-left > div {
+    padding: 1rem 1.5rem !important;
+    justify-content: center !important;
+  }
+  .login-left img {
+    height: 36px !important;
+  }
+  .login-left span {
+    font-size: 1.2rem !important;
+  }
+  .login-left > div > div:last-child {
+    display: none;
+  }
+  .login-right { 
+    flex: 1;
+    width: 100%;
+    padding: 2rem 1.5rem !important;
+    align-items: flex-start;
+  }
+  .login-right > div {
+    max-width: 100% !important;
+  }
+  .login-input {
+    padding: 1rem 1.25rem;
+    font-size: 1.1rem;
+  }
+  .btn-login {
+    padding: 1.25rem;
+    font-size: 1.1rem;
+  }
+  .captcha-widget {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .captcha-label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-left {
+    height: 140px;
+  }
+  .login-right {
+    padding: 1.5rem 1rem !important;
+  }
+  .captcha-widget {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .captcha-logo {
+    display: none;
+  }
 }

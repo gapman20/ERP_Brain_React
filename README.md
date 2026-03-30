@@ -4,12 +4,13 @@ Sistema ERP modular desarrollado con React + Vite, Material-UI y preparado para 
 
 ## Características
 
-- **Framework:** React 18.2 + Vite 5.2
+- **Framework:** React 19 + Vite 7
 - **UI:** Material-UI (MUI) 7.2
 - **Routing:** React Router DOM 7.8
 - **HTTP Client:** Axios 1.11
 - **Estado:** Context API
 - **Estilos:** Emotion
+- **Docker:** Preparado para despliegue en contenedor
 
 ## Arquitectura de Servicios
 
@@ -85,13 +86,23 @@ await dataService.implementacion.deleteAlianza(1);
 
 ## Módulos del ERP
 
-1. **IMPLEMENTACIÓN** - Alianzas, Empresas, Clientes, Remunerados, Layouts, Contratos
-2. **NÓMINAS** - Nóminas, Recibos, Reportes, Movimientos, Calendario
-3. **IMSS** - Generales, Cargos, Reportes, Obras
-4. **FACTURACIÓN** - Facturas, Complementos, Notas de crédito, Depósitos
-5. **GASTOS** - Solicitudes, Proveedores, Archivos, Concentrador
-6. **UTILERÍA** - Lector XML, Bancos, Cheques, Conciliaciones
-7. **SOPORTE** - Usuarios, Tickets, Notificaciones
+| Módulo | Estado | Descripción |
+|--------|--------|-------------|
+| **IMPLEMENTACIÓN** | Parcial | Alianzas (CRUD funcional) |
+| **NÓMINAS** | Mock | Datos de ejemplo |
+| **IMSS** | Mock | Datos de ejemplo |
+| **FACTURACIÓN** | Mock | Datos de ejemplo |
+| **GASTOS** | Mock | Datos de ejemplo |
+| **UTILIDADES** | Mock | Datos de ejemplo |
+| **SOPORTE** | Mock | Datos de ejemplo |
+
+### Funcionalidades Completadas
+- Login/logout con JWT
+- Dashboard principal
+- Menú lateral con permisos por usuario
+- CRUD de Alianzas (Implementación)
+- Arquitectura de servicios mock/API dual
+- Docker preparado para despliegue
 
 ## Inicio Rápido
 
@@ -123,6 +134,19 @@ npm run build
 
 ```bash
 npm run preview
+```
+
+### Docker
+
+```bash
+# Construir imagen
+docker-compose build
+
+# Ejecutar contenedor
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f
 ```
 
 ## Datos Mock Disponibles
@@ -206,7 +230,20 @@ Usa alias para importaciones más limpias:
 import Component from '@components/Component';
 import { dataService } from '@services';
 import { useUserData } from '@hooks/useUserData';
+import Page from '@pages/Login';
 ```
+
+| Alias | Ruta |
+|-------|------|
+| `@` | `/src` |
+| `@components` | `/src/assets/components` |
+| `@pages` | `/src/assets/pages` |
+| `@views` | `/src/assets/views` |
+| `@services` | `/src/services` |
+| `@context` | `/src/context` |
+| `@hooks` | `/src/assets/components/MiniDrawer/hooks` |
+| `@themes` | `/src/assets/themes` |
+| `@img` | `/src/assets/img` |
 
 ## Scripts Disponibles
 
@@ -219,12 +256,13 @@ npm run lint         # Ejecutar ESLint
 
 ## Tecnologías
 
-- **React** 18.2.0
-- **Vite** 5.2.0
+- **React** 19.2.3
+- **Vite** 7.3.1
 - **Material-UI** 7.2.0
 - **React Router** 7.8.2
 - **Axios** 1.11.0
 - **Emotion** (styled components)
+- **Toolpad** 0.1.55 (MUI powered tools)
 
 ## Contribuir
 
@@ -240,4 +278,16 @@ Este proyecto es parte de Brain ERP.
 
 ---
 
-**Última actualización:** Octubre 2025
+## Estado del Proyecto
+
+| Componente | Estado |
+|------------|--------|
+| Frontend (React) | En desarrollo |
+| Autenticación | Completo |
+| Dashboard | Completo |
+| Menú/Permisos | Completo |
+| Módulo Implementación | Parcial (Alianzas) |
+| Backend (API) | Pendiente |
+| Base de datos | Pendiente (MySQL) |
+
+**Última actualización:** Marzo 2026

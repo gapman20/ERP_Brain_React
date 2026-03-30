@@ -27,8 +27,14 @@ const AnimatedListItemButton = styled(ListItemButton)(({ theme }) => ({
   },
 }));
 
-const MenuList = ({ menuItems, open, context, module }) => {
+const MenuList = ({ menuItems, open, context, module, onItemClick, isMobile }) => {
   const location = useLocation();
+
+  const handleClick = () => {
+    if (onItemClick) {
+      onItemClick();
+    }
+  };
 
   return (
     <List>
@@ -48,7 +54,7 @@ const MenuList = ({ menuItems, open, context, module }) => {
               title={item.text}
               placement="right"
               arrow
-              disableHoverListener={open}
+              disableHoverListener={open || isMobile}
               componentsProps={{
                 tooltip: {
                   sx: {
@@ -61,6 +67,7 @@ const MenuList = ({ menuItems, open, context, module }) => {
               <AnimatedListItemButton
                 component={Link}
                 to={routePath}
+                onClick={handleClick}
                 sx={[
                   open
                     ? { justifyContent: "initial" }
@@ -117,6 +124,8 @@ MenuList.propTypes = {
     permissions: PropTypes.object,
   }).isRequired,
   module: PropTypes.string.isRequired,
+  onItemClick: PropTypes.func,
+  isMobile: PropTypes.bool,
 };
 
 // Memoize component to prevent unnecessary re-renders

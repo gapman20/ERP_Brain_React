@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Alert } from '@mui/material';
-import accountingBg from '../../img/accounting_bg.png';
-import BrainLogo from '../../img/circuito.ico';
+import AuthLayout from '../../components/Auth/AuthLayout';
+import '../../components/Auth/Auth.css';
 import './Register.css';
 
 /**
@@ -112,64 +112,15 @@ export default function Register() {
 
   /* ── Main View ── */
   return (
-    <section className="register-container">
-
-      {/* ── LEFT: Branding ── */}
-      <div
-        className="register-left"
-        style={{
-          backgroundImage: `url(${accountingBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          position: 'relative',
-        }}
-      >
-        {/* Overlay */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(rgba(15,23,42,0.75), rgba(15,23,42,0.45))',
-          zIndex: 1,
-        }} />
-
-        <div style={{
-          position: 'relative', zIndex: 10, height: '100%', display: 'flex',
-          flexDirection: 'column', justifyContent: 'space-between', padding: '4rem',
-        }}>
-          {/* Logo */}
-          <div>
-            <img src={BrainLogo} alt="Brain ERP" style={{ height: '60px', filter: 'brightness(0) invert(1)' }} />
-            <span style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold', marginLeft: '1rem', letterSpacing: '1px' }}>
-              BRAIN ERP
-            </span>
-          </div>
-
-          {/* Quote */}
-          <div style={{ maxWidth: '480px' }}>
-            <h2 style={{
-              fontSize: '2.8rem', fontWeight: 800, color: 'white',
-              marginBottom: '2rem', lineHeight: 1.1, textShadow: '0 2px 10px rgba(0,0,0,0.3)',
-            }}>
-              "Únete a la plataforma que impulsa el crecimiento empresarial."
-            </h2>
-            <div style={{ borderLeft: '4px solid #4f46e5', paddingLeft: '1.5rem' }}>
-              <p style={{ fontWeight: 600, color: 'white', margin: 0, fontSize: '1.1rem' }}>Equipo Brain ERP</p>
-              <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)', margin: 0 }}>Gestión Empresarial de Próxima Generación</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── RIGHT: Form ── */}
-      <div className="register-right">
-        <div className="register-form-wrapper">
+    <AuthLayout quote="Únete a la plataforma que impulsa el crecimiento empresarial.">
+      <div className="register-form-wrapper">
 
           {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.4rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
+            <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
               Crear una <span className="register-gradient-text">cuenta</span>
             </h2>
-            <p style={{ color: '#475569', fontSize: '0.95rem' }}>
+            <p style={{ color: '#475569', fontSize: '0.875rem' }}>
               Completa el formulario para acceder a Brain ERP
             </p>
           </div>
@@ -178,7 +129,7 @@ export default function Register() {
             <Alert severity="error" sx={{ mb: 2, borderRadius: '0.75rem' }}>{submitError}</Alert>
           )}
 
-          <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+          <form onSubmit={handleSubmit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
 
             {/* Nombre de usuario */}
             <div>
@@ -253,7 +204,7 @@ export default function Register() {
             </div>
 
             {/* Checkboxes legales */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '0.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '0.25rem' }}>
               <label className="register-checkbox-row">
                 <input
                   type="checkbox"
@@ -315,7 +266,7 @@ export default function Register() {
             </div>
 
             {/* Botón Registrar */}
-            <button type="submit" className="btn-register" disabled={loading} style={{ marginTop: '0.5rem' }}>
+            <button type="submit" className="btn-register" disabled={loading}>
               {loading
                 ? <><CircularProgress size={22} sx={{ mr: 1, color: 'white' }} /> Creando cuenta...</>
                 : 'Registrar'
@@ -350,7 +301,6 @@ export default function Register() {
 
           </form>
         </div>
-      </div>
-    </section>
+    </AuthLayout>
   );
 }
