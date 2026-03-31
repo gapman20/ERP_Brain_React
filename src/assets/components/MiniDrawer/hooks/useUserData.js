@@ -1,14 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { dataService } from "../../../../services";
 
-/**
- * Hook personalizado para cargar datos de usuario y permisos
- *
- * Automáticamente usa datos mock o API real según la configuración
- * en las variables de entorno (VITE_ENABLE_MOCK_DATA)
- *
- * @returns {Object} - { user, permissions, error, loading }
- */
 export const useUserData = () => {
   const [user, setUser] = useState({});
   const [permissions, setPermissions] = useState({});
@@ -24,14 +16,23 @@ export const useUserData = () => {
       try {
         setLoading(true);
 
-        // Usar el servicio unificado que selecciona mock o API real
-        const response = await dataService.users.getUserWithPermissions(32);
+        let userId = null;
+        const token = localStorage.getItem('authToken');
+        
+        if (token) {
+          const savedUser = localStorage.getItem('user');
+          if (savedUser) {
+            const userData = JSON.parse(savedUser);
+            userId = userData.id;
+          }
+        }
 
-        // Extraer datos de la respuesta
-        const userData = response.data.user || response.data;
+        const response = await dataService.users.getUserWithPermissions(userId);
+
+        const userResponse = response.data.user || response.data;
         const permissionsData = response.data.permissions || response.data;
 
-        setUser(userData);
+        setUser(userResponse);
         setPermissions(permissionsData);
       } catch (err) {
         console.error("Error al cargar datos del usuario:", err);
