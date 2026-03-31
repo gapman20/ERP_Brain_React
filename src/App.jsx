@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { MemoryRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import MiniDrawer from "./assets/components/MiniDrawer";
 import { ThemeProvider } from "@mui/material/styles";
@@ -17,16 +17,16 @@ function App() {
   const [currentModule, setCurrentModule] = useState("implementacion");
   const [currentSection, setCurrentSection] = useState("alianzas");
 
+  const contextValue = useMemo(() => ({
+    currentModule,
+    setCurrentModule,
+    currentSection,
+    setCurrentSection,
+  }), [currentModule, currentSection]);
+
   return (
     <ThemeProvider theme={customTheme}>
-      <AppContext.Provider
-        value={{
-          currentModule,
-          setCurrentModule,
-          currentSection,
-          setCurrentSection,
-        }}
-      >
+      <AppContext.Provider value={contextValue}>
         <Router initialEntries={['/login']} initialIndex={0}>
           <Routes>
             {/* Ruta de Login (pública) */}
