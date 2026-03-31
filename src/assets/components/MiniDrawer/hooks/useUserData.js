@@ -1,14 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { dataService } from "../../../../services";
+import { getUserIdFromToken, getUserFromStorage, isTokenValid } from "../../../../utils/auth";
 
-/**
- * Hook personalizado para cargar datos de usuario y permisos
- *
- * Automáticamente usa datos mock o API real según la configuración
- * en las variables de entorno (VITE_ENABLE_MOCK_DATA)
- *
- * @returns {Object} - { user, permissions, error, loading }
- */
 export const useUserData = () => {
   const [user, setUser] = useState({});
   const [permissions, setPermissions] = useState({});
@@ -24,14 +17,28 @@ export const useUserData = () => {
       try {
         setLoading(true);
 
-        // Usar el servicio unificado que selecciona mock o API real
-        const response = await dataService.users.getUserWithPermissions(32);
+        // Verificar si el token es válido
+        if (!isTokenValid()) {
+          setError('Sesión expirada');
+          setLoading(false);
+          return;
+        }
 
-        // Extraer datos de la respuesta
-        const userData = response.data.user || response.data;
+        // Obtener userId del token JWT (más seguro)
+        const userId = getUserIdFromToken();
+        
+        // Si no se pudo obtener del token, intentar del storage
+        let userData = getUserFromStorage();
+        if (!userId && userData) {
+          userData = userData;
+        }
+
+        const response = await dataService.users.getUserWithPermissions(userId);
+
+        const userResponse = response.data.user || response.data;
         const permissionsData = response.data.permissions || response.data;
 
-        setUser(userData);
+        setUser(userResponse);
         setPermissions(permissionsData);
       } catch (err) {
         console.error("Error al cargar datos del usuario:", err);

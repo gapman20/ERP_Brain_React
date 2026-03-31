@@ -1,3 +1,4 @@
+import { sanitizeInput, clearAuthData } from '../../../utils/auth';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Alert, Box } from '@mui/material';
@@ -18,6 +19,7 @@ export default function Login() {
     password: '',
   });
   const [loading, setLoading] = useState(false);
+  const [submitAttempts, setSubmitAttempts] = useState(0);
   const [isRedirecting, setIsRedirecting] = useState(false);
   const [error, setError] = useState('');
   const [captchaChecked, setCaptchaChecked] = useState(false);
@@ -62,8 +64,8 @@ export default function Login() {
       }
 
       const response = await dataService.auth.login({
-        email: formData.email,
-        password: formData.password,
+        email: sanitizeInput(formData.email),
+        password: sanitizeInput(formData.password),
       });
 
       if (response.data.token) {

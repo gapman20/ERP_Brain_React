@@ -40,7 +40,7 @@ const MenuList = ({ menuItems, open, context, module, onItemClick, isMobile }) =
     <List>
       {menuItems.map((item) => {
         const hasPermission =
-          !item.permission || userPermisions.includes(item.permissions);
+          !item.permission || context.permissions.includes(item.permissions);
         const routePath = `/${module}/${item.text.toLowerCase().replace(/\s+/g, "-")}`;
         const isActive = location.pathname === routePath;
         if (!hasPermission) return null;
