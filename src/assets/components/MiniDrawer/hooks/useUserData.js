@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { dataService } from "../../../../services";
+import { getUserIdFromToken, getUserFromStorage, isTokenValid } from "../../../../utils/auth";
 
 export const useUserData = () => {
   const [user, setUser] = useState({});
@@ -16,15 +17,20 @@ export const useUserData = () => {
       try {
         setLoading(true);
 
-        let userId = null;
-        const token = localStorage.getItem('authToken');
+        // Verificar si el token es válido
+        if (!isTokenValid()) {
+          setError('Sesión expirada');
+          setLoading(false);
+          return;
+        }
+
+        // Obtener userId del token JWT (más seguro)
+        const userId = getUserIdFromToken();
         
-        if (token) {
-          const savedUser = localStorage.getItem('user');
-          if (savedUser) {
-            const userData = JSON.parse(savedUser);
-            userId = userData.id;
-          }
+        // Si no se pudo obtener del token, intentar del storage
+        let userData = getUserFromStorage();
+        if (!userId && userData) {
+          userData = userData;
         }
 
         const response = await dataService.users.getUserWithPermissions(userId);
